@@ -12,7 +12,7 @@ class CreateInvitationsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('invitations', function(Blueprint $table)
+    Schema::create('invitations', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->integer('user_id')->unsigned();

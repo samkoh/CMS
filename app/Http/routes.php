@@ -27,6 +27,16 @@ Route::get('conferenceChair/invitationCancel', 'ConfChairInvitationCancelControl
 
 Route::get('conferenceChair/sendBulkEmail', 'ConfChairSendBulkEmailController@index');
 
+Route::get('conferenceChair/createConference', 'ConfChairCreateConference@index');
+
+Route::get('conferenceChair/createTopic', 'ConfChairCreateTopic@index');
+
+//Route::get('conferenceChair/createTopic', 'ConfChairCreateTopic@store');
+
+//Route::get('conferenceChair/createConference', 'ConfChairCreateConference@store');
+
+Route::get('conferenceChair/createConferenceFee', 'ConfChairConferenceFeeController@index');
+
 Route::resource('conferenceChair', 'ConfChairInvitationController');
 
 

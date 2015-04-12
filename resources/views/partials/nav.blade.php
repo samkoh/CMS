@@ -21,7 +21,10 @@
 								<li><a href="/conferenceChair/allPapers">Assign Papers</a></li>		
 								<li><a href="/conferenceChair/invitationStatus">Reviewer Invitation Status</a></li>
                                 <li><a href="/conferenceChair/sendBulkEmail">Bulk Email</a></li>
-							</ul>
+                                <li><a href="/conferenceChair/createConference">Create a new conference</a></li>
+                                <li><a href="/conferenceChair/createConferenceFee">Conference Fee</a></li>
+                                <li><a href="/conferenceChair/createTopic">Create Topic</a></li>
+                            </ul>
 					</li>
 
 					<li class="dropdown">
