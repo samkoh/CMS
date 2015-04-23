@@ -26,7 +26,7 @@ class ConfChairSendBulkEmailController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		//This is create part
 	}
 
 	/**
