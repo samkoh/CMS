@@ -2,19 +2,31 @@
 
 @section('content')
 
+    <h3>Conference Topic List:</h3>
+
+    @foreach($conferences as $conference)
+
+        <li>
+            {{ $conference->name }}
+        </li>
+
+    @endforeach
+    <br />
+    <hr />
+
     <h3>Create a Conference</h3>
 
     {!! Form::open(['action' => 'ConfChair\ConfChairCreateConferenceController@store']) !!}
 
 
-    <div class="form-group">
-        {!! Form::label('loginId', 'Login ID:')!!}
-        {!! Form::text('loginId', '1', array('required','class'=>'form-control','placeholder'=>'Email Address')) !!}
-    </div>
+    {{--<div class="form-group">--}}
+        {{--{!! Form::label('id', 'Login ID:')!!}--}}
+        {{--{!! Form::text('id', '1', array('required','class'=>'form-control','placeholder'=>'Email Address')) !!}--}}
+    {{--</div>--}}
 
     <div class="form-group">
         {!! Form::label('name', 'Name of the conference:')!!}
-        {!! Form::text('name', null, array('required','class'=>'form-control','placeholder'=>'Email Address')) !!}
+        {!! Form::text('name', null, array('required','class'=>'form-control','placeholder'=>'Conference Name')) !!}
     </div>
 
     <div class="form-group">
@@ -34,8 +46,8 @@
     </div>
 
     <div class="form-group">
-        {!! Form::label('venueAddress', 'Address:')!!}
-        {!! Form::textarea('venueAddress', null, array('required','class'=>'form-control','placeholder'=>'Address')) !!}
+        {!! Form::label('address', 'Address:')!!}
+        {!! Form::textarea('address', null, array('required','class'=>'form-control','placeholder'=>'Address')) !!}
     </div>
 
     <div class="form-group">

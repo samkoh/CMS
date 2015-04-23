@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers\ConfChair;
 
+use App\Conference;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Topic;
@@ -15,9 +16,10 @@ class ConfChairConferenceFeeController extends Controller {
 	 */
 	public function index()
 	{
-        $topic = Topic::lists('name');
+        $conference = Conference::lists('name');
+        $fee = ['Member', 'Non-Member', 'Non-Malaysian'];
 
-        return view('conferenceChair.createConferenceFee', compact('topic'));
+        return view('conferenceChair.createConferenceFee', compact('conference','fee'));
 	}
 
 	/**

@@ -14,8 +14,8 @@
 
                         <div class="form-group">
                             {!! Form::label('conference', 'Please select a conference (name) :') !!}
-                            {!! Form::select('conference',$topic, 'null', ['id' => 'conference_list','class' =>
-                            'form-control', 'multiple'])!!}
+                            {!! Form::select('conference',$conference, 'null', ['class' =>
+                            'form-control'])!!}
                         </div>
 
                         <br/>
@@ -32,43 +32,26 @@
 
                             <tr>
                                 <td>
-                                    {!! Form::text('fee', null, array('required','class'=>'form-control','placeholder'=>'fee label')) !!}
+                                    {!! Form::text('name', null, array('required','class'=>'form-control','placeholder'=>'fee label')) !!}
                                 </td>
-                                <td>
-                                    <form role="form">
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="Member">Member</label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="Non-Member">Non-Member</label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="Non-Malaysian">Non-Malaysian</label>
-                                        </div>
-                                    </form>
-                                </td>
-                                <td>
-                                    RM {!! Form::text('amount', null, array('required','class'=>'form-control','placeholder'=>'amount')) !!}
-                                </td>
-                            </tr>
+                                {{--<td>--}}
+                                    {{--<form role="form">--}}
+                                        {{--<div class="checkbox">--}}
+                                            {{--<label><input type="checkbox" value="Member">Member</label>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="checkbox">--}}
+                                            {{--<label><input type="checkbox" value="Non-Member">Non-Member</label>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="checkbox">--}}
+                                            {{--<label><input type="checkbox" value="Non-Malaysian">Non-Malaysian</label>--}}
+                                        {{--</div>--}}
+                                    {{--</form>--}}
+                                {{--</td>--}}
 
-                            <tr>
                                 <td>
-                                    {!! Form::text('fee', null, array('required','class'=>'form-control','placeholder'=>'fee label')) !!}
+                                    {!! Form::select('topic',$fee, 'null', ['class' => 'form-control'])!!}
                                 </td>
-                                <td>
-                                    <form role="form">
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="Member">Member</label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="Non-Member">Non-Member</label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="Non-Malaysian">Non-Malaysian</label>
-                                        </div>
-                                    </form>
-                                </td>
+
                                 <td>
                                     RM {!! Form::text('amount', null, array('required','class'=>'form-control','placeholder'=>'amount')) !!}
                                 </td>
@@ -88,12 +71,5 @@
             </div>
         </div>
     </div>
-
-    <script>
-        $('#conference_list').select2({
-            placeholder: 'Please select a conference',
-            tags: true
-        });
-    </script>
 
 @endsection
