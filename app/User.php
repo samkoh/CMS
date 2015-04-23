@@ -31,9 +31,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $hidden = ['password', 'remember_token'];
 
-	public function notices()
+	public function topics()
 	{
-		return $this->hasMany('App\Invitation')->latest()->where('content_removed', 0);
+		return $this->hasMany('App\Conference');
 	}
 
 }

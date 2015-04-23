@@ -19,4 +19,14 @@ class Conference extends Model {
         'endDate'
     ];
 
+    public function  user()
+    {
+        return $this->belongsTo('App\Login');
+    }
+
+    public function  topic()
+    {
+        return $this->belongsToMany('App\Topic')->withTimestamps();
+    }
+
 }

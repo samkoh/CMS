@@ -1,11 +1,11 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\ConfChair;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class ReviewerPaperController extends Controller {
+class ConfChairInvitationCancelController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -14,9 +14,10 @@ class ReviewerPaperController extends Controller {
 	 */
 	public function index()
 	{
-		$papers = $this->getPapers();
+        $message = 'Hello John, Sorry for taking your time to considerate my invitation to the xxx Conferecence 2015,Since you are unable to reply your confirmation towards the invitation, our committee had decided to cancel your invitation. Sorry for any incovenience caused.
+                    Thank you.';
 
-		return view('reviewer.paper', compact('papers'));
+		return view('conferenceChair.invitationCancel', compact('name', 'email', 'message'));
 	}
 
 	/**
@@ -47,17 +48,7 @@ class ReviewerPaperController extends Controller {
 	 */
 	public function show($id)
 	{
-		$paper = $this->getPapers()[$id];
-
-		return view('reviewer.showPaper', compact('paper'));
-	}
-
-	private function getPapers()
-	{
-		return ['(1) - Man-Computer Symbiosis', 
-				'(1) - The Computer as a Communication Device', 
-				'(1) - Electricity over IP', 
-				'(1) - The Infinite Monkey Protocol Suite (IMPS)'];
+		//
 	}
 
 	/**

@@ -1,12 +1,11 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Reviewer;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Topic;
 
 use Illuminate\Http\Request;
 
-class ConfChairConferenceFeeController extends Controller {
+class ReviewerPaperController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -15,9 +14,9 @@ class ConfChairConferenceFeeController extends Controller {
 	 */
 	public function index()
 	{
-        $topic = Topic::lists('name');
+		$papers = $this->getPapers();
 
-        return view('conferenceChair.createConferenceFee', compact('topic'));
+		return view('reviewer.paper', compact('papers'));
 	}
 
 	/**
@@ -48,7 +47,17 @@ class ConfChairConferenceFeeController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		$paper = $this->getPapers()[$id];
+
+		return view('reviewer.showPaper', compact('paper'));
+	}
+
+	private function getPapers()
+	{
+		return ['(1) - Man-Computer Symbiosis', 
+				'(1) - The Computer as a Communication Device', 
+				'(1) - Electricity over IP', 
+				'(1) - The Infinite Monkey Protocol Suite (IMPS)'];
 	}
 
 	/**

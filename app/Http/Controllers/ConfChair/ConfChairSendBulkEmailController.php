@@ -1,11 +1,11 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\ConfChair;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use Request;
+use Illuminate\Http\Request;
 
-class ConfChairCreateTopic extends Controller {
+class ConfChairSendBulkEmailController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -14,8 +14,10 @@ class ConfChairCreateTopic extends Controller {
 	 */
 	public function index()
 	{
-        return view('conferenceChair.createTopic');
-	}
+        $date= ['January', 'February','March','April','May','June','July','August','September','October','November','December'];
+
+        return view('conferenceChair.sendBulkEmail',compact('date'));
+}
 
 	/**
 	 * Show the form for creating a new resource.
@@ -34,9 +36,7 @@ class ConfChairCreateTopic extends Controller {
 	 */
 	public function store()
 	{
-		$input = Request::all();
-
-        return $input;
+		//
 	}
 
 	/**

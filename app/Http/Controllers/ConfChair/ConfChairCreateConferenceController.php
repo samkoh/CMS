@@ -1,4 +1,4 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\ConfChair;
 
 use App\Conference;
 use App\Http\Requests;
@@ -7,7 +7,19 @@ use App\Http\Controllers\Controller;
 use App\Topic;
 use Illuminate\Http\Request;
 
-class ConfChairCreateConference extends Controller {
+class ConfChairCreateConferenceController extends Controller {
+
+//    public function __construct()
+//    {
+//        $this->middleware('auth');
+//    }
+
+    private $conference;
+
+    public function __construct(Conference $conference)
+    {
+        $this->conference = $conference;
+    }
 
 	/**
 	 * Display a listing of the resource.
@@ -16,9 +28,8 @@ class ConfChairCreateConference extends Controller {
 	 */
 	public function index()
 	{
-        $topic = Topic::lists('name');
-
-        return view('conferenceChair.createConference', compact('topic'));
+        $topics = Topic::lists('name', 'id');
+        return view('conferenceChair.createConference', compact('topics'));
 	}
 
 	/**
@@ -28,7 +39,7 @@ class ConfChairCreateConference extends Controller {
 	 */
 	public function create()
 	{
-		//
+
 	}
 
 	/**
@@ -36,11 +47,21 @@ class ConfChairCreateConference extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request, Conference $conference)
 	{
-		//$conference->create($request->all());
-        //$conference = Request::all();
-        //return $conference;
+//		$conference->create($request->all());
+//
+//        \Auth::user()->topics()->save($conference);
+
+        //dd($request->input('topic'));
+
+        $conferences = $conference->create($request->all());
+
+        $topicIds = $request->input('topic');
+
+        $conferences->topic()->attach($topicIds);
+
+        return redirect('conferenceChair/createConference');
 	}
 
 	/**

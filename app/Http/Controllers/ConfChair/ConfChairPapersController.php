@@ -1,11 +1,11 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\ConfChair;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class ReviewerDiscussionController extends Controller {
+class ConfChairPapersController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -16,22 +16,7 @@ class ReviewerDiscussionController extends Controller {
 	{
 		$papers = $this->getPapers();
 
-		return view('reviewer.discussion', compact('papers'));
-	}
-
-	public function showDiscussion($id)
-	{
-		$paper = $this->getPapers()[$id];
-
-		return view('reviewer.showDiscussion', compact('paper'));
-	}
-
-	private function getPapers()
-	{
-		return ['(1) - Man-Computer Symbiosis', 
-				'(1) - The Computer as a Communication Device', 
-				'(1) - Electricity over IP', 
-				'(1) - The Infinite Monkey Protocol Suite (IMPS)'];
+		return view('conferenceChair.allPapers', compact('papers'));
 	}
 
 	/**
@@ -41,7 +26,7 @@ class ReviewerDiscussionController extends Controller {
 	 */
 	public function create()
 	{
-		//
+        //
 	}
 
 	/**
@@ -62,9 +47,27 @@ class ReviewerDiscussionController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		$assignPaper = $this->getPapers()[$id];
+
+        $withinCategory = ['John Cena (3)','Roman Reigns (4)', 'Dwayne Johnson (1)', 'Daniel Bryant (5)'];
+        $outCategory = ['Brock Lesnar (2)','Luke Harper (3)', 'Damien Shandow (1)'];
+
+		return view('conferenceChair.assignPapers', compact('assignPaper', 'withinCategory', 'outCategory'));
 	}
 
+	private function getPapers()
+	{
+		return ['(1) - Man-Computer Symbiosis', 
+				'(2) - The Computer as a Communication Device', 
+				'(2) - Electricity over IP', 
+				'(3) - The Infinite Monkey Protocol Suite (IMPS)',
+				'(2) - Information Flow in Large Communication Nets',
+				'(4) - The Roman Standards Process -- Revision III',
+				'(4) - Standard for the transmission of IP datagrams on avian carries',
+				'(5) - Toward A Cooperative Network Of Time-Shared Computers'
+				];
+	}
+	
 	/**
 	 * Show the form for editing the specified resource.
 	 *

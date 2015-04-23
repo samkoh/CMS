@@ -4,8 +4,7 @@
 	
 	<h3>Send Invitation to reviewer</h3>
 
-	{!! Form::open(['method' => 'GET', 'action' => 'ConfChairInvitationController@confirm']) !!}
-
+    {!! Form::open() !!}
 		<div class="form-group">
 			{!! Form::label('name', 'Name:')!!}
 			{!! Form::text('name', null, array('required','class'=>'form-control','placeholder'=>'Name')) !!}

@@ -1,11 +1,11 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Reviewer;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class ConfChairInvitationStatusController extends Controller {
+class ReviewerRegistrationController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ConfChairInvitationStatusController extends Controller {
 	 */
 	public function index()
 	{
-		return view('conferenceChair.invitationStatus');
+		return view('reviewer.reviewerRegistration');
 	}
 
 	/**

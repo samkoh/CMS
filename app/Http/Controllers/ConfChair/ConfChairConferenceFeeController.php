@@ -1,11 +1,12 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\ConfChair;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Topic;
 
 use Illuminate\Http\Request;
 
-class ConfChairInvitationCancelController extends Controller {
+class ConfChairConferenceFeeController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -14,10 +15,9 @@ class ConfChairInvitationCancelController extends Controller {
 	 */
 	public function index()
 	{
-        $message = 'Hello John, Sorry for taking your time to considerate my invitation to the xxx Conferecence 2015,Since you are unable to reply your confirmation towards the invitation, our committee had decided to cancel your invitation. Sorry for any incovenience caused.
-                    Thank you.';
+        $topic = Topic::lists('name');
 
-		return view('conferenceChair.invitationCancel', compact('name', 'email', 'message'));
+        return view('conferenceChair.createConferenceFee', compact('topic'));
 	}
 
 	/**

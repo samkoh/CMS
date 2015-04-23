@@ -15,38 +15,37 @@
 
 //Route::get('home', 'ConfChairPapersController@index');
 
-Route::get('conferenceChair/allPapers', 'ConfChairPapersController@index');
+Route::get('conferenceChair/allPapers', 'ConfChair\ConfChairPapersController@index');
 
-Route::get('conferenceChair/allPapers/{id}', 'ConfChairPapersController@show');
+Route::get('conferenceChair/allPapers/{id}', 'ConfChair\ConfChairPapersController@show');
 
-Route::get('conferenceChair/invitationStatus', 'ConfChairInvitationStatusController@index');
+Route::get('conferenceChair/invitationStatus', 'ConfChair\ConfChairInvitationStatusController@index');
 
-Route::get('conferenceChair/invitation/confirm', 'ConfChairInvitationController@confirm');
+Route::get('conferenceChair/invitation/confirm', 'ConfChair\ConfChairInvitationController@confirm');
 
-Route::get('conferenceChair/invitationCancel', 'ConfChairInvitationCancelController@index');
+Route::get('conferenceChair/invitationCancel', 'ConfChair\ConfChairInvitationCancelController@index');
 
-Route::get('conferenceChair/sendBulkEmail', 'ConfChairSendBulkEmailController@index');
+Route::get('conferenceChair/sendBulkEmail', 'ConfChair\ConfChairSendBulkEmailController@index');
 
-Route::get('conferenceChair/createConference', 'ConfChairCreateConference@index');
+//Route::get('conferenceChair/createTopic', 'ConfChair\ConfChairCreateTopicController@create');
+Route::resource('conferenceChair/createTopic','ConfChair\ConfChairCreateTopicController' );
 
-Route::get('conferenceChair/createTopic', 'ConfChairCreateTopic@index');
-
-//Route::get('conferenceChair/createTopic', 'ConfChairCreateTopic@store');
-
+//Route::get('conferenceChair/createConference', 'ConfChair\ConfChairCreateConferenceController@index');
+Route::resource('conferenceChair/createConference', 'ConfChair\ConfChairCreateConferenceController');
 //Route::get('conferenceChair/createConference', 'ConfChairCreateConference@store');
 
-Route::get('conferenceChair/createConferenceFee', 'ConfChairConferenceFeeController@index');
+Route::get('conferenceChair/createConferenceFee', 'ConfChair\ConfChairConferenceFeeController@index');
 
-Route::resource('conferenceChair', 'ConfChairInvitationController');
+Route::resource('conferenceChair', 'ConfChair\ConfChairInvitationController');
 
 
-Route::get('reviewer/discussion', 'ReviewerDiscussionController@index');
+Route::get('reviewer/discussion', 'Reviewer\ReviewerDiscussionController@index');
 
-Route::get('reviewer/discussion/{id}', 'ReviewerDiscussionController@showDiscussion');
+Route::get('reviewer/discussion/{id}', 'Reviewer\ReviewerDiscussionController@showDiscussion');
 
-Route::get('reviewer/reviewerRegistration', 'ReviewerRegistrationController@index');
-Route::resource('reviewer', 'ReviewerPaperController');
-Route::get('reviewer/paper/{id}', 'ReviewerPaperController@show');
+Route::get('reviewer/reviewerRegistration', 'Reviewer\ReviewerRegistrationController@index');
+Route::resource('reviewer', 'Reviewer\ReviewerPaperController');
+Route::get('reviewer/paper/{id}', 'Reviewer\ReviewerPaperController@show');
 
 
 
