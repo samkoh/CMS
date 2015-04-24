@@ -22,6 +22,14 @@ class AuthController extends Controller {
 
 	use AuthenticatesAndRegistersUsers;
 
+    /*
+     * This can specify after user register, where and what is the
+     * page will be directed to
+     */
+
+//    protected $redirectTo = '/';
+
+
 	/**
 	 * Create a new authentication controller instance.
 	 *

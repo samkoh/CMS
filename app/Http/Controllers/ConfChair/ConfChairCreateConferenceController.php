@@ -4,6 +4,7 @@ use App\Conference;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Auth;
 use App\Topic;
 use Illuminate\Http\Request;
 
@@ -56,8 +57,10 @@ class ConfChairCreateConferenceController extends Controller {
 
         //dd($request->input('topic'));
 
-        $conferences = $conference->create($request->all());
+        //$conferences = $conference->create($request->all());
+        $conferences = Auth::user()->conferences()->create($request->all());
 
+        //dd($conferences);
         $topicIds = $request->input('topic');
 
         $conferences->topic()->attach($topicIds);

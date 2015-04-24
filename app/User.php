@@ -31,7 +31,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $hidden = ['password', 'remember_token'];
 
-	public function topics()
+    /**
+     * A user can have more than one conference
+     *
+     * @Return \Illuminate\Database\Eloquent\Relations|HasMany
+     */
+	public function conferences()
 	{
 		return $this->hasMany('App\Conference');
 	}

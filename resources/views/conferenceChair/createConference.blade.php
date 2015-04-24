@@ -18,11 +18,7 @@
 
     {!! Form::open(['action' => 'ConfChair\ConfChairCreateConferenceController@store']) !!}
 
-
-    {{--<div class="form-group">--}}
-        {{--{!! Form::label('id', 'Login ID:')!!}--}}
-        {{--{!! Form::text('id', '1', array('required','class'=>'form-control','placeholder'=>'Email Address')) !!}--}}
-    {{--</div>--}}
+    {{--{!! Form::hidden('user_id', 1)!!}--}}
 
     <div class="form-group">
         {!! Form::label('name', 'Name of the conference:')!!}
