@@ -16,7 +16,7 @@ class CreateConferencesTable extends Migration {
         {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
-            $table->string('name');
+            $table->string('conferenceName');
             $table->string('acronym');
             $table->string('theme');
             $table->string('address');

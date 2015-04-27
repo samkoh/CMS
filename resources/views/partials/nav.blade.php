@@ -28,12 +28,19 @@
 					</li>
 
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reviewer <span class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="/reviewer/reviewerRegistration">Registration</a></li>
-								<li><a href="/reviewer">Paper</a></li>
-							</ul>
-					</li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reviewer <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/reviewer/reviewerRegistration">Registration</a></li>
+                            <li><a href="/reviewer">Paper</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Author <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/author">Submit Paper</a></li>
+                        </ul>
+                    </li>
 
 				</ul>				
 

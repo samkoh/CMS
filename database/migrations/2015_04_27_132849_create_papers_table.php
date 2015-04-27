@@ -15,9 +15,9 @@ class CreatePapersTable extends Migration {
         Schema::create('papers', function(Blueprint $table)
         {
             $table->bigIncrements('id');
-            $table->bigInteger('conference_id')->unsigned();
-            $table->bigInteger('author_id')->unsigned();
-            $table->bigInteger('committeeApprove_id')->unsigned();
+            $table->bigInteger('conference_id')->unsigned()->nullable();
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->bigInteger('committeeApprove_id')->unsigned()->nullable();
             $table->string('title');
             $table->text('abstractContent');
             $table->string('status');
@@ -29,7 +29,7 @@ class CreatePapersTable extends Migration {
         Schema::table('papers', function(Blueprint $table)
         {
             $table->foreign('conference_id')->references('id')->on('conferences')->onDelete('cascade');
-            $table->foreign('author_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('committeeApprove_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

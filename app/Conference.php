@@ -6,7 +6,7 @@ class Conference extends Model {
 
     protected $fillable = [
         'user_id',
-        'name',
+        'conferenceName',
         'acronym',
         'theme',
         'address',

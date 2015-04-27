@@ -7,7 +7,7 @@
     @foreach($conferences as $conference)
 
         <li>
-            {{ $conference->name }}
+            {{ $conference->conferenceName }}
         </li>
 
     @endforeach
@@ -21,8 +21,8 @@
     {{--{!! Form::hidden('user_id', 1)!!}--}}
 
     <div class="form-group">
-        {!! Form::label('name', 'Name of the conference:')!!}
-        {!! Form::text('name', null, array('required','class'=>'form-control','placeholder'=>'Conference Name')) !!}
+        {!! Form::label('conferenceName', 'Name of the conference:')!!}
+        {!! Form::text('conferenceName', null, array('required','class'=>'form-control','placeholder'=>'Conference Name')) !!}
     </div>
 
     <div class="form-group">
