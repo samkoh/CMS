@@ -10,27 +10,26 @@
 
 				@include('partials.reviewer_nav')
 
-				<h3>Paper Name: {{ $paper }}</h3>
+				<h3>Paper Name: {{ $paper->title }}</h3>
 
 				<hr/>
 
-				{!! Form::open() !!}
+				{!! Form::model($paper, ['url' => 'paper/' . $paper->id, 'method' => 'PATCH']) !!}
 
 					<div class="form-group">
 						{!! Form::label('title', 'Title:')!!}
-						{!! Form::text('name', 'Man-Computer Symbiosis', array('disabled' => 'disabled', 'class' => 'form-control')) !!}
+						{!! Form::text('title', null, array('disabled' => 'disabled', 'class' => 'form-control')) !!}
 					</div>
 
 					<div class="form-group">
-						{!! Form::label('type', 'Submission Type:')!!}
-						{!! Form::text('type', 'Paper', array('disabled' => 'disabled', 'class' => 'form-control')) !!}
+						{!! Form::label('abstractContent', 'Abstract:')!!}
+						{!! Form::textarea('abstractContent', null, array('disabled' => 'disabled', 'class' => 'form-control')) !!}
 					</div>
 
-					<div class="form-group">
-						{!! Form::label('abstract', 'Abstract:')!!}
-						{!! Form::textarea('abstract', 'Man-computer symbiosis is an expected development in cooperative interaction between men and electronic computers. It will involve very close coupling between the human and the electronic members of the partnership. The main aims are 1) to let computers facilitate formulative thinking as they now facilitate the solution of formulated problems, and 2) to enable men and computers to cooperate in making decisions and controlling complex situations without inflexible dependence on predetermined programs. In the anticipated symbiotic partnership, men will set the goals, formulate the hypotheses, determine the criteria, and perform the evaluations. Computing machines will do the routinizable work that must be done to prepare the way for insights and decisions in technical and scientific thinking. Preliminary analyses indicate that the symbiotic partnership will perform intellectual operations much more effectively than man alone can perform them. Prerequisites for the achievement of the effective, cooperative association include developments in computer time sharing, in memory components, in memory organization, in programming languages, and in input and output equipment.'
-						,array('disabled' => 'disabled', 'class' => 'form-control')) !!}
-					</div>
+                    <div class="form-group">
+                        {!! Form::label('type', 'Download the paper here:')!!}
+                        <li><a href="">Download</a></li>
+                    </div>
 
 				{!! Form::close() !!}
 

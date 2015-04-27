@@ -3,9 +3,17 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Paper;
 use Illuminate\Http\Request;
 
 class ReviewerPaperController extends Controller {
+
+    private $paper;
+
+    public function __construct(Paper $paper)
+    {
+        $this->paper = $paper;
+    }
 
 	/**
 	 * Display a listing of the resource.
@@ -14,9 +22,13 @@ class ReviewerPaperController extends Controller {
 	 */
 	public function index()
 	{
-		$papers = $this->getPapers();
+//		$papers = $this->getPapers();
+//
+//		return view('reviewer.paper', compact('papers'));
 
-		return view('reviewer.paper', compact('papers'));
+        $papers = $this->paper->get();
+
+        return view('reviewer.paper', compact('papers'));
 	}
 
 	/**
@@ -47,7 +59,7 @@ class ReviewerPaperController extends Controller {
 	 */
 	public function show($id)
 	{
-		$paper = $this->getPapers()[$id];
+		$paper = $this->paper->get()[$id];
 
 		return view('reviewer.showPaper', compact('paper'));
 	}

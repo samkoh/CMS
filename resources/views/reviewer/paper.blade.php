@@ -10,9 +10,14 @@
 
 				@include('partials.reviewer_nav')
 
-				@foreach($papers as $index => $paper)
-					<li><a href="/reviewer/paper/{{ $index }}">{{ $paper }}</a></li>
-				@endforeach
+				{{--@foreach($papers as $index => $paper)--}}
+					{{--<li><a href="/reviewer/paper/{{ $index }}">{{ $paper }}</a></li>--}}
+				{{--@endforeach--}}
+
+                @foreach($papers as $index => $paper)
+                    {{--<li>{{ $paper->title }}</li>--}}
+                        <li><a href="/reviewer/paper/{{ $index }}">{{ $paper->title }}</a></li>
+                @endforeach
 
 				</div>
 			</div>
