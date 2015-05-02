@@ -44,6 +44,17 @@ class SubmitPaperController extends Controller {
 	public function store(Request $request, Paper $paper)
 	{
 		$paper = Auth::user()->papers()->create($request->all());
+
+//        $file = Request::file('fullPaperUrl');
+//        $extension = $file->getClientOriginalExtension();
+//        Storage::disk('local')->put($file->getFilename().'.'.$extension,  File::get($file));
+//        $entry = new Fileentry();
+//        $entry->mime = $file->getClientMimeType();
+//        $entry->original_filename = $file->getClientOriginalName();
+//        $entry->filename = $file->getFilename().'.'.$extension;
+//
+//        $paper = $entry;
+
         return redirect()->route('author.index');
 	}
 

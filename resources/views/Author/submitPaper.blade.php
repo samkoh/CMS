@@ -19,6 +19,11 @@
     </div>
 
     <div class="form-group">
+        {!! Form::label('fullPaperUrl', 'Upload File:')!!}
+        {!! Form::file('fullPaperUrl') !!}
+    </div>
+
+    <div class="form-group">
         {!! Form::submit('Add', ['class' => 'btn btn-primary']) !!}
     </div>
 

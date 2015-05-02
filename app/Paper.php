@@ -6,7 +6,8 @@ class Paper extends Model {
 
     protected $fillable = [
         'title',
-        'abstractContent'
+        'abstractContent',
+        'fullPaperUrl'
     ];
 
 }

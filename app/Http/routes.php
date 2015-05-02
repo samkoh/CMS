@@ -13,7 +13,7 @@
 
  Route::get('/', 'WelcomeController@index');
 
-//Route::get('home', 'ConfChairPapersController@index');
+Route::get('home', 'HomeController@index');
 
 Route::get('conferenceChair/allPapers', 'ConfChair\ConfChairPapersController@index');
 Route::get('conferenceChair/allPapers/{id}', 'ConfChair\ConfChairPapersController@show');
