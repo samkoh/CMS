@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 use App\Paper;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class SubmitPaperController extends Controller {
 
@@ -43,17 +44,19 @@ class SubmitPaperController extends Controller {
 	 */
 	public function store(Request $request, Paper $paper)
 	{
-		$paper = Auth::user()->papers()->create($request->all());
+//        $paper->title = Input::get('title');
+//        $paper->abstractContent = Input::get('abstractContent');
 
-//        $file = Request::file('fullPaperUrl');
-//        $extension = $file->getClientOriginalExtension();
-//        Storage::disk('local')->put($file->getFilename().'.'.$extension,  File::get($file));
-//        $entry = new Fileentry();
-//        $entry->mime = $file->getClientMimeType();
-//        $entry->original_filename = $file->getClientOriginalName();
-//        $entry->filename = $file->getFilename().'.'.$extension;
-//
-//        $paper = $entry;
+        if (Input::hasFile('fullPaperUrl'))
+        {
+            $file = Input::file('fullPaperUrl');
+            $name = time() . '-' . $file->getClientOriginalName();
+            $file = $file->move(public_path() .'/papers/', $name);
+
+            $paper->fullPaperUrl = $name;
+        }
+//            $paper->save();
+        $paper = Auth::user()->papers()->create($request->all(),$paper->fullPaperUrl = $name);
 
         return redirect()->route('author.index');
 	}

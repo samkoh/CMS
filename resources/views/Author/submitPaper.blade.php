@@ -4,7 +4,7 @@
 
     <h3>Submit Paper</h3>
 
-    {!! Form::open(['route' => 'author.store']) !!}
+    {!! Form::open(['route' => 'author.store','files' => true]) !!}
 
     {{--{!! Form::hidden('user_id', 1)!!}--}}
 

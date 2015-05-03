@@ -25,12 +25,18 @@ class HomeController extends Controller {
 
 	/**
 	 * Show the application dashboard to the user.
+     * The return page will be returned according to the user id
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-		return view('home');
+        if(\Auth::check() && \Auth::user()->id == '1')
+        {
+            return view('reviewerHome');
+
+        }
+		return view('authorHome');
 	}
 
 }

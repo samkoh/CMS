@@ -231,3 +231,9 @@ ul.slideshow li {
 ul.slideshow li.show {
 
 }
+
+/*Disable the hyperlink*/
+.not-active {
+    pointer-events: none;
+    cursor: default;
+}
