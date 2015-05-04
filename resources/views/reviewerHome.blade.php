@@ -31,7 +31,7 @@
         <div id="content">
             <div id="posts">
                 <div class="post">
-                    <h2>Welcome  <strong><font color="yellow">{{ Auth::user()->name }}</font></strong> to the Conference Management System</h2>
+                    <h2>Welcome  <strong><font color="yellow">{{ Auth::user()->firstname }}</font></strong> to the Conference Management System</h2>
 
                     <div class="story">
                         <p><strong>Conference Management System</strong> is web based software that supports the
@@ -50,13 +50,13 @@
                 <div class="post">
                         <h2>Paper Submission List</h2>
                         <ul>
-                            <li><a href="http://www.yahoo.com" class="not-active"><font color="red">Sample Paper for IEEE Sponsored Conferences & Symposia <i>(5)</i></font></a></li>
-                            <li><a href="http://www.yahoo.com" ><font color="#9acd32">Aerospace and Electronic Systems Magazine <i>(0)</i></font></a></li>
-                            <li><a href="http://www.yahoo.com" ><font color="#9acd32">Computational Intelligence and AI in Games <i>(1)</i></font></a></li>
-                            <li><a href="http://www.yahoo.com" ><font color="#9acd32">Computational Intelligence Magazine <i>(3)</i></font></a></li>
-                            <li><a href="http://www.yahoo.com" class="not-active"><font color="red">Computer Graphics and Applications <i>(5)</i></font></a></li>
-                            <li><a href="http://www.yahoo.com" class="not-active"><font color="red">Electrification Magazine <i>(5)</i></font></a></li>
-                            <li><a href="http://www.yahoo.com" ><font color="#9acd32">Electron Device Letters <i>(4)</i></font></a></li>
+                            <li><a href="/reviewer/paperReviewRequest" class="not-active"><font color="red">Sample Paper for IEEE Sponsored Conferences & Symposia <i>(5)</i></font></a></li>
+                            <li><a href="/reviewer/paperReviewRequest" ><font color="#9acd32">Aerospace and Electronic Systems Magazine <i>(0)</i></font></a></li>
+                            <li><a href="/reviewer/paperReviewRequest" ><font color="#9acd32">Computational Intelligence and AI in Games <i>(1)</i></font></a></li>
+                            <li><a href="/reviewer/paperReviewRequest" ><font color="#9acd32">Computational Intelligence Magazine <i>(3)</i></font></a></li>
+                            <li><a href="/reviewer/paperReviewRequest" class="not-active"><font color="red">Computer Graphics and Applications <i>(5)</i></font></a></li>
+                            <li><a href="/reviewer/paperReviewRequest" class="not-active"><font color="red">Electrification Magazine <i>(5)</i></font></a></li>
+                            <li><a href="/reviewer/paperReviewRequest" ><font color="#9acd32">Electron Device Letters <i>(4)</i></font></a></li>
 
                         </ul>
                     </div>

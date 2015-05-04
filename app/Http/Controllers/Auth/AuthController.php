@@ -7,7 +7,6 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller {
 
-	protected $redirectTo = '/conferenceChair';
 
 	/*
 	|--------------------------------------------------------------------------
@@ -27,7 +26,8 @@ class AuthController extends Controller {
      * page will be directed to
      */
 
-//    protected $redirectTo = '/';
+    protected $redirectTo = '/';
+//	protected $redirectTo = '/conferenceChair';
 
 
 	/**
@@ -43,6 +43,7 @@ class AuthController extends Controller {
 		$this->registrar = $registrar;
 
 		$this->middleware('guest', ['except' => 'getLogout']);
+
 	}
 
 }

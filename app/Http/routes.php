@@ -13,7 +13,7 @@
 
  Route::get('/', 'WelcomeController@index');
 
-Route::get('home', 'HomeController@index');
+Route::resource('home', 'HomeController');
 
 Route::get('conferenceChair/allPapers', 'ConfChair\ConfChairPapersController@index');
 Route::get('conferenceChair/allPapers/{id}', 'ConfChair\ConfChairPapersController@show');
@@ -33,8 +33,11 @@ Route::resource('conferenceChair', 'ConfChair\ConfChairInvitationController');
 Route::get('reviewer/discussion', 'Reviewer\ReviewerDiscussionController@index');
 Route::get('reviewer/discussion/{id}', 'Reviewer\ReviewerDiscussionController@showDiscussion');
 Route::get('reviewer/reviewerRegistration', 'Reviewer\ReviewerRegistrationController@index');
+Route::get('reviewer/paperReviewRequest', 'Reviewer\ReviewerPaperReviewRequestController@index');
+
 Route::resource('reviewer', 'Reviewer\ReviewerPaperController');
 Route::get('reviewer/paper/{id}', 'Reviewer\ReviewerPaperController@show');
+
 
 Route::resource('author', 'Author\SubmitPaperController');
 

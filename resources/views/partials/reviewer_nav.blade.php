@@ -13,7 +13,8 @@
 				<ul class="nav navbar-nav">
 					<li><a href="/reviewer">My Review Paper</a></li>
 					<li><a href="/reviewer/discussion">Paper Discussion</a></li>
-				</ul>
+                    <li><a href="/reviewer/paperReviewRequest">Paper Review Request</a></li>
+                </ul>
 			</div>
 		</div>
 	</nav>

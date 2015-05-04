@@ -31,7 +31,7 @@
         <div id="content">
             <div id="posts">
                 <div class="post">
-                    <h2>Welcome  <strong><font color="yellow">{{ Auth::user()->name }}</font></strong> to the Conference Management System</h2>
+                    <h2>Welcome  <strong><font color="yellow">{{ Auth::user()->firstname }}</font></strong> to the Conference Management System</h2>
 
                     <div class="story">
                         <p><strong>Conference Management System</strong> is web based software that supports the
