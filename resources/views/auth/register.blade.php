@@ -57,16 +57,72 @@
 						</div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Salutation</label>
+                            <label class="col-md-4 control-label">Title</label>
                             <div class="col-md-6">
-                                <input type="nameTitlePrefix" class="form-control" name="nameTitlePrefix">
+                                {{--<input type="text" class="form-control" name="nameTitlePrefix">--}}
+                                <select class="form-control" name="nameTitlePrefix">
+                                    <option value="" disabled="disabled" selected="selected">Please select </option>
+                                    <option value="Sir">Sir.</option>
+                                    <option value="Mr">Mr.</option>
+                                    <option value="Mrs">Mrs.</option>
+                                    <option value="Miss">Miss.</option>
+                                    <option value="Dr">Dr.</option>
+                                    <option value="Professor">Prof.</option>
+                                </select>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-4 control-label">Gender</label>
                             <div class="col-md-6">
-                                <input type="gender" class="form-control" name="gender">
+                                {{--<input type="dropdownlist" class="form-control" name="gender">--}}
+                                <select class="form-control" name="gender">
+                                    <option value="" disabled="disabled" selected="selected">Please select </option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Date of Birth</label>
+                            <div class="col-md-6">
+                                <input type="date" class="form-control" name="dateOfBirth">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">National Identity No</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="nationalIdentityNo">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Country</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="country">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Contact No</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="contactNo">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Fax No</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="faxNo">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Graduated From</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="education">
                             </div>
                         </div>
 
