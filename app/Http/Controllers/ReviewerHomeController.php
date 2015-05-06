@@ -1,20 +1,21 @@
-<?php namespace App\Http\Controllers\Author;
+<?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use Auth;
 use App\Paper;
+use App\Topic;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
 
-class SubmitPaperController extends Controller {
+class ReviewerHomeController extends Controller {
 
     private $paper;
+    private $topic;
 
-    public function __construct(Paper $paper)
+    public function __construct(Paper $paper, Topic $topic)
     {
         $this->paper = $paper;
+        $this->topic = $topic;
     }
 
 	/**
@@ -24,7 +25,20 @@ class SubmitPaperController extends Controller {
 	 */
 	public function index()
 	{
-		return view('author.submitPaper');
+//        $papers = $this->paper->get();
+//
+//        return view('reviewerHome', compact('papers'));
+
+        if(\Auth::check() && \Auth::user()->id == '1')
+        {
+            $papers = $this->paper->get();
+
+            return view('reviewerHome', compact('papers'));
+
+        }
+        $topics = $this->topic->get();
+
+        return view('authorHome', compact('topics'));
 	}
 
 	/**
@@ -42,23 +56,9 @@ class SubmitPaperController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request, Paper $paper)
+	public function store()
 	{
-//        $paper->title = Input::get('title');
-//        $paper->abstractContent = Input::get('abstractContent');
-
-        if (Input::hasFile('fullPaperUrl'))
-        {
-            $file = Input::file('fullPaperUrl');
-            $name = time() . '-' . $file->getClientOriginalName();
-            $file = $file->move(public_path() .'/papers/', $name);
-
-            $paper->fullPaperUrl = $name;
-        }
-//            $paper->save();
-        $paper = Auth::user()->papers()->create($request->all());
-
-        return redirect()->route('author.index');
+		//
 	}
 
 	/**

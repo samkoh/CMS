@@ -14,6 +14,8 @@
  Route::get('/', 'WelcomeController@index');
 
 Route::resource('home', 'HomeController');
+//Route::resource('home', 'ReviewerHomeController');
+
 
 Route::get('conferenceChair/allPapers', 'ConfChair\ConfChairPapersController@index');
 Route::get('conferenceChair/allPapers/{id}', 'ConfChair\ConfChairPapersController@show');

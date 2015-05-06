@@ -27,8 +27,15 @@
 					</div>
 
                     <div class="form-group">
-                        {!! Form::label('type', 'Download the paper here:')!!}
+                        {!! Form::label('fullPaperUrl', 'Download the paper here:')!!}
                         <li><a href="">Download</a></li>
+                        {{--@foreach($papers as $paper)--}}
+                          {{--<a href="{{route('getentry', $paper->fullPaperUrl)}}">Download </a>--}}
+                        {{--@endforeach--}}
+                        {{--{!! Form::text('fullPaperUrl', null, array('disabled' => 'disabled', 'class' => 'form-control')) !!}--}}
+                        {{--<a href="{{route('getfile', $paper->fullPaperUrl)}}">Download </a>--}}
+
+
                     </div>
 
 				{!! Form::close() !!}

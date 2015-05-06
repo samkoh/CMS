@@ -30,7 +30,9 @@ class ConfChairCreateConferenceController extends Controller {
 	public function index()
 	{
         $topics = Topic::lists('name', 'id');
-        $conferences = $this->conference->get();
+//        $conferences = $this->conference->get();
+        $conferences = $this->conference->where('user_id', Auth::user()->id)->get();
+
         return view('conferenceChair.createConference', compact('topics','conferences'));
 	}
 

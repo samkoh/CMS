@@ -66,9 +66,9 @@ class ReviewerPaperController extends Controller {
 
 	private function getPapers()
 	{
-		return ['(1) - Man-Computer Symbiosis', 
-				'(1) - The Computer as a Communication Device', 
-				'(1) - Electricity over IP', 
+		return ['(1) - Man-Computer Symbiosis',
+				'(1) - The Computer as a Communication Device',
+				'(1) - Electricity over IP',
 				'(1) - The Infinite Monkey Protocol Suite (IMPS)'];
 	}
 

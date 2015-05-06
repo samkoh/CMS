@@ -55,6 +55,7 @@ a:hover {
 
 #wrapper {
     background: #FFFFFF url() repeat-x left top;
+    height: 1400px;
 }
 
 
@@ -68,12 +69,12 @@ a:hover {
 }
 
 #header h1 {
-    float: left;
-    width: 104px;
-    height: 110px;
-    padding: 30px 30px 0 20px;
-    background: url(images/img04.jpg) no-repeat;
-    line-height: 32px;
+    /*float: left;*/
+    /*width: 104px;*/
+    /*height: 110px;*/
+    /*padding: 30px 30px 0 20px;*/
+    /*background: url() no-repeat;*/
+    /*line-height: 32px;*/
     font-size: 30px;
     font-style: italic;
     color: #715558;
@@ -84,7 +85,7 @@ a:hover {
     width: 494px;
     height: 34px;
     padding: 180px 20px 0 0;
-    background: url(images/img05.jpg) no-repeat;
+    background: url() no-repeat;
     text-transform: lowercase;
     text-align: right;
     letter-spacing: -1px;
@@ -102,11 +103,25 @@ a:hover {
     padding-top: 30px;
 }
 
+#content h1{
+     font-size: 30px;
+     font-style: italic;
+     color: #715558;
+ }
+
+#content p{
+    font-size: 18px;
+    text-align: justify;
+    font-style: oblique;
+}
+
 /* Posts */
 
 #posts {
-    float: right;
-    width: 510px;
+    /*float: right;*/
+    width: 800px;
+    text-align: justify;
+    font-size: medium;
 }
 
 #posts .post {
@@ -140,7 +155,7 @@ a:hover {
 /* Links */
 
 #links {
-    float: left;
+    float: right;
     width: 220px;
 }
 
@@ -201,6 +216,12 @@ a:hover {
     padding: 10px 0 0 0;
     letter-spacing: -1px;
     font-size: 24px;
+}
+
+.homepicture{
+    width: 900px;
+    height: 250px;
+    margin-left: 20%;
 }
 
 .slideshow {
