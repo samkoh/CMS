@@ -7,6 +7,7 @@ use Auth;
 use App\Paper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Crypt;
 
 class SubmitPaperController extends Controller {
 
@@ -44,19 +45,26 @@ class SubmitPaperController extends Controller {
 	 */
 	public function store(Request $request, Paper $paper)
 	{
-//        $paper->title = Input::get('title');
-//        $paper->abstractContent = Input::get('abstractContent');
+        $paper->title = Input::get('title');
+        $paper->abstractContent = Input::get('abstractContent');
+        $paper->user_id = Auth::user()->id;
 
         if (Input::hasFile('fullPaperUrl'))
         {
             $file = Input::file('fullPaperUrl');
             $name = time() . '-' . $file->getClientOriginalName();
-            $file = $file->move(public_path() .'/papers/', $name);
+            $encryptname = Crypt::encrypt('$name');
+            $file = $file->move(public_path() .'/papers/', $encryptname);
 
-            $paper->fullPaperUrl = $name;
+            $paper->fullPaperUrl = $encryptname;
         }
-//            $paper->save();
-        $paper = Auth::user()->papers()->create($request->all());
+            $paper->save();
+        /*
+         * This method is using request method where by it will retrieve all the user input value and save into the database
+         * using it's save method.
+         * Due to the naming method of the file's name when user upload, i use another method and comment this method
+         */
+//        $paper = Auth::user()->papers()->create($request->all());
 
         return redirect()->route('author.index');
 	}

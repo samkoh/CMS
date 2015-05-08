@@ -37,8 +37,12 @@ Route::get('reviewer/discussion/{id}', 'Reviewer\ReviewerDiscussionController@sh
 Route::get('reviewer/reviewerRegistration', 'Reviewer\ReviewerRegistrationController@index');
 Route::get('reviewer/paperReviewRequest', 'Reviewer\ReviewerPaperReviewRequestController@index');
 
-Route::resource('reviewer', 'Reviewer\ReviewerPaperController');
+Route::get('reviewer/', 'Reviewer\ReviewerPaperController@index');
 Route::get('reviewer/paper/{id}', 'Reviewer\ReviewerPaperController@show');
+Route::patch('reviewer/paper/{id}', 'Reviewer\ReviewerPaperController@update');
+
+Route::get('reviewer/get/{fullPaperUrl}', ['as' => 'getpaper', 'uses' => 'Reviewer\ReviewerPaperController@get']);
+//Route::resource('reviewer', 'Reviewer\ReviewerPaperController');
 
 
 Route::resource('author', 'Author\SubmitPaperController');
