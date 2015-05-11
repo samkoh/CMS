@@ -33,7 +33,7 @@
 
         <div class="form-group">
             {!! Form::label('theme', 'Theme:')!!}
-            {!! Form::text('theme', null, array('required','class'=>'form-control','placeholder'=>'Acronym')) !!}
+            {!! Form::text('theme', null, array('required','class'=>'form-control','placeholder'=>'Theme')) !!}
         </div>
 
         <div class="form-group">
@@ -43,8 +43,8 @@
         </div>
 
         <div class="form-group">
-            {!! Form::label('address', 'Address:')!!}
-            {!! Form::textarea('address', null, array('required','class'=>'form-control','placeholder'=>'Address')) !!}
+            {!! Form::label('address', 'Venue:')!!}
+            {!! Form::textarea('address', null, array('required','class'=>'form-control','placeholder'=>'Venue')) !!}
         </div>
 
         <div class="form-group">
@@ -53,8 +53,8 @@
         </div>
 
         <div class="form-group">
-            {!! Form::label('email', 'Email:')!!}
-            {!! Form::email('email', null, array('required','class'=>'form-control','placeholder'=>'Email')) !!}
+            {!! Form::label('conferenceEmail', 'Email:')!!}
+            {!! Form::email('conferenceEmail', null, array('required','class'=>'form-control','placeholder'=>'Email')) !!}
         </div>
 
         <div class="form-group">

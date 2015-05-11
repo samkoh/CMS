@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 use App\Topic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class ConfChairCreateConferenceController extends Controller {
 
@@ -31,7 +32,7 @@ class ConfChairCreateConferenceController extends Controller {
 	{
         $topics = Topic::lists('name', 'id');
 //        $conferences = $this->conference->get();
-        $conferences = $this->conference->where('user_id', Auth::user()->id)->get();
+        $conferences = $this->conference->where('user_id', Auth::user()->email)->get();
 
         return view('conferenceChair.createConference', compact('topics','conferences'));
 	}
@@ -60,12 +61,25 @@ class ConfChairCreateConferenceController extends Controller {
         //dd($request->input('topic'));
 
         //$conferences = $conference->create($request->all());
-        $conferences = Auth::user()->conferences()->create($request->all());
+//        $conferences = Auth::user()->conferences()->create($request->all());
 
-        //dd($conferences);
+        $conference->user_id = Auth::user()->email;
+        $conference->conferenceName = Input::get('conferenceName');
+        $conference->acronym = Input::get('acronym');
+        $conference->theme = Input::get('theme');
+        $conference->address = Input::get('address');
+        $conference->websiteURL = Input::get('websiteURL');
+        $conference->conferenceEmail = Input::get('conferenceEmail');
+        $conference->contactNo = Input::get('contactNo');
+        $conference->faxNo = Input::get('faxNo');
+        $conference->startDate = Input::get('startDate');
+        $conference->endDate = Input::get('endDate');
+
+
+        $conference->save();
         $topicIds = $request->input('topic');
 
-        $conferences->topic()->attach($topicIds);
+        $conference->topic()->attach($topicIds);
 
         return redirect('conferenceChair/createConference');
 	}

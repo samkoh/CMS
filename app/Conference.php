@@ -5,13 +5,13 @@ use Illuminate\Database\Eloquent\Model;
 class Conference extends Model {
 
     protected $fillable = [
-        'user_id',
+//        'email',
         'conferenceName',
         'acronym',
         'theme',
         'address',
         'websiteURL',
-        'email',
+        'conferenceEmail',
         'contactNo',
         'faxNo',
         'startDate',

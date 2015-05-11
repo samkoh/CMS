@@ -102,41 +102,41 @@
                         <span>-2: Strongly Disagree</span><br/>
                     </div>
 
-					{{--<div class="form-group">--}}
-						{{--{!! Form::label('hypotheses', 'The research questions or hypotheses are clearly articulated:')!!}<br/>--}}
-						{{--{!! Form::radio('hypotheses', '2',['class' => 'form-control']) !!}--}}
-						{{--<span>2: Strongly Agree </span><br/>--}}
+					<div class="form-group">
+						{!! Form::label('hypotheses', 'The research questions or hypotheses are clearly articulated:')!!}<br/>
+						{!! Form::radio('hypotheses', '2',['class' => 'form-control']) !!}
+						<span>2: Strongly Agree </span><br/>
 
-						{{--{!! Form::radio('hypotheses', '1',['class' => 'form-control']) !!}--}}
-						{{--<span>1: Agree</span><br/>--}}
+						{!! Form::radio('hypotheses', '1',['class' => 'form-control']) !!}
+						<span>1: Agree</span><br/>
 
-                        {{--{!! Form::radio('hypotheses', '0',['class' => 'form-control']) !!}--}}
-                        {{--<span>0: Partially agree</span><br/>--}}
+                        {!! Form::radio('hypotheses', '0',['class' => 'form-control']) !!}
+                        <span>0: Partially agree</span><br/>
 
-						{{--{!! Form::radio('hypotheses', '-1',['class' => 'form-control']) !!}--}}
-						{{--<span>-1: Disagree</span><br/>--}}
+						{!! Form::radio('hypotheses', '-1',['class' => 'form-control']) !!}
+						<span>-1: Disagree</span><br/>
 
-						{{--{!! Form::radio('hypotheses', '-2',['class' => 'form-control']) !!}--}}
-						{{--<span>-2: Strongly Disagree</span><br/>--}}
-					{{--</div>--}}
+						{!! Form::radio('hypotheses', '-2',['class' => 'form-control']) !!}
+						<span>-2: Strongly Disagree</span><br/>
+					</div>
 
-					{{--<div class="form-group">--}}
-						{{--{!! Form::label('manuscript', 'The manuscript is creative or deals with the subject in a new or novel way:')!!}<br/>--}}
-                        {{--{!! Form::radio('manuscript', '2',['class' => 'form-control']) !!}--}}
-                        {{--<span>2: Strongly Agree </span><br/>--}}
+					<div class="form-group">
+						{!! Form::label('manuscript', 'The manuscript is creative or deals with the subject in a new or novel way:')!!}<br/>
+                        {!! Form::radio('manuscript', '2',['class' => 'form-control']) !!}
+                        <span>2: Strongly Agree </span><br/>
 
-                        {{--{!! Form::radio('manuscript', '1',['class' => 'form-control']) !!}--}}
-                        {{--<span>1: Agree</span><br/>--}}
+                        {!! Form::radio('manuscript', '1',['class' => 'form-control']) !!}
+                        <span>1: Agree</span><br/>
 
-                        {{--{!! Form::radio('manuscript', '0',['class' => 'form-control']) !!}--}}
-                        {{--<span>0: Partially agree</span><br/>--}}
+                        {!! Form::radio('manuscript', '0',['class' => 'form-control']) !!}
+                        <span>0: Partially agree</span><br/>
 
-                        {{--{!! Form::radio('manuscript', '-1',['class' => 'form-control']) !!}--}}
-                        {{--<span>-1: Disagree</span><br/>--}}
+                        {!! Form::radio('manuscript', '-1',['class' => 'form-control']) !!}
+                        <span>-1: Disagree</span><br/>
 
-                        {{--{!! Form::radio('manuscript', '-2',['class' => 'form-control']) !!}--}}
-                        {{--<span>-2: Strongly Disagree</span><br/>--}}
-					{{--</div>--}}
+                        {!! Form::radio('manuscript', '-2',['class' => 'form-control']) !!}
+                        <span>-2: Strongly Disagree</span><br/>
+					</div>
 
 					{{--<hr/>--}}
 

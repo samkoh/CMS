@@ -5,23 +5,24 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateConferencesTable extends Migration {
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
     public function up()
     {
         Schema::create('conferences', function(Blueprint $table)
         {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id')->unsigned();
+//            $table->bigInteger('user_id')->unsigned();
+            $table->string('user_id');
             $table->string('conferenceName');
             $table->string('acronym');
             $table->string('theme');
             $table->string('address');
             $table->string('websiteUrl');
-            $table->string('email');
+            $table->string('conferenceEmail');
             $table->integer('contactNo');
             $table->integer('faxNo');
             $table->date('startDate');
@@ -31,19 +32,19 @@ class CreateConferencesTable extends Migration {
 
         Schema::table('conferences', function(Blueprint $table)
         {
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('email')->on('users')->onDelete('cascade');
 
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::drop('conferences');
-    }
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::drop('conferences');
+	}
 
 }

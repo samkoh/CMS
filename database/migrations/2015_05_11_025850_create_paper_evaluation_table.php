@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePaperUploadDownloadsTable extends Migration {
+class CreatePaperEvaluationTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,7 @@ class CreatePaperUploadDownloadsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('paper_upload_downloads', function(Blueprint $table)
+		Schema::create('paper_evaluation', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->timestamps();
@@ -26,7 +26,7 @@ class CreatePaperUploadDownloadsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('paper_upload_downloads');
+		Schema::drop('paper_evaluation');
 	}
 
 }

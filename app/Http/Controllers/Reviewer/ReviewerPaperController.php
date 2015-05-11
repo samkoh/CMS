@@ -102,12 +102,15 @@ class ReviewerPaperController extends Controller {
 
         $num1 = Input::get('quality');
         $num2 = Input::get('evaluation');
+        $num3 = Input::get('hypotheses');
+        $num4 = Input::get('manuscript');
 
-        $answer = ($num1 + $num2);
 
-        if($answer <= 2 && $answer > 0)
+        $answer = ($num1 + $num2 +$num3 + $num4)/4;
+
+        if($answer < 2 && $answer > 0)
         {
-            $paper->status = 'Fail';
+            $paper->status = 'Pass';
         }
         else if ($answer == 0)
         {
@@ -115,7 +118,7 @@ class ReviewerPaperController extends Controller {
         }
         else
         {
-            $paper->status = 'Pass';
+            $paper->status = 'Fail';
         }
 
 
