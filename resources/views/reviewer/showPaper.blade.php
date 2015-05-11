@@ -44,7 +44,9 @@
 
 				<h2>Evaluation</h2>
 
-                    {!! Form::model($paper, ['url' => 'reviewer/paper/' . $paper->id, 'method' => 'PATCH']) !!}
+                    {!! Form::model($paper, ['url' => 'reviewer/paper/' . $paper->id, 'method' => 'POST']) !!}
+                    {{--{!! Form::open(['action' => 'Reviewer\ReviewerPaperController@store']) !!}--}}
+
 
                     <div class="form-group">
                         {!! Form::label('quality', 'Quality of Content:')!!}<br/>
@@ -138,12 +140,12 @@
                         <span>-2: Strongly Disagree</span><br/>
 					</div>
 
-					{{--<hr/>--}}
+					<hr/>
 
-					{{--<div class="form-group">--}}
-						{{--{!! Form::label('comment', 'Comment:')!!}--}}
-						{{--{!! Form::textarea('comment', null, ['class' => 'form-control']) !!}--}}
-					{{--</div>--}}
+					<div class="form-group">
+						{!! Form::label('comment', 'Comment:')!!}
+						{!! Form::textarea('comment', null, ['class' => 'form-control']) !!}
+					</div>
 
 					<div class="form-group">
 						{!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}

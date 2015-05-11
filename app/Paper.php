@@ -8,7 +8,13 @@ class Paper extends Model {
         'title',
         'abstractContent',
         'fullPaperUrl',
-        'status'
+        'status',
+        'averageMarks'
     ];
 
+
+    public function  evaluations()
+    {
+        return $this->hasMany('App\PaperEvaluation');
+    }
 }

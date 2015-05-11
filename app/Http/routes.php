@@ -40,6 +40,8 @@ Route::get('reviewer/paperReviewRequest', 'Reviewer\ReviewerPaperReviewRequestCo
 Route::get('reviewer/', 'Reviewer\ReviewerPaperController@index');
 Route::get('reviewer/paper/{id}', 'Reviewer\ReviewerPaperController@show');
 Route::patch('reviewer/paper/{id}', 'Reviewer\ReviewerPaperController@update');
+Route::post('reviewer/paper/{id}', 'Reviewer\ReviewerPaperController@store');
+
 
 Route::get('reviewer/get/{fullPaperUrl}', ['as' => 'getpaper', 'uses' => 'Reviewer\ReviewerPaperController@get']);
 //Route::resource('reviewer', 'Reviewer\ReviewerPaperController');

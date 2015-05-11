@@ -2,19 +2,23 @@
 
 //use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\PaperEvaluation;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Request;
 use App\Paper;
-
+use Auth;
 //use Illuminate\Http\Request;
 
 class ReviewerPaperController extends Controller {
 
     private $paper;
+    private $paperEvaluation;
 
-    public function __construct(Paper $paper)
+    public function __construct(Paper $paper, PaperEvaluation $paperEvaluation)
     {
         $this->paper = $paper;
+        $this->paperEvaluation = $paperEvaluation;
     }
 
     /**
@@ -30,7 +34,23 @@ class ReviewerPaperController extends Controller {
 
         $papers = $this->paper->get();
 
-        return view('reviewer.paper', compact('papers'));
+//        $paperEvaluation = DB::table('papers')
+//        ->join('paper_evaluations', 'papers.id', '=', 'paper_evaluations.paper_id' )
+//        ->select('paper_evaluations.paper_id','paper_evaluations.mark')
+//        ->where('papers.id', '=', '2')
+//        ->sum('paper_evaluations.mark');
+//
+//        dd($paperEvaluation);
+
+//        $paperEvaluation = DB::table('papers')
+//            ->join('paper_evaluations', 'papers.id', '=', 'paper_evaluations.paper_id' )
+//            ->select('paper_evaluations.paper_id','paper_evaluations.mark')
+//            ->where('papers.id', '=', '2')
+//            ->count('paper_evaluations.mark');
+//
+//        dd($paperEvaluation);
+
+        return view('reviewer.paper', compact('papers', 'paperEvaluation'));
     }
 
     /*
@@ -43,7 +63,7 @@ class ReviewerPaperController extends Controller {
 
         $file = public_path() . '/papers/' . $fullPaperUrl;
 
-        return response()->download($file, "Paper - .doc");
+        return response()->download($file, "Paper - .pdf");
     }
 
     /**
@@ -61,9 +81,31 @@ class ReviewerPaperController extends Controller {
      *
      * @return Response
      */
-    public function store()
+    public function store($id,PaperEvaluation $paperEvaluation, Paper $paper)
     {
-        //
+        $paperEvaluation->paper_id = $id;
+        $paperEvaluation->reviewer_id = Auth::user()->email;
+
+        $num1 = Input::get('quality');
+        $num2 = Input::get('evaluation');
+        $num3 = Input::get('hypotheses');
+        $num4 = Input::get('manuscript');
+
+        $paperEvaluation->mark = ($num1 + $num2 +$num3 + $num4);
+        $paperEvaluation->comment = Input::get('comment');
+
+        $paperEvaluation->save();
+
+//        $paperEvaluation = DB::table('papers')
+//            ->join('paper_evaluations', 'papers.id', '=', 'paper_evaluations.paper_id' )
+//            ->select('paper_evaluations.paper_id','paper_evaluations.mark')
+//            ->where('papers.id', '=', $id)
+//            ->sum('paper_evaluations.mark');
+//
+//        dd($paperEvaluation);
+
+//        return view('reviewer.showPaper', compact('paper'));
+        return $this->update($id);
     }
 
     /**
@@ -98,31 +140,74 @@ class ReviewerPaperController extends Controller {
      */
     public function update($id)
     {
+        //This is to find the user selected paper Id
         $paper = Paper::find($id);
+//
+//        $num1 = Input::get('quality');
+//        $num2 = Input::get('evaluation');
+//        $num3 = Input::get('hypotheses');
+//        $num4 = Input::get('manuscript');
+//
+//
+//        $answer = ($num1 + $num2 +$num3 + $num4)/4;
+//
+//        if($answer < 2 && $answer > 0)
+//        {
+//            $paper->status = 'Pass';
+//        }
+//        else if ($answer == 0)
+//        {
+//            $paper->status = 'Partial Pass';
+//        }
+//        else
+//        {
+//            $paper->status = 'Fail';
+//        }
+//
+//
+//        $paper->save();
+//        return view('reviewer.showPaper', compact('paper'));
 
-        $num1 = Input::get('quality');
-        $num2 = Input::get('evaluation');
-        $num3 = Input::get('hypotheses');
-        $num4 = Input::get('manuscript');
+        /*
+         * This query is to select the paper's marks
+         */
+        $paperEvaluation = DB::table('papers')
+            ->join('paper_evaluations', 'papers.id', '=', 'paper_evaluations.paper_id' )
+            ->select('paper_evaluations.paper_id','paper_evaluations.mark')
+            ->where('papers.id', '=', $id)
+            ->sum('paper_evaluations.mark');
 
+        /*
+         * This query is to select the number of papers that are reviewed by the reviewers
+         */
+        $numberOfReviewers = DB::table('papers')
+            ->join('paper_evaluations', 'papers.id', '=', 'paper_evaluations.paper_id' )
+            ->select('paper_evaluations.paper_id','paper_evaluations.mark')
+            ->where('papers.id', '=', $id)
+            ->count('paper_evaluations.mark');
 
-        $answer = ($num1 + $num2 +$num3 + $num4)/4;
+        /*
+         * This is the method to find our the average marks
+         */
+        $average = ($paperEvaluation/$numberOfReviewers);
 
-        if($answer < 2 && $answer > 0)
-        {
-            $paper->status = 'Pass';
+        $paper->averageMarks = $average;
+        /*
+         * Method that decide whether that particular is accepted or rejected
+         */
+        if($average >= 15 && $average <= 40 ){
+            $paper->status = 'Rejected';
         }
-        else if ($answer == 0)
-        {
-            $paper->status = 'Partial Pass';
+        else if($average >5 && $average < 15){
+            $paper->status = 'Partially Accept';
         }
-        else
-        {
-            $paper->status = 'Fail';
+        else{
+            $paper->status = 'Rejected';
         }
 
-
+        //Update the data in the database
         $paper->save();
+
         return view('reviewer.showPaper', compact('paper'));
     }
 

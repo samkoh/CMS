@@ -21,6 +21,7 @@ class CreatePapersTable extends Migration {
             $table->string('title');
             $table->text('abstractContent');
             $table->string('status');
+            $table->decimal('averageMarks');
             $table->string('fullPaperUrl')->nullable();
             $table->string('cameraReadyUrl')->nullable();
             $table->timestamps();
