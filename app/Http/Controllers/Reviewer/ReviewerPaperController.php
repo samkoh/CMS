@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Input;
 use Request;
 use App\Paper;
 use Auth;
+
 //use Illuminate\Http\Request;
 
 class ReviewerPaperController extends Controller {
@@ -81,20 +82,31 @@ class ReviewerPaperController extends Controller {
      *
      * @return Response
      */
-    public function store($id,PaperEvaluation $paperEvaluation, Paper $paper)
+    public function store($id, PaperEvaluation $paperEvaluation, Paper $paper)
     {
-        $paperEvaluation->paper_id = $id;
-        $paperEvaluation->reviewer_id = Auth::user()->email;
+        $userId = Auth::user()->email;
 
-        $num1 = Input::get('quality');
-        $num2 = Input::get('evaluation');
-        $num3 = Input::get('hypotheses');
-        $num4 = Input::get('manuscript');
+        $userPaperExistance = DB::table('paper_evaluations')
+            ->where('reviewer_id', '=', $userId)
+            ->where('paper_id', '=', $id)
+            ->select('reviewer_id', 'paper_id')
+            ->get();
 
-        $paperEvaluation->mark = ($num1 + $num2 +$num3 + $num4);
-        $paperEvaluation->comment = Input::get('comment');
 
-        $paperEvaluation->save();
+        if ($userPaperExistance == null){
+
+            $paperEvaluation->paper_id = $id;
+            $paperEvaluation->reviewer_id = $userId;
+
+            $num1 = Input::get('quality');
+            $num2 = Input::get('evaluation');
+            $num3 = Input::get('hypotheses');
+            $num4 = Input::get('manuscript');
+
+            $paperEvaluation->mark = ($num1 + $num2 + $num3 + $num4);
+            $paperEvaluation->comment = Input::get('comment');
+
+            $paperEvaluation->save();
 
 //        $paperEvaluation = DB::table('papers')
 //            ->join('paper_evaluations', 'papers.id', '=', 'paper_evaluations.paper_id' )
@@ -105,7 +117,14 @@ class ReviewerPaperController extends Controller {
 //        dd($paperEvaluation);
 
 //        return view('reviewer.showPaper', compact('paper'));
-        return $this->update($id);
+            return $this->update($id);
+        }
+        else{
+
+            return 'You have evaluated this paper before';
+        }
+
+
     }
 
     /**
@@ -172,8 +191,8 @@ class ReviewerPaperController extends Controller {
          * This query is to select the paper's marks
          */
         $paperEvaluation = DB::table('papers')
-            ->join('paper_evaluations', 'papers.id', '=', 'paper_evaluations.paper_id' )
-            ->select('paper_evaluations.paper_id','paper_evaluations.mark')
+            ->join('paper_evaluations', 'papers.id', '=', 'paper_evaluations.paper_id')
+            ->select('paper_evaluations.paper_id', 'paper_evaluations.mark')
             ->where('papers.id', '=', $id)
             ->sum('paper_evaluations.mark');
 
@@ -181,27 +200,28 @@ class ReviewerPaperController extends Controller {
          * This query is to select the number of papers that are reviewed by the reviewers
          */
         $numberOfReviewers = DB::table('papers')
-            ->join('paper_evaluations', 'papers.id', '=', 'paper_evaluations.paper_id' )
-            ->select('paper_evaluations.paper_id','paper_evaluations.mark')
+            ->join('paper_evaluations', 'papers.id', '=', 'paper_evaluations.paper_id')
+            ->select('paper_evaluations.paper_id', 'paper_evaluations.mark')
             ->where('papers.id', '=', $id)
             ->count('paper_evaluations.mark');
 
         /*
          * This is the method to find our the average marks
          */
-        $average = ($paperEvaluation/$numberOfReviewers);
+        $average = ($paperEvaluation / $numberOfReviewers);
 
         $paper->averageMarks = $average;
         /*
          * Method that decide whether that particular is accepted or rejected
          */
-        if($average >= 15 && $average <= 40 ){
+        if ($average >= 15 && $average <= 40)
+        {
             $paper->status = 'Rejected';
-        }
-        else if($average >5 && $average < 15){
+        } else if ($average > 5 && $average < 15)
+        {
             $paper->status = 'Partially Accept';
-        }
-        else{
+        } else
+        {
             $paper->status = 'Rejected';
         }
 

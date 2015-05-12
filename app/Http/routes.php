@@ -33,7 +33,9 @@ Route::resource('conferenceChair', 'ConfChair\ConfChairInvitationController');
 
 
 Route::get('reviewer/discussion', 'Reviewer\ReviewerDiscussionController@index');
-Route::get('reviewer/discussion/{id}', 'Reviewer\ReviewerDiscussionController@showDiscussion');
+Route::get('reviewer/discussion/{id}', 'Reviewer\ReviewerDiscussionController@show');
+Route::post('reviewer/discussion/{id}', 'Reviewer\ReviewerDiscussionController@store');
+
 Route::get('reviewer/reviewerRegistration', 'Reviewer\ReviewerRegistrationController@index');
 Route::get('reviewer/paperReviewRequest', 'Reviewer\ReviewerPaperReviewRequestController@index');
 

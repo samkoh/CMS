@@ -2,10 +2,25 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\PaperDiscussion;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+
+use App\Paper;
+use Auth;
 
 class ReviewerDiscussionController extends Controller {
+
+
+    private $paper;
+    private $paperDiscussion;
+
+    public function __construct(Paper $paper, PaperDiscussion $paperDiscussion)
+    {
+        $this->paper = $paper;
+        $this->paperDiscussion = $paperDiscussion;
+    }
 
 	/**
 	 * Display a listing of the resource.
@@ -14,24 +29,17 @@ class ReviewerDiscussionController extends Controller {
 	 */
 	public function index()
 	{
-		$papers = $this->getPapers();
+//		$papers = $this->getPapers();
+        /*
+         * Get the partially accepted status papers
+         */
 
+        $papers = $this->paper
+                ->where('status', '=', 'Partially Accept')
+                ->get();
+
+//        dd($papers);
 		return view('reviewer.discussion', compact('papers'));
-	}
-
-	public function showDiscussion($id)
-	{
-		$paper = $this->getPapers()[$id];
-
-		return view('reviewer.showDiscussion', compact('paper'));
-	}
-
-	private function getPapers()
-	{
-		return ['(1) - Man-Computer Symbiosis', 
-				'(1) - The Computer as a Communication Device', 
-				'(1) - Electricity over IP', 
-				'(1) - The Infinite Monkey Protocol Suite (IMPS)'];
 	}
 
 	/**
@@ -49,10 +57,18 @@ class ReviewerDiscussionController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store($id)
 	{
-		//
-	}
+        $userId = Auth::user()->email;
+
+        $this->paperDiscussion->user_id = $userId;
+        $this->paperDiscussion->paper_id = $id;
+        $this->paperDiscussion->content = Input::get('content');
+
+        $this->paperDiscussion->save();
+
+        return redirect('reviewer/discussion');
+    }
 
 	/**
 	 * Display the specified resource.
@@ -62,7 +78,17 @@ class ReviewerDiscussionController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+
+        $paper = $this->paper->get()[$id];
+
+//        $paperDiscussion = $this->paperDiscussion->get() [$paper->id];
+        $paperDiscussion = DB::table('paper_discussions')
+            ->where('paper_id', '=', $paper->id)
+            ->select('content', 'created_at')
+            ->orderBy('created_at', 'desc')
+            ->get();
+//    dd($paperDiscussion);
+		return view('reviewer.showDiscussion', compact('paper', 'paperDiscussion'));
 	}
 
 	/**
@@ -97,5 +123,20 @@ class ReviewerDiscussionController extends Controller {
 	{
 		//
 	}
+
+    //	public function showDiscussion($id)
+//	{
+//		$paper = $this->getPapers()[$id];
+//
+//		return view('reviewer.showDiscussion', compact('paper'));
+//	}
+
+//	private function getPapers()
+//	{
+//		return ['(1) - Man-Computer Symbiosis',
+//				'(1) - The Computer as a Communication Device',
+//				'(1) - Electricity over IP',
+//				'(1) - The Infinite Monkey Protocol Suite (IMPS)'];
+//	}
 
 }

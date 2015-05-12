@@ -66,7 +66,7 @@ class SubmitPaperController extends Controller {
             /*
              * This is the PaperUrl encryption using md5 method to hash the original PaperUrl
              */
-             $encryptname = md5(Input::get($name));
+             $encryptname = md5($name);
 
             /*
              * This is the paper directory where it's location storage
