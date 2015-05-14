@@ -93,7 +93,7 @@ class ConfChairPapersController extends Controller {
         }
         else
         {
-            return 'This paper has been assigned this reviewer ';
+            return 'This paper has been assigned to this reviewer and you are allowed to assign the same reviewer to this paper again';
         }
 
 //        dd($reviewer);

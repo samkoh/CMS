@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="438420a6-fadb-4263-aaa8-011a315fefd0" name="Default" comment="20150423-2">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2015_05_10_145925_create_papers_table.php" afterPath="$PROJECT_DIR$/database/migrations/2015_05_10_145925_create_papers_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2015_05_11_031452_create_paper_reviews_table.php" afterPath="$PROJECT_DIR$/database/migrations/2015_05_11_031452_create_paper_reviews_table.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairPapersController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairPapersController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Paper.php" afterPath="$PROJECT_DIR$/app/Paper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/PaperReview.php" afterPath="$PROJECT_DIR$/app/PaperReview.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Reviewer/ReviewerDiscussionController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Reviewer/ReviewerDiscussionController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Reviewer/ReviewerPaperController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Reviewer/ReviewerPaperController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/conferenceChair/allPapers.blade.php" afterPath="$PROJECT_DIR$/resources/views/conferenceChair/allPapers.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/reviewer/discussion.blade.php" afterPath="$PROJECT_DIR$/resources/views/reviewer/discussion.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/reviewer/showDiscussion.blade.php" afterPath="$PROJECT_DIR$/resources/views/reviewer/showDiscussion.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/reviewer/showPaper.blade.php" afterPath="$PROJECT_DIR$/resources/views/reviewer/showPaper.blade.php" />
     </list>
     <ignored path="conferencemanagementsystem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -99,8 +89,8 @@
             <file leaf-file-name="showPaper.blade.php" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/resources/views/reviewer/showPaper.blade.php">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.5111821" vertical-offset="2298" max-vertical-offset="3281">
-                    <caret line="154" column="85" selection-start-line="154" selection-start-column="85" selection-end-line="154" selection-end-column="112" />
+                  <state vertical-scroll-proportion="0.5926518" vertical-offset="2298" max-vertical-offset="3281">
+                    <caret line="157" column="100" selection-start-line="157" selection-start-column="100" selection-end-line="157" selection-end-column="100" />
                     <folding />
                   </state>
                 </provider>
@@ -120,8 +110,8 @@
       <file leaf-file-name="ConfChairPapersController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairPapersController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8559028" vertical-offset="1122" max-vertical-offset="3145">
-              <caret line="95" column="62" selection-start-line="95" selection-start-column="62" selection-end-line="95" selection-end-column="62" />
+            <state vertical-scroll-proportion="0.6944938" vertical-offset="1224" max-vertical-offset="3145">
+              <caret line="95" column="133" selection-start-line="95" selection-start-column="133" selection-end-line="95" selection-end-column="133" />
               <folding>
                 <element signature="e#49#71#0#PHP" expanded="true" />
               </folding>
@@ -236,8 +226,8 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Reviewer/ReviewerDiscussionController.php" />
         <option value="$PROJECT_DIR$/resources/views/reviewer/showDiscussion.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/conferenceChair/allPapers.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairPapersController.php" />
         <option value="$PROJECT_DIR$/resources/views/reviewer/showPaper.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairPapersController.php" />
       </list>
     </option>
   </component>
@@ -1527,16 +1517,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairPapersController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8559028" vertical-offset="1122" max-vertical-offset="3145">
-          <caret line="95" column="62" selection-start-line="95" selection-start-column="62" selection-end-line="95" selection-end-column="62" />
-          <folding>
-            <element signature="e#49#71#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Reviewer/ReviewerPaperController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="78.57692" vertical-offset="4253" max-vertical-offset="5882">
@@ -1557,9 +1537,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/reviewer/showPaper.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5111821" vertical-offset="2298" max-vertical-offset="3281">
-          <caret line="154" column="85" selection-start-line="154" selection-start-column="85" selection-end-line="154" selection-end-column="112" />
+        <state vertical-scroll-proportion="0.5926518" vertical-offset="2298" max-vertical-offset="3281">
+          <caret line="157" column="100" selection-start-line="157" selection-start-column="100" selection-end-line="157" selection-end-column="100" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairPapersController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6944938" vertical-offset="1224" max-vertical-offset="3145">
+          <caret line="95" column="133" selection-start-line="95" selection-start-column="133" selection-end-line="95" selection-end-column="133" />
+          <folding>
+            <element signature="e#49#71#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
