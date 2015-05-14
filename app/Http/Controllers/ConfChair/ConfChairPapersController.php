@@ -44,7 +44,7 @@ class ConfChairPapersController extends Controller {
 
         $reviewerNo = DB::table('papers')
             ->leftJoin('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
-            ->select(DB::raw(' papers.title, count(paper_reviews.reviewer_id) as ReviewerNo'))
+            ->select(DB::raw(' papers.title, papers.status, count(paper_reviews.reviewer_id) as ReviewerNo'))
             ->groupBy('papers.id')
             ->get();
 
@@ -76,11 +76,28 @@ class ConfChairPapersController extends Controller {
 	{
         $userId = Auth::user()->email;
 
-        $paperReview->reviewer_id = Input::get('reviewer');
+        $getReviewers = Input::get('reviewer');
+        $paperReview->reviewer_id = $getReviewers;
         $paperReview->assigned_by = $userId;
 		$paperReview->paper_id = $id;
-//        dd($paperReview);
-        $paperReview->save();
+
+        $reviewer = DB::table('paper_reviews')
+            ->select('reviewer_id', 'paper_id')
+            ->where('reviewer_id', '=', $getReviewers )
+            ->where('paper_id', '=', $id )
+            ->get();
+
+        if($reviewer == null)
+        {
+            $paperReview->save();
+        }
+        else
+        {
+            return 'This paper has been assigned this reviewer ';
+        }
+
+//        dd($reviewer);
+//        $paperReview->save();
 
         return redirect('conferenceChair/allPapers');
 
@@ -95,7 +112,7 @@ class ConfChairPapersController extends Controller {
 	public function show($id)
 	{
         $paper = $this->paper->get()[$id];
-        dd($paper);
+//        dd($paper);
 
         $reviewers = User::lists('firstname','email');
 

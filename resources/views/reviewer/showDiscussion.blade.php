@@ -24,7 +24,7 @@
                         {{--</div>--}}
                         <div class="form-group">
                             {!! Form::label('1', 'Add a comment')!!}
-                            {!! Form::textarea('content', '' , array('required', 'class' => 'form-control', 'size' => '30x5',
+                            {!! Form::textarea('content', '' , array('required', 'class' => 'form-control', 'size' => '20x2',
                             'placeholder'=>'Add new comment here')) !!}
                         </div>
 
@@ -32,10 +32,10 @@
                             <div class="form-group">
                                 <h4 align="center">{!! Form::label('1', 'Reviewer Comment')!!}</h4>
                                 {!! Form::label('created_at', 'Posted On:')!!}
-                                {!! Form::input('created_at', '1', $Discussion->created_at, array('disabled' => 'disabled', 'class'=> 'form-control', 'size' => '30x4')) !!}
+                                {!! Form::input('created_at', '1', $Discussion->created_at, array('disabled' => 'disabled', 'class'=> 'form-control', 'size' => '10x2')) !!}
                                 {!! Form::label('1', 'Comments:')!!}
                                 {!! Form::textarea('content', $Discussion->content, array('disabled' => 'disabled', 'class' =>
-                                'form-control')) !!}
+                                'form-control',  'size' => '10x2')) !!}
                             </div>
                         @endforeach
 

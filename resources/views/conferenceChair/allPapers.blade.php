@@ -17,6 +17,7 @@
                             <thead>
                             <th>No of Reviewers</th>
                             <th>All Submitted Papers</th>
+                            <th>Status</th>
                             </thead>
 
                             <tbody>
@@ -26,6 +27,7 @@
                                     <td>
                                         <a href="/conferenceChair/allPapers/{{ $index }}">{{ $reviewer->title }}</a>
                                     </td>
+                                    <td>{{ $reviewer->status }}</td>
                                 </tr>
                             @endforeach
                             </tbody>

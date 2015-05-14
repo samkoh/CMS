@@ -9,6 +9,7 @@ class Paper extends Model {
         'abstractContent',
         'fullPaperUrl',
         'status',
+        'tempStatus',
         'averageMarks'
     ];
 

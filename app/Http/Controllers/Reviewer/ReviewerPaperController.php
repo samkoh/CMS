@@ -38,10 +38,10 @@ class ReviewerPaperController extends Controller {
         $userId = Auth::user()->email;
 
         $papers = DB::table('papers')
-                    ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id' )
-                    ->select('papers.id','papers.title', 'papers.abstractContent', 'papers.fullPaperUrl')
-                    ->where('reviewer_id', '=', $userId)
-                    ->get();
+            ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
+            ->select('papers.id', 'papers.title', 'papers.abstractContent', 'papers.fullPaperUrl')
+            ->where('reviewer_id', '=', $userId)
+            ->get();
 
 //        dd($papers);
 
@@ -167,26 +167,27 @@ class ReviewerPaperController extends Controller {
         $paper = Paper::find($id);
         //This is to find the array for that paper_id in the paper review table
         $paperReview = PaperReview::where('paper_id', '=', $id)
-                                    ->where('reviewer_id', '=', $userId)
-                                    ->first();
+            ->where('reviewer_id', '=', $userId)
+            ->first();
 
-        if ($paperReview->score != null)
-        {
+//        if ($paperReview->score != null)
+//        {
 
-            $num1 = Input::get('quality');
-            $num2 = Input::get('evaluation');
-            $num3 = Input::get('rationale');
-            $num4 = Input::get('hypotheses');
-            $num5 = Input::get('manuscript');
+        $paperReview->quality = Input::get('quality');
+        $paperReview->rationale = Input::get('rationale');
+        $paperReview->hypothesis = Input::get('hypothesis');
+        $paperReview->manuscript = Input::get('manuscript');
+        $paperReview->structure = Input::get('structure');
+        $paperReview->paperEvaluation = Input::get('paperEvaluation');
 
-            $paperReview->score = ($num1 + $num2 + $num3 + $num4 + $num5);
-            $paperReview->comment = Input::get('comment');
-            $paperReview->reviewed_date = Carbon::now();
-            $paperReview->save();
-        } else
-        {
-            return 'You have evaluated this paper before';
-        }
+//            $paperReview->score = ($num1 + $num2 + $num3 + $num4 + $num5);
+        $paperReview->comment = Input::get('comment');
+        $paperReview->reviewed_date = Carbon::now();
+        $paperReview->save();
+//        } else
+//        {
+//            return 'You have evaluated this paper before';
+//        }
 
 
 //
@@ -216,14 +217,60 @@ class ReviewerPaperController extends Controller {
 //        return view('reviewer.showPaper', compact('paper'));
 
 
+//        /*
+//         * This query is to select the paper's marks
+//         */
+//        $paperReview = DB::table('papers')
+//            ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
+//            ->select('paper_reviews.paper_id', 'paper_reviews.score')
+//            ->where('papers.id', '=', $id)
+//            ->sum('paper_reviews.score');
+//
+//        /*
+//         * This query is to select the number of papers that are reviewed by the reviewers
+//         */
+//        $numberOfReviewers = DB::table('papers')
+//            ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
+//            ->select('paper_reviews.paper_id', 'paper_reviews.score')
+//            ->where('papers.id', '=', $id)
+//            ->count('paper_reviews.score');
+//
+//        /*
+//         * This is the method to find our the average marks
+//         */
+//        $average = ($paperReview / $numberOfReviewers);
+//
+//        $paper->averageMarks = $average;
+//        /*
+//         * Method that decide whether that particular is accepted or rejected
+//         */
+//        if ($average >= 15 && $average <= 40)
+//        {
+//            $paper->status = 'Rejected';
+//        } else if ($average > 5 && $average < 15)
+//        {
+//            $paper->status = 'Partially Accept';
+//        } else
+//        {
+//            $paper->status = 'Rejected';
+//        }
+
         /*
-         * This query is to select the paper's marks
+         * Evaluation according to the agree and reject statement
          */
-        $paperReview = DB::table('papers')
+        $numStrongReject = DB::table('papers')
+        ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
+        ->select('papers.id', 'paper_reviews.paperEvaluation')
+        ->where('paper_reviews.paperEvaluation', '=', 'Strongly Reject' )
+        ->where('papers.id', '=', $id)
+        ->count('paper_reviews.paperEvaluation');
+
+        $numReject = DB::table('papers')
             ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
-            ->select('paper_reviews.paper_id', 'paper_reviews.score')
+            ->select('papers.id', 'paper_reviews.paperEvaluation')
+            ->where('paper_reviews.paperEvaluation', '=', 'Reject' )
             ->where('papers.id', '=', $id)
-            ->sum('paper_reviews.score');
+            ->count('paper_reviews.paperEvaluation');
 
         /*
          * This query is to select the number of papers that are reviewed by the reviewers
@@ -234,27 +281,34 @@ class ReviewerPaperController extends Controller {
             ->where('papers.id', '=', $id)
             ->count('paper_reviews.score');
 
-        /*
-         * This is the method to find our the average marks
-         */
-        $average = ($paperReview / $numberOfReviewers);
-
-        $paper->averageMarks = $average;
-        /*
-         * Method that decide whether that particular is accepted or rejected
-         */
-        if ($average >= 15 && $average <= 40)
+        if($numberOfReviewers == 1 && ($numReject == 1 || $numStrongReject == 1))
         {
-            $paper->status = 'Rejected';
-        } else if ($average > 5 && $average < 15)
+            $paper->tempStatus = 'Reject';
+        }
+        else if($numberOfReviewers == 2 && ($numReject == 1 || $numStrongReject == 1))
         {
-            $paper->status = 'Partially Accept';
-        } else
+            $paper->tempStatus = 'Reject';
+        }
+        else if($numberOfReviewers == 3 && ($numReject >= 2 || $numStrongReject >= 2))
         {
-            $paper->status = 'Rejected';
+            $paper->tempStatus = 'Reject';
+        }
+        else if($numberOfReviewers == 4 && ($numReject >= 2 || $numStrongReject >= 2))
+        {
+            $paper->tempStatus = 'Reject';
+        }
+        else if($numberOfReviewers == 5 && ($numReject >= 3 || $numStrongReject >= 3))
+        {
+            $paper->tempStatus = 'Reject';
+        }
+        else
+        {
+            $paper->tempStatus = 'Accept';
         }
 
+//dd($paper);
         //Update the data in the database
+
         $paper->save();
 
         return view('reviewer.showPaper', compact('paper'));

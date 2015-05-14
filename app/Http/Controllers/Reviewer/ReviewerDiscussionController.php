@@ -42,9 +42,9 @@ class ReviewerDiscussionController extends Controller {
 
         $papers = DB::table('papers')
             ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
-            ->select('papers.title', 'papers.status', 'papers.averageMarks', 'papers.created_at')
+            ->select('papers.id','papers.title', 'papers.tempStatus', 'papers.averageMarks', 'papers.created_at')
             ->where('paper_reviews.reviewer_id', '=', $userId)
-            ->where('papers.status', '=', 'Partially Accept')
+            ->where('papers.tempStatus', '=', 'Reject')
             ->get();
 
 //        dd($papers);
@@ -88,8 +88,10 @@ class ReviewerDiscussionController extends Controller {
 	public function show($id)
 	{
 
-        $paper = $this->paper->get()[$id];
+//        $paper = $this->paper->get()[$id];
+        $paper = Paper::find($id);
 
+//        dd($paper);
 //        $paperDiscussion = $this->paperDiscussion->get() [$paper->id];
         $paperDiscussion = DB::table('paper_discussions')
             ->where('paper_id', '=', $paper->id)

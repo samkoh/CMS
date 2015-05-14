@@ -16,7 +16,6 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                             <th>Status</th>
-                            <th>Average Marks</th>
                             <th>Title</th>
                             <th>Date</th>
                             </thead>
@@ -24,10 +23,9 @@
                             <tbody>
                             @foreach($papers as $index => $paper)
                                 <tr>
-                                    <td>{{ $paper->status }}</td>
-                                    <td>{{ $paper->averageMarks }}</td>
+                                    <td>{{ $paper->tempStatus }}</td>
                                     <td>
-                                        <li><a href="/reviewer/discussion/{{ $index }}">{{ $paper->title }}</a></li>
+                                        <li><a href="/reviewer/discussion/{{ $paper->id }}">{{ $paper->title }}</a></li>
                                     </td>
                                     <td>{{ date("d M Y",strtotime($paper->created_at)) }}</td>
                                 </tr>

@@ -9,6 +9,12 @@ class PaperReview extends Model {
         'assigned_by',
         'paper_id',
         'score',
+        'paperEvaluation',
+        'quality',
+        'rationale',
+        'hypothesis',
+        'manuscript',
+        'structure',
         'comment'
     ];
 
