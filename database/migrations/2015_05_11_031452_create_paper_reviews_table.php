@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePaperEvaluationsTable extends Migration {
+class CreatePaperReviewsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,19 +12,22 @@ class CreatePaperEvaluationsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('paper_evaluations', function(Blueprint $table)
+		Schema::create('paper_reviews', function(Blueprint $table)
 		{
             $table->bigIncrements('id');
             $table->string('reviewer_id');
+            $table->string('assigned_by');
             $table->bigInteger('paper_id')->unsigned();
-            $table->decimal('mark');
+            $table->decimal('score');
             $table->text('comment');
+            $table->dateTime('reviewed_date');
             $table->timestamps();
 		});
 
-        Schema::table('paper_evaluations', function(Blueprint $table)
+        Schema::table('paper_reviews', function(Blueprint $table)
         {
             $table->foreign('reviewer_id')->references('email')->on('users')->onDelete('cascade');
+            $table->foreign('assigned_by')->references('email')->on('users')->onDelete('cascade');
             $table->foreign('paper_id')->references('id')->on('papers')->onDelete('cascade');
         });
 	}
@@ -36,7 +39,7 @@ class CreatePaperEvaluationsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('paper_evaluations');
+		Schema::drop('paper_reviews');
 	}
 
 }

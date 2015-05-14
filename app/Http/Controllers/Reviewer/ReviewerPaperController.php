@@ -2,24 +2,25 @@
 
 //use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\PaperEvaluation;
+use App\PaperReview;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Request;
 use App\Paper;
 use Auth;
+use Carbon\Carbon;
 
 //use Illuminate\Http\Request;
 
 class ReviewerPaperController extends Controller {
 
     private $paper;
-    private $paperEvaluation;
+    private $paperReview;
 
-    public function __construct(Paper $paper, PaperEvaluation $paperEvaluation)
+    public function __construct(Paper $paper, PaperReview $paperReview)
     {
         $this->paper = $paper;
-        $this->paperEvaluation = $paperEvaluation;
+        $this->paperReview = $paperReview;
     }
 
     /**
@@ -33,25 +34,26 @@ class ReviewerPaperController extends Controller {
 //
 //		return view('reviewer.paper', compact('papers'));
 
-        $papers = $this->paper->get();
+//        $papers = $this->paper->get();
+        $userId = Auth::user()->email;
 
-//        $paperEvaluation = DB::table('papers')
-//        ->join('paper_evaluations', 'papers.id', '=', 'paper_evaluations.paper_id' )
-//        ->select('paper_evaluations.paper_id','paper_evaluations.mark')
-//        ->where('papers.id', '=', '2')
-//        ->sum('paper_evaluations.mark');
-//
-//        dd($paperEvaluation);
+        $papers = DB::table('papers')
+                    ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id' )
+                    ->select('papers.id','papers.title', 'papers.abstractContent', 'papers.fullPaperUrl')
+                    ->where('reviewer_id', '=', $userId)
+                    ->get();
 
-//        $paperEvaluation = DB::table('papers')
-//            ->join('paper_evaluations', 'papers.id', '=', 'paper_evaluations.paper_id' )
-//            ->select('paper_evaluations.paper_id','paper_evaluations.mark')
+//        dd($papers);
+
+//        $paperReview = DB::table('papers')
+//            ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id' )
+//            ->select('paper_reviews.paper_id','paper_reviews.score')
 //            ->where('papers.id', '=', '2')
-//            ->count('paper_evaluations.mark');
+//            ->count('paper_reviews.score);
 //
-//        dd($paperEvaluation);
+//        dd($paperReview);
 
-        return view('reviewer.paper', compact('papers', 'paperEvaluation'));
+        return view('reviewer.paper', compact('papers'));
     }
 
     /*
@@ -82,48 +84,39 @@ class ReviewerPaperController extends Controller {
      *
      * @return Response
      */
-    public function store($id, PaperEvaluation $paperEvaluation, Paper $paper)
+    public function store($id, PaperReview $paperReview, Paper $paper)
     {
-        $userId = Auth::user()->email;
-
-        $userPaperExistance = DB::table('paper_evaluations')
-            ->where('reviewer_id', '=', $userId)
-            ->where('paper_id', '=', $id)
-            ->select('reviewer_id', 'paper_id')
-            ->get();
-
-
-        if ($userPaperExistance == null){
-
-            $paperEvaluation->paper_id = $id;
-            $paperEvaluation->reviewer_id = $userId;
-
-            $num1 = Input::get('quality');
-            $num2 = Input::get('evaluation');
-            $num3 = Input::get('hypotheses');
-            $num4 = Input::get('manuscript');
-
-            $paperEvaluation->mark = ($num1 + $num2 + $num3 + $num4);
-            $paperEvaluation->comment = Input::get('comment');
-
-            $paperEvaluation->save();
-
-//        $paperEvaluation = DB::table('papers')
-//            ->join('paper_evaluations', 'papers.id', '=', 'paper_evaluations.paper_id' )
-//            ->select('paper_evaluations.paper_id','paper_evaluations.mark')
-//            ->where('papers.id', '=', $id)
-//            ->sum('paper_evaluations.mark');
+//        $userId = Auth::user()->email;
 //
-//        dd($paperEvaluation);
-
-//        return view('reviewer.showPaper', compact('paper'));
-            return $this->update($id);
-        }
-        else{
-
-            return 'You have evaluated this paper before';
-        }
-
+//        $userPaperExistance = DB::table('paper_reviews')
+//            ->where('reviewer_id', '=', $userId)
+//            ->where('paper_id', '=', $id)
+//            ->select('reviewer_id', 'paper_id')
+//            ->get();
+//
+//
+//        if ($userPaperExistance == null){
+//
+//            $paperReview->paper_id = $id;
+//            $paperReview->reviewer_id = $userId;
+//
+//            $num1 = Input::get('quality');
+//            $num2 = Input::get('evaluation');
+//            $num3 = Input::get('hypotheses');
+//            $num4 = Input::get('manuscript');
+//
+//            $paperReview->score = ($num1 + $num2 + $num3 + $num4);
+//            $paperReview->comment = Input::get('comment');
+//
+//            $paperReview->save();
+//
+//
+//            return $this->update($id);
+//        }
+//        else{
+//
+//            return 'You have evaluated this paper before';
+//        }
 
     }
 
@@ -135,8 +128,17 @@ class ReviewerPaperController extends Controller {
      */
     public function show($id)
     {
-        $paper = $this->paper->get()[$id];
+        $paper = Paper::find($id);
+//        $paper = $this->paper->get()[$id];
+//        $paper = Paper::where('id', '=', $id)
+//            ->first();
+//dd($paper);
+//        $paper = DB::table('papers')
+//            ->select('id','title', 'abstractContent', 'fullPaperUrl')
+//            ->where('id', '=', $paper)
+//            ->get();
 
+//        dd($paper);
         return view('reviewer.showPaper', compact('paper'));
     }
 
@@ -159,8 +161,34 @@ class ReviewerPaperController extends Controller {
      */
     public function update($id)
     {
+        $userId = Auth::user()->email;
+
         //This is to find the user selected paper Id
         $paper = Paper::find($id);
+        //This is to find the array for that paper_id in the paper review table
+        $paperReview = PaperReview::where('paper_id', '=', $id)
+                                    ->where('reviewer_id', '=', $userId)
+                                    ->first();
+
+        if ($paperReview->score != null)
+        {
+
+            $num1 = Input::get('quality');
+            $num2 = Input::get('evaluation');
+            $num3 = Input::get('rationale');
+            $num4 = Input::get('hypotheses');
+            $num5 = Input::get('manuscript');
+
+            $paperReview->score = ($num1 + $num2 + $num3 + $num4 + $num5);
+            $paperReview->comment = Input::get('comment');
+            $paperReview->reviewed_date = Carbon::now();
+            $paperReview->save();
+        } else
+        {
+            return 'You have evaluated this paper before';
+        }
+
+
 //
 //        $num1 = Input::get('quality');
 //        $num2 = Input::get('evaluation');
@@ -187,28 +215,29 @@ class ReviewerPaperController extends Controller {
 //        $paper->save();
 //        return view('reviewer.showPaper', compact('paper'));
 
+
         /*
          * This query is to select the paper's marks
          */
-        $paperEvaluation = DB::table('papers')
-            ->join('paper_evaluations', 'papers.id', '=', 'paper_evaluations.paper_id')
-            ->select('paper_evaluations.paper_id', 'paper_evaluations.mark')
+        $paperReview = DB::table('papers')
+            ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
+            ->select('paper_reviews.paper_id', 'paper_reviews.score')
             ->where('papers.id', '=', $id)
-            ->sum('paper_evaluations.mark');
+            ->sum('paper_reviews.score');
 
         /*
          * This query is to select the number of papers that are reviewed by the reviewers
          */
         $numberOfReviewers = DB::table('papers')
-            ->join('paper_evaluations', 'papers.id', '=', 'paper_evaluations.paper_id')
-            ->select('paper_evaluations.paper_id', 'paper_evaluations.mark')
+            ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
+            ->select('paper_reviews.paper_id', 'paper_reviews.score')
             ->where('papers.id', '=', $id)
-            ->count('paper_evaluations.mark');
+            ->count('paper_reviews.score');
 
         /*
          * This is the method to find our the average marks
          */
-        $average = ($paperEvaluation / $numberOfReviewers);
+        $average = ($paperReview / $numberOfReviewers);
 
         $paper->averageMarks = $average;
         /*

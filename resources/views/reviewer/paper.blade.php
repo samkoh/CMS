@@ -16,7 +16,7 @@
 
                 @foreach($papers as $index => $paper)
                     {{--<li>{{ $paper->title }}</li>--}}
-                        <li><a href="/reviewer/paper/{{ $index }}">{{ $paper->title }}</a></li>
+                        <li><a href="/reviewer/paper/{{ $paper->id }}">{{ $paper->title }}</a></li>
                 @endforeach
 
 				</div>

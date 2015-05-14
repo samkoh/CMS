@@ -34,9 +34,18 @@ class ReviewerDiscussionController extends Controller {
          * Get the partially accepted status papers
          */
 
-        $papers = $this->paper
-                ->where('status', '=', 'Partially Accept')
-                ->get();
+//        $papers = $this->paper
+//                ->where('status', '=', 'Partially Accept')
+//                ->get();
+
+        $userId = Auth::user()->email;
+
+        $papers = DB::table('papers')
+            ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
+            ->select('papers.title', 'papers.status', 'papers.averageMarks', 'papers.created_at')
+            ->where('paper_reviews.reviewer_id', '=', $userId)
+            ->where('papers.status', '=', 'Partially Accept')
+            ->get();
 
 //        dd($papers);
 		return view('reviewer.discussion', compact('papers'));

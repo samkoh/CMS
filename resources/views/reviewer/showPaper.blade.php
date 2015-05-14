@@ -14,7 +14,7 @@
 
 				<hr/>
 
-				{!! Form::model($paper, ['url' => 'paper/' . $paper->id, 'method' => 'PATCH']) !!}
+				{!! Form::model($paper, ['url' => 'reviewer/paper/' . $paper->id, 'method' => 'PATCH']) !!}
 
 					<div class="form-group">
 						{!! Form::label('title', 'Title:')!!}
@@ -44,7 +44,7 @@
 
 				<h2>Evaluation</h2>
 
-                    {!! Form::model($paper, ['url' => 'reviewer/paper/' . $paper->id, 'method' => 'POST']) !!}
+                    {!! Form::model($paper, ['url' => 'reviewer/paper/' . $paper->id, 'method' => 'PATCH']) !!}
                     {{--{!! Form::open(['action' => 'Reviewer\ReviewerPaperController@store']) !!}--}}
 
 
@@ -65,25 +65,6 @@
 
                         {!! Form::radio('quality', '-2',['class' => 'form-control']) !!}
                         <span>-2: Only an insignificant contribution</span>
-                    </div>
-
-                    <div class="form-group">
-                        {!! Form::label('evaluation', 'Overall Evaluation:')!!}<br/>
-
-                        {!! Form::radio('evaluation', '2',['class' => 'form-control']) !!}
-                        <span>2:  Paper is recommended for publish in its present form </span><br/>
-
-                        {!! Form::radio('evaluation', '1',['class' => 'form-control']) !!}
-                        <span>1:  Paper is recommended for publish with changes as indicated</span><br/>
-
-                        {!! Form::radio('evaluation', '0',['class' => 'form-control']) !!}
-                        <span>0:  Paper is recommended for major revision</span><br/>
-
-                        {!! Form::radio('evaluation', '-1',['class' => 'form-control']) !!}
-                        <span>-1: Paper is not recommended for publication</span><br/>
-
-                        {!! Form::radio('evaluation', '-2',['class' => 'form-control']) !!}
-                        <span>-2: Paper is out of topic and rejected</span>
                     </div>
 
 					<div class="form-group">
@@ -139,6 +120,44 @@
                         {!! Form::radio('manuscript', '-2',['class' => 'form-control']) !!}
                         <span>-2: Strongly Disagree</span><br/>
 					</div>
+
+                    <div class="form-group">
+                        {!! Form::label('structure', 'The structure of this paper content is well defined:')!!}<br/>
+
+                        {!! Form::radio('structure', '2',['class' => 'form-control']) !!}
+                        <span>Strongly Accept </span><br/>
+
+                        {!! Form::radio('structure', '1',['class' => 'form-control']) !!}
+                        <span>Accept</span><br/>
+
+                        {!! Form::radio('structure', '0',['class' => 'form-control']) !!}
+                        <span>In Between</span><br/>
+
+                        {!! Form::radio('structure', '-1',['class' => 'form-control']) !!}
+                        <span>Reject</span><br/>
+
+                        {!! Form::radio('structure', '-2',['class' => 'form-control']) !!}
+                        <span>Strongly Reject</span>
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('evaluation', 'Overall Evaluation:')!!}<br/>
+
+                        {!! Form::radio('evaluation', '2',['class' => 'form-control']) !!}
+                        <span>2:  Paper is recommended for publish in its present form </span><br/>
+
+                        {!! Form::radio('evaluation', '1',['class' => 'form-control']) !!}
+                        <span>1:  Paper is recommended for publish with changes as indicated</span><br/>
+
+                        {!! Form::radio('evaluation', '0',['class' => 'form-control']) !!}
+                        <span>0:  Paper is recommended for major revision</span><br/>
+
+                        {!! Form::radio('evaluation', '-1',['class' => 'form-control']) !!}
+                        <span>-1: Paper is not recommended for publication</span><br/>
+
+                        {!! Form::radio('evaluation', '-2',['class' => 'form-control']) !!}
+                        <span>-2: Paper is out of topic and rejected</span>
+                    </div>
 
 					<hr/>
 
