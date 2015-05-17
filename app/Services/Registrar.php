@@ -38,10 +38,18 @@ class Registrar implements RegistrarContract {
             'gender' => $data['gender'],
             'dateOfBirth' => $data['dateOfBirth'],
             'nationalIdentityNo' => $data['nationalIdentityNo'],
+            'addressLine1' => $data['addressLine1'],
+            'addressLine2' => $data['addressLine2'],
+            'addressLine3' => $data['addressLine3'],
+            'city' => $data['city'],
+            'state' => $data['state'],
+            'postalCode' => $data['postalCode'],
             'country' => $data['country'],
             'contactNo' => $data['contactNo'],
             'faxNo' => $data['faxNo'],
             'education' => $data['education'],
+            'user_role' => $data['user_role'],
+
         ]);
 	}
 

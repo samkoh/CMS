@@ -15,6 +15,7 @@ class CreateUsersTable extends Migration {
         Schema::create('users', function(Blueprint $table)
         {
             $table->bigIncrements('id');
+            $table->string('user_role');
             $table->string('firstname');
             $table->string('lastname');
             $table->string('email')->unique();
@@ -23,6 +24,12 @@ class CreateUsersTable extends Migration {
             $table->string('gender');
             $table->date('dateOfBirth');
             $table->integer('nationalIdentityNo');
+            $table->string('addressLine1');
+            $table->string('addressLine2');
+            $table->string('addressLine3');
+            $table->string('city');
+            $table->string('state');
+            $table->bigInteger('postalCode');
             $table->string('country');
             $table->bigInteger('contactNo');
             $table->bigInteger('faxNo');

@@ -6,7 +6,7 @@
 
 	<br/>	
 
-	{!! Form::open(['action' => 'ConfChairInvitationController@store']) !!}
+	{!! Form::open(['action' => 'ConfChair\ConfChairInvitationController@store']) !!}
 
 		<div class="form-group">
 			{!! Form::label('template', 'Template:')!!}<br/>

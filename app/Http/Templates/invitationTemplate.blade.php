@@ -1,10 +1,10 @@
-Hello, {{ $name }}
+Hello, {{ $name }} with email {{ $email }}
 
 I am the program chair of xxx Conference 2015.
 
 I am here to invite you to become one of the reviewer of this upcoming conference.
 
-If you are interested in joining us, please click the following link to register before 1 April 2015
+If you are interested in joining us, please click the following link to register before 1st July 2015
 
 http://localhost/reviewer/reviewerRegistration
 
@@ -14,6 +14,6 @@ Thank You,
 
 Sincerely,
 
-{{ $name }}
+{{ $SenderName }}
 
-{{ $email }}
+{{ $SenderEmail }}

@@ -22,42 +22,42 @@
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 						<div class="form-group">
-                            <label class="col-md-4 control-label">First Name</label>
+                            <label class="col-md-4 control-label">First Name:</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="firstname" value="{{ old('firstname') }}">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Last Name</label>
+                            <label class="col-md-4 control-label">Last Name:</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="lastname" value="{{ old('lastmame') }}">
                             </div>
                         </div>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">E-Mail Address</label>
+							<label class="col-md-4 control-label">E-Mail Address:</label>
 							<div class="col-md-6">
 								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Password</label>
+							<label class="col-md-4 control-label">Password:</label>
 							<div class="col-md-6">
 								<input type="password" class="form-control" name="password">
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Confirm Password</label>
+							<label class="col-md-4 control-label">Confirm Password:</label>
 							<div class="col-md-6">
 								<input type="password" class="form-control" name="password_confirmation">
 							</div>
 						</div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Title</label>
+                            <label class="col-md-4 control-label">Title:</label>
                             <div class="col-md-6">
                                 {{--<input type="text" class="form-control" name="nameTitlePrefix">--}}
                                 <select class="form-control" name="nameTitlePrefix">
@@ -73,7 +73,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Gender</label>
+                            <label class="col-md-4 control-label">Gender:</label>
                             <div class="col-md-6">
                                 {{--<input type="dropdownlist" class="form-control" name="gender">--}}
                                 <select class="form-control" name="gender">
@@ -85,44 +85,138 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Date of Birth</label>
+                            <label class="col-md-4 control-label">Date of Birth:</label>
                             <div class="col-md-6">
                                 <input type="date" class="form-control" name="dateOfBirth">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">National Identity No</label>
+                            <label class="col-md-4 control-label">National Identity No:</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="nationalIdentityNo">
                             </div>
                         </div>
 
+                        {{--<div class="form-group">--}}
+                            {{--<label class="col-md-4 control-label">Country</label>--}}
+                            {{--<div class="col-md-6">--}}
+                                {{--<input type="text" class="form-control" name="country">--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Country</label>
+                            <label class="col-md-4 control-label">Address Line 1:</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="country">
+                                <input type="text" class="form-control" name="addressLine1">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Contact No</label>
+                            <label class="col-md-4 control-label">Address Line 2:</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="addressLine2">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Address Line 3:</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="addressLine3">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">City:</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="city">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">State:</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="state">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">PostCode:</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="postalCode">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Country:</label>
+                            <div class="col-md-6">
+                                <select class="form-control" name="country">
+                                    <option value="" disabled="disabled" selected="selected">Please select </option>
+                                    <option value="Malaysia">Malaysia</option>
+                                    <option value="Thailand">Thailand</option>
+                                    <option value="Vietnam">Vietnam</option>
+                                    <option value="Myanmar">Myanmar</option>
+                                    <option value="India">India</option>
+                                    <option value="China">China</option>
+                                    <option value="Australia">Australia</option>
+                                    <option value="United State">United State</option>
+                                    <option value="Russia">Russia</option>
+                                    <option value="United Kingdom">United Kingdom</option>
+                                    <option value="Germany">Germany</option>
+                                    <option value="South Africa">South Africa</option>
+                                    <option value="New Zealand">New Zealand</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        {{--<div class="form-group">--}}
+                            {{--<label class="col-md-4 control-label">Country:</label>--}}
+                            {{--<div class="col-md-6">--}}
+                                {{--<input type="dropdownlist" class="form-control" name="gender">--}}
+                                {{--<select class="form-control" name="gender">--}}
+                                    {{--@foreach ($country as $id => $name)--}}
+                                        {{--<option value="{{ $id }}">{{ $name }}</option>--}}
+                                    {{--@endforeach--}}
+                                {{--</select>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+
+
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Contact No:</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="contactNo">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Fax No</label>
+                            <label class="col-md-4 control-label">Fax No:</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="faxNo">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Graduated From</label>
+                            <label class="col-md-4 control-label">Graduated From:</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="education">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">User Role:</label>
+                            <div class="col-md-6">
+                                <select class="form-control" name="user_role">
+                                    <option value="" disabled="disabled" selected="selected">Please select </option>
+                                    <option value="Conference Chair">Conference Chair</option>
+                                    <option value="Conference Manager">Conference Manager</option>
+                                    <option value="Technical Committee">Technical Committee</option>
+                                    <option value="Program Committee">Program Committee</option>
+                                    <option value="Author">Author</option>
+                                    <option value="Reviewer">Reviewer</option>
+                                    <option value="Participant">Participant</option>
+                                </select>
                             </div>
                         </div>
 

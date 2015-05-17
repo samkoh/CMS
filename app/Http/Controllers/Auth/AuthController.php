@@ -1,9 +1,12 @@
 <?php namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use App\Http\Requests;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller {
 
@@ -45,5 +48,4 @@ class AuthController extends Controller {
 		$this->middleware('guest', ['except' => 'getLogout']);
 
 	}
-
 }

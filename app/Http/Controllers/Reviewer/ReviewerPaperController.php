@@ -308,7 +308,6 @@ class ReviewerPaperController extends Controller {
 
 //dd($paper);
         //Update the data in the database
-
         $paper->save();
 
         return view('reviewer.showPaper', compact('paper'));
