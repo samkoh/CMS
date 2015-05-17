@@ -41,6 +41,7 @@ class ReviewerPaperController extends Controller {
             ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
             ->select('papers.id', 'papers.title', 'papers.abstractContent', 'papers.fullPaperUrl')
             ->where('reviewer_id', '=', $userId)
+            ->orderBy('papers.id', 'desc')
             ->get();
 
 //        dd($papers);
@@ -308,9 +309,12 @@ class ReviewerPaperController extends Controller {
 
 //dd($paper);
         //Update the data in the database
+
+        session()->flash('flash_message', 'This paper has been evaluated');
+
         $paper->save();
 
-        return view('reviewer.showPaper', compact('paper'));
+        return redirect('reviewer/');
     }
 
     /**

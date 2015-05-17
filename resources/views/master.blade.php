@@ -27,7 +27,20 @@
     <br/>
     @include('partials.nav')
 
+    @if(Session::has('flash_message'))
+        <div class="alert alert-success {{Session::has('flash_message_important') ? 'alert-important' : '' }}">
+            @if(Session::has('flash_message_important'))
+                <button type="button" class="close" data-dismiss="alert" arial-hidden="true">&times;</button>
+            @endif
+            {{ Session::get('flash_message') }}
+        </div>
+    @endif
+
     @yield('content')
+
+    <script>
+        $('div.alert').not('alert-important').delay(2000).slideUp(300);
+    </script>
 
     @yield('footer')
 </div>

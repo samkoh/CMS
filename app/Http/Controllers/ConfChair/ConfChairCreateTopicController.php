@@ -23,7 +23,7 @@ class ConfChairCreateTopicController extends Controller {
 	 */
 	public function index()
 	{
-        $topics = $this->topic->get();
+        $topics = $this->topic->orderBy('name', 'asc')->get();
 
         return view('conferenceChair.createTopic', compact('topics'));
     }
@@ -48,6 +48,8 @@ class ConfChairCreateTopicController extends Controller {
 	{
 		$topic->create($request->all());
         //dd($topic);
+        session()->flash('flash_message', 'Conference Topic has been saved');
+
         return redirect('conferenceChair/createTopic');
 	}
 

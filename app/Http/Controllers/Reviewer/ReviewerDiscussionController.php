@@ -45,6 +45,7 @@ class ReviewerDiscussionController extends Controller {
             ->select('papers.id','papers.title', 'papers.tempStatus', 'papers.averageMarks', 'papers.created_at')
             ->where('paper_reviews.reviewer_id', '=', $userId)
             ->where('papers.tempStatus', '=', 'Reject')
+            ->orderBy('papers.created_at', 'desc')
             ->get();
 
 //        dd($papers);
@@ -75,6 +76,8 @@ class ReviewerDiscussionController extends Controller {
         $this->paperDiscussion->content = Input::get('content');
 
         $this->paperDiscussion->save();
+
+        session()->flash('flash_message', 'Your comment has been added');
 
         return redirect('reviewer/discussion');
     }

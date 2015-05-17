@@ -72,6 +72,8 @@ class ConfChairInvitationController extends Controller {
 
 
         $content->save();
+        session()->flash('flash_message', 'Your invitation has been sent out successfully');
+
         return $content;
 
 //        $content = session()->get('invitation') + ['template' => $request->input('template')];

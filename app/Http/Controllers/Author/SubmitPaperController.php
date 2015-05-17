@@ -75,7 +75,10 @@ class SubmitPaperController extends Controller {
 
             $paper->fullPaperUrl = $encryptname;
         }
+
         $paper->save();
+        session()->flash('flash_message', 'Your paper has been submitted');
+
         /*
          * This method is using request method where by it will retrieve all the user input value and save into the database
          * using it's save method.

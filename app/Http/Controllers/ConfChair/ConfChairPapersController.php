@@ -46,6 +46,7 @@ class ConfChairPapersController extends Controller {
             ->leftJoin('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
             ->select(DB::raw(' papers.title, papers.status, count(paper_reviews.reviewer_id) as ReviewerNo'))
             ->groupBy('papers.id')
+            ->orderBy('papers.id', 'desc')
             ->get();
 
 //        $papers = DB::table('papers')
@@ -90,6 +91,8 @@ class ConfChairPapersController extends Controller {
         if($reviewer == null)
         {
             $paperReview->save();
+            session()->flash('flash_message', 'This paper has been assigned to the reviewer respectively');
+
         }
         else
         {
