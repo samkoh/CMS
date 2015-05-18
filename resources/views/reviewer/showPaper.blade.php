@@ -51,114 +51,114 @@
                     <div class="form-group">
                         {!! Form::label('quality', 'This paper has a high quality content:')!!}<br/>
 
-                        {!! Form::radio('quality', 'Strongly Accept',['class' => 'form-control']) !!}
+                        {!! Form::radio('quality', '2',['class' => 'form-control']) !!}
                         <span>Strongly Agree </span><br/>
 
-                        {!! Form::radio('quality', 'Accept',['class' => 'form-control']) !!}
+                        {!! Form::radio('quality', '1',['class' => 'form-control']) !!}
                         <span>Agree</span><br/>
 
-                        {!! Form::radio('quality', 'Partially Accept/Reject',['class' => 'form-control']) !!}
-                        <span>Partially Agree/Reject</span><br/>
+                        {!! Form::radio('quality', '0',['class' => 'form-control']) !!}
+                        <span>Border Line</span><br/>
 
-                        {!! Form::radio('quality', 'Reject',['class' => 'form-control']) !!}
+                        {!! Form::radio('quality', '-1',['class' => 'form-control']) !!}
                         <span>Reject</span><br/>
 
-                        {!! Form::radio('quality', 'Strongly Reject',['class' => 'form-control']) !!}
+                        {!! Form::radio('quality', '-2',['class' => 'form-control']) !!}
                         <span>Strongly Reject</span>
                     </div>
 
 					<div class="form-group">
                         {!! Form::label('rationale', 'The Author provides a strong rationale for why the study is needed:')!!}<br/>
 
-                        {!! Form::radio('rationale', 'Strongly Accept',['class' => 'form-control']) !!}
+                        {!! Form::radio('rationale', '2',['class' => 'form-control']) !!}
                         <span>Strongly Agree </span><br/>
 
-                        {!! Form::radio('rationale', 'Accept',['class' => 'form-control']) !!}
+                        {!! Form::radio('rationale', '1',['class' => 'form-control']) !!}
                         <span>Agree</span><br/>
 
-                        {!! Form::radio('rationale', 'Partially Accept/Reject',['class' => 'form-control']) !!}
-                        <span>Partially Agree/Reject</span><br/>
+                        {!! Form::radio('rationale', '0',['class' => 'form-control']) !!}
+                        <span>Border Line</span><br/>
 
-                        {!! Form::radio('rationale', 'Reject',['class' => 'form-control']) !!}
+                        {!! Form::radio('rationale', '-1',['class' => 'form-control']) !!}
                         <span>Reject</span><br/>
 
-                        {!! Form::radio('rationale', 'Strongly Reject',['class' => 'form-control']) !!}
+                        {!! Form::radio('rationale', '-2',['class' => 'form-control']) !!}
                         <span>Strongly Reject</span><br/>
                     </div>
 
 					<div class="form-group">
 						{!! Form::label('hypothesis', 'The research questions or hypotheses are clearly articulated:')!!}<br/>
 
-                        {!! Form::radio('hypothesis', 'Strongly Accept',['class' => 'form-control']) !!}
+                        {!! Form::radio('hypothesis', '2',['class' => 'form-control']) !!}
                         <span>Strongly Agree </span><br/>
 
-                        {!! Form::radio('hypothesis', 'Accept',['class' => 'form-control']) !!}
+                        {!! Form::radio('hypothesis', '1',['class' => 'form-control']) !!}
                         <span>Agree</span><br/>
 
-                        {!! Form::radio('hypothesis', 'Partially Accept/Reject',['class' => 'form-control']) !!}
-                        <span>Partially Agree/Reject</span><br/>
+                        {!! Form::radio('hypothesis', '0',['class' => 'form-control']) !!}
+                        <span>Border Line</span><br/>
 
-                        {!! Form::radio('hypothesis', 'Reject',['class' => 'form-control']) !!}
+                        {!! Form::radio('hypothesis', '-1',['class' => 'form-control']) !!}
                         <span>Reject</span><br/>
 
-                        {!! Form::radio('hypothesis', 'Strongly Reject',['class' => 'form-control']) !!}
+                        {!! Form::radio('hypothesis', '-2',['class' => 'form-control']) !!}
                         <span>Strongly Reject</span><br/>
 					</div>
 
 					<div class="form-group">
 						{!! Form::label('manuscript', 'The manuscript is creative or deals with the subject in a new or novel way:')!!}<br/>
 
-                        {!! Form::radio('manuscript', 'Strongly Accept',['class' => 'form-control']) !!}
+                        {!! Form::radio('manuscript', '2',['class' => 'form-control']) !!}
                         <span>Strongly Agree </span><br/>
 
-                        {!! Form::radio('manuscript', 'Accept',['class' => 'form-control']) !!}
+                        {!! Form::radio('manuscript', '1',['class' => 'form-control']) !!}
                         <span>Agree</span><br/>
 
-                        {!! Form::radio('manuscript', 'Partially Accept/Reject',['class' => 'form-control']) !!}
-                        <span>Partially Agree/Reject</span><br/>
+                        {!! Form::radio('manuscript', '0',['class' => 'form-control']) !!}
+                        <span>Border Line</span><br/>
 
-                        {!! Form::radio('manuscript', 'Reject',['class' => 'form-control']) !!}
+                        {!! Form::radio('manuscript', '-1',['class' => 'form-control']) !!}
                         <span>Reject</span><br/>
 
-                        {!! Form::radio('manuscript', 'Strongly Reject',['class' => 'form-control']) !!}
+                        {!! Form::radio('manuscript', '-2',['class' => 'form-control']) !!}
                         <span>Strongly Reject</span><br/>
 					</div>
 
                     <div class="form-group">
                         {!! Form::label('structure', 'The structure of this paper content is well defined:')!!}<br/>
 
-                        {!! Form::radio('structure', 'Strongly Accept',['class' => 'form-control']) !!}
+                        {!! Form::radio('structure', '2',['class' => 'form-control']) !!}
                         <span>Strongly Agree </span><br/>
 
-                        {!! Form::radio('structure', 'Accept',['class' => 'form-control']) !!}
+                        {!! Form::radio('structure', '1',['class' => 'form-control']) !!}
                         <span>Agree</span><br/>
 
-                        {!! Form::radio('structure', 'Partially Accept/Reject',['class' => 'form-control']) !!}
-                        <span>Partially Agree/Reject</span><br/>
+                        {!! Form::radio('structure', '0',['class' => 'form-control']) !!}
+                        <span>Border Line</span><br/>
 
-                        {!! Form::radio('structure', 'Reject',['class' => 'form-control']) !!}
+                        {!! Form::radio('structure', '-1',['class' => 'form-control']) !!}
                         <span>Reject</span><br/>
 
-                        {!! Form::radio('structure', 'Strongly Reject',['class' => 'form-control']) !!}
+                        {!! Form::radio('structure', '-2',['class' => 'form-control']) !!}
                         <span>Strongly Reject</span><br/>
                     </div>
 
                     <div class="form-group">
                         {!! Form::label('paperEvaluation', 'Overall Evaluation: ')!!}<br/>
 
-                        {!! Form::radio('paperEvaluation', 'Strongly Accept',['class' => 'form-control']) !!}
+                        {!! Form::radio('paperEvaluation', '2',['class' => 'form-control']) !!}
                         <span>Strongly Agree- <i>Paper is recommended for publish in its present form</i> </span><br/>
 
-                        {!! Form::radio('paperEvaluation', 'Accept',['class' => 'form-control']) !!}
+                        {!! Form::radio('paperEvaluation', '1',['class' => 'form-control']) !!}
                         <span>Agree - <i>Paper is recommended for publish with changes as indicated</i></span><br/>
 
-                        {!! Form::radio('paperEvaluation', 'Partially Accept/Reject',['class' => 'form-control']) !!}
-                        <span>Partially Agree/Reject - <i>Paper is recommended for major revision</i></span><br/>
+                        {!! Form::radio('paperEvaluation', '0',['class' => 'form-control']) !!}
+                        <span>Border Line - <i>Paper is recommended for major revision</i></span><br/>
 
-                        {!! Form::radio('paperEvaluation', 'Reject',['class' => 'form-control']) !!}
+                        {!! Form::radio('paperEvaluation', '-1',['class' => 'form-control']) !!}
                         <span>Reject - <i>Paper is not recommended for publication</i></span><br/>
 
-                        {!! Form::radio('paperEvaluation', 'Strongly Reject',['class' => 'form-control']) !!}
+                        {!! Form::radio('paperEvaluation', '-2',['class' => 'form-control']) !!}
                         <span>Strongly Reject - <i>Paper is out of topic and rejected</i></span>
                     </div>
 

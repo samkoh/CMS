@@ -259,61 +259,118 @@ class ReviewerPaperController extends Controller {
         /*
          * Evaluation according to the agree and reject statement
          */
-        $numStrongReject = DB::table('papers')
-        ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
-        ->select('papers.id', 'paper_reviews.paperEvaluation')
-        ->where('paper_reviews.paperEvaluation', '=', 'Strongly Reject' )
-        ->where('papers.id', '=', $id)
-        ->count('paper_reviews.paperEvaluation');
-
-        $numReject = DB::table('papers')
-            ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
-            ->select('papers.id', 'paper_reviews.paperEvaluation')
-            ->where('paper_reviews.paperEvaluation', '=', 'Reject' )
-            ->where('papers.id', '=', $id)
-            ->count('paper_reviews.paperEvaluation');
+//        $numStrongReject = DB::table('papers')
+//        ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
+//        ->select('papers.id', 'paper_reviews.paperEvaluation')
+//        ->where('paper_reviews.paperEvaluation', '=', 'Strongly Reject' )
+//        ->where('papers.id', '=', $id)
+//        ->count('paper_reviews.paperEvaluation');
+//
+//        $numReject = DB::table('papers')
+//            ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
+//            ->select('papers.id', 'paper_reviews.paperEvaluation')
+//            ->where('paper_reviews.paperEvaluation', '=', 'Reject' )
+//            ->where('papers.id', '=', $id)
+//            ->count('paper_reviews.paperEvaluation');
+//
+//        /*
+//         * This query is to select the number of papers that are reviewed by the reviewers
+//         */
+//        $numberOfReviewers = DB::table('papers')
+//            ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
+//            ->select('paper_reviews.paper_id', 'paper_reviews.score')
+//            ->where('papers.id', '=', $id)
+//            ->count('paper_reviews.score');
+//
+//        if($numberOfReviewers == 1 && ($numReject == 1 || $numStrongReject == 1))
+//        {
+//            $paper->tempStatus = 'Reject';
+//        }
+//        else if($numberOfReviewers == 2 && ($numReject == 1 || $numStrongReject == 1))
+//        {
+//            $paper->tempStatus = 'Reject';
+//        }
+//        else if($numberOfReviewers == 3 && ($numReject >= 2 || $numStrongReject >= 2))
+//        {
+//            $paper->tempStatus = 'Reject';
+//        }
+//        else if($numberOfReviewers == 4 && ($numReject >= 2 || $numStrongReject >= 2))
+//        {
+//            $paper->tempStatus = 'Reject';
+//        }
+//        else if($numberOfReviewers == 5 && ($numReject >= 3 || $numStrongReject >= 3))
+//        {
+//            $paper->tempStatus = 'Reject';
+//        }
+//        else
+//        {
+//            $paper->tempStatus = 'Accept';
+//        }
 
         /*
-         * This query is to select the number of papers that are reviewed by the reviewers
+         * Evaluation based on the mean score
          */
+
+        $numReject = DB::table('paper_reviews')
+            ->select('paper_id', 'paperEvaluation')
+            ->where('paperEvaluation', '=', '-1')
+            ->where('paper_id', '=', $id)
+            ->count('paper_id');
+
+        $numStrongReject = DB::table('paper_reviews')
+            ->select('paper_id', 'paperEvaluation')
+            ->where('paperEvaluation', '=', '-2')
+            ->where('paper_id', '=', $id)
+            ->count('paper_id');
+
+        $numAccept = DB::table('paper_reviews')
+            ->select('paper_id', 'paperEvaluation')
+            ->where('paperEvaluation', '=', '1')
+            ->where('paper_id', '=', $id)
+            ->count('paper_id');
+
+        $numStrongAccept = DB::table('paper_reviews')
+            ->select('paper_id', 'paperEvaluation')
+            ->where('paperEvaluation', '=', '2')
+            ->where('paper_id', '=', $id)
+            ->count('paper_id');
+
+        $paperEvaluationSum = DB::table('paper_reviews')
+            ->select('paper_id', 'paperEvaluation')
+            ->where('paper_id', '=', $id)
+            ->sum('paperEvaluation');
+
         $numberOfReviewers = DB::table('papers')
             ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
             ->select('paper_reviews.paper_id', 'paper_reviews.score')
             ->where('papers.id', '=', $id)
             ->count('paper_reviews.score');
 
-        if($numberOfReviewers == 1 && ($numReject == 1 || $numStrongReject == 1))
+        $paperEvaluationMean = $paperEvaluationSum / $numberOfReviewers;
+        $paperReview->score = $paperEvaluationMean;
+
+        if (($numberOfReviewers == 2) && ($numStrongAccept == 1 || $numAccept == 1) && ($numStrongReject == 1 || $numReject == 1))
         {
             $paper->tempStatus = 'Reject';
-        }
-        else if($numberOfReviewers == 2 && ($numReject == 1 || $numStrongReject == 1))
+        } else
         {
-            $paper->tempStatus = 'Reject';
-        }
-        else if($numberOfReviewers == 3 && ($numReject >= 2 || $numStrongReject >= 2))
-        {
-            $paper->tempStatus = 'Reject';
-        }
-        else if($numberOfReviewers == 4 && ($numReject >= 2 || $numStrongReject >= 2))
-        {
-            $paper->tempStatus = 'Reject';
-        }
-        else if($numberOfReviewers == 5 && ($numReject >= 3 || $numStrongReject >= 3))
-        {
-            $paper->tempStatus = 'Reject';
-        }
-        else
-        {
-            $paper->tempStatus = 'Accept';
+            if ($paperEvaluationMean > 0)
+            {
+                $paper->tempStatus = 'Accept';
+            } else
+            {
+                $paper->tempStatus = 'Reject';
+            }
         }
 
-//dd($paper);
+
+//        dd($numTest);
         //Update the data in the database
 
         session()->flash('flash_message', 'This paper has been evaluated');
 
         $paper->save();
-
+        $paperReview->save();
         return redirect('reviewer/');
     }
 

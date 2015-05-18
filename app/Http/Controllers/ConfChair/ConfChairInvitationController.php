@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Auth;
 use App\RecipientMessageLog;
+use App\MessageLog;
 use Illuminate\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -69,7 +70,6 @@ class ConfChairInvitationController extends Controller {
 
         $content->user_id = Auth::user()->email;
         $content->recipient_id = $recipientEmail;
-
 
         $content->save();
         session()->flash('flash_message', 'Your invitation has been sent out successfully');
