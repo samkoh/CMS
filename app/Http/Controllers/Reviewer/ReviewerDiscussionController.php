@@ -44,7 +44,7 @@ class ReviewerDiscussionController extends Controller {
             ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
             ->select('papers.id','papers.title', 'papers.tempStatus', 'papers.averageMarks', 'papers.created_at')
             ->where('paper_reviews.reviewer_id', '=', $userId)
-            ->where('papers.tempStatus', '=', 'Reject')
+            ->where('papers.tempStatus', '=', -1)
             ->orderBy('papers.created_at', 'desc')
             ->get();
 

@@ -351,15 +351,15 @@ class ReviewerPaperController extends Controller {
 
         if (($numberOfReviewers == 2) && ($numStrongAccept == 1 || $numAccept == 1) && ($numStrongReject == 1 || $numReject == 1))
         {
-            $paper->tempStatus = 'Reject';
+            $paper->tempStatus = -1;
         } else
         {
             if ($paperEvaluationMean > 0)
             {
-                $paper->tempStatus = 'Accept';
+                $paper->tempStatus = 1;
             } else
             {
-                $paper->tempStatus = 'Reject';
+                $paper->tempStatus = -1;
             }
         }
 

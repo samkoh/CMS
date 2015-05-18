@@ -92,7 +92,6 @@ class ConfChairPapersController extends Controller {
         {
             $paperReview->save();
             session()->flash('flash_message', 'This paper has been assigned to the reviewer respectively');
-
         }
         else
         {

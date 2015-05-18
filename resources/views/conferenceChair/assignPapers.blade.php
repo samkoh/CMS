@@ -5,9 +5,8 @@
         <div class="row">
             <div class="col-md-12 col-md-offset-0">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Assign Papers to Reviewer</div>
+                    <div class="panel-heading">All Papers</div>
                     <div class="panel-body">
-
                         <h4><strong>Paper Name:</strong> <i>{!! $paper->title !!}</i></h4>
 
                         <hr/>
@@ -17,7 +16,7 @@
                         <!--withinCategory Form Input -->
                             <div class="form-group">
                             {!! Form::label('reviewer', 'Choose Reviewers:')!!}
-                            {!! Form::select('reviewer',$reviewers , 'null', ['id' => 'reviewer_list','class' => 'form-control', 'multiple'])!!}
+                            {!! Form::select('reviewer',$reviewers , 'null', ['id' => '','class' => 'form-control', ''])!!}
                         </div>
 
                         {{--<!--outCategory Form Input -->--}}
@@ -41,18 +40,18 @@
 
 @endsection
 
-@section('footer')
-    <script>
-        $('#reviewer_list').select2({
-            placeholder: 'Choose a reviewer',
-            tags: true
-        });
-    </script>
+{{--@section('footer')--}}
+    {{--<script>--}}
+        {{--$('#reviewer_list').select2({--}}
+            {{--placeholder: 'Choose a reviewer',--}}
+            {{--tags: true--}}
+        {{--});--}}
+    {{--</script>--}}
 
-    <script>
-        $('#reviewer_list2').select2({
-            placeholder: 'Choose a reviewer',
-            tags: true
-        });
-    </script>
-@endsection
+    {{--<script>--}}
+        {{--$('#reviewer_list2').select2({--}}
+            {{--placeholder: 'Choose a reviewer',--}}
+            {{--tags: true--}}
+        {{--});--}}
+    {{--</script>--}}
+{{--@endsection--}}

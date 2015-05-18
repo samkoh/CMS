@@ -21,6 +21,12 @@ Route::get('conferenceChair/allPapers', 'ConfChair\ConfChairPapersController@ind
 Route::get('conferenceChair/allPapers/{id}', 'ConfChair\ConfChairPapersController@show');
 Route::post('conferenceChair/allPapers/{id}', 'ConfChair\ConfChairPapersController@store');
 
+Route::get('conferenceChair/finalizeAllPapers', 'ConfChair\ConfChairFinalizePapersController@index');
+Route::get('conferenceChair/finalizeAllPapers/{id}', 'ConfChair\ConfChairFinalizePapersController@show');
+Route::patch('conferenceChair/finalizeAllPapers/{id}', 'ConfChair\ConfChairFinalizePapersController@update');
+
+Route::get('conferenceChair/paperReport', 'ConfChair\ConfChairPaperReportController@index');
+
 Route::get('conferenceChair/invitationStatus', 'ConfChair\ConfChairInvitationStatusController@index');
 Route::get('conferenceChair/invitation/confirm', 'ConfChair\ConfChairInvitationController@confirm');
 Route::get('conferenceChair/invitationCancel', 'ConfChair\ConfChairInvitationCancelController@index');

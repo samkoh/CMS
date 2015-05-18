@@ -1,39 +1,33 @@
 @extends('master')
 
 @section('content')
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 col-md-offset-0">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Discussion</div>
+                    <div class="panel-heading">Finalize the Papers</div>
                     <div class="panel-body">
-
-
-                        @include('partials.reviewer_nav')
-
-                        <br/>
 
                         <table class="table table-striped table-bordered">
                             <thead>
+                            <th>All Reviewed Papers</th>
                             <th>Status</th>
-                            <th>Title</th>
-                            <th>Date</th>
                             </thead>
 
                             <tbody>
-                            @foreach($papers as $index => $paper)
+                            @foreach($allReviewedPapers as $reviewedPapers)
                                 <tr>
                                     <td>
-                                        @if($paper->tempStatus == 1 )
+                                        <a href="/conferenceChair/finalizeAllPapers/{{ $reviewedPapers->id }}">{{ $reviewedPapers->title }}</a>
+                                    </td>
+                                    <td>
+                                        @if($reviewedPapers->status == 1 )
                                             Accept
-                                        @else
+                                        @elseif($reviewedPapers->status == -1)
                                             Reject
                                         @endif
                                     </td>
-                                    <td>
-                                        <li><a href="/reviewer/discussion/{{ $paper->id }}">{{ $paper->title }}</a></li>
-                                    </td>
-                                    <td>{{ date("d M Y",strtotime($paper->created_at)) }}</td>
                                 </tr>
                             @endforeach
                             </tbody>
