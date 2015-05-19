@@ -26,6 +26,6 @@ class Conference extends Model {
     public function  topic()
     {
         return $this->belongsToMany('App\Topic')->withTimestamps();
-    }
+}
 
 }

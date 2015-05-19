@@ -16,7 +16,7 @@ class ConfChairConferenceFeeController extends Controller {
 	 */
 	public function index()
 	{
-        $conference = Conference::lists('name');
+        $conference = Conference::lists('conferenceName');
         $fee = ['Member', 'Non-Member', 'Non-Malaysian'];
 
         return view('conferenceChair.createConferenceFee', compact('conference','fee'));

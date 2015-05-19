@@ -2,17 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="438420a6-fadb-4263-aaa8-011a315fefd0" name="Default" comment="20150423-2">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairPaperReportController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairPaperReportController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Reviewer/ReviewerDiscussionController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Reviewer/ReviewerDiscussionController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_ide_helper.php" afterPath="$PROJECT_DIR$/_ide_helper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/conferenceChair/createConference.blade.php" afterPath="$PROJECT_DIR$/resources/views/conferenceChair/createConference.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/conferenceChair/createTopic.blade.php" afterPath="$PROJECT_DIR$/resources/views/conferenceChair/createTopic.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairConferenceFeeController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairConferenceFeeController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairInvitationController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairInvitationController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Conference.php" afterPath="$PROJECT_DIR$/app/Conference.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/MessageLog.php" afterPath="$PROJECT_DIR$/app/MessageLog.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/RecipientMessageLog.php" afterPath="$PROJECT_DIR$/app/RecipientMessageLog.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/app.blade.php" afterPath="$PROJECT_DIR$/resources/views/app.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/conferenceChair/createConferenceFee.blade.php" afterPath="$PROJECT_DIR$/resources/views/conferenceChair/createConferenceFee.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/conferenceChair/finalizeAllPapers.blade.php" afterPath="$PROJECT_DIR$/resources/views/conferenceChair/finalizeAllPapers.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/conferenceChair/invitation.blade.php" afterPath="$PROJECT_DIR$/resources/views/conferenceChair/invitation.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/conferenceChair/invitationStatus.blade.php" afterPath="$PROJECT_DIR$/resources/views/conferenceChair/invitationStatus.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/conferenceChair/paperReport.blade.php" afterPath="$PROJECT_DIR$/resources/views/conferenceChair/paperReport.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/reviewer/showDiscussion.blade.php" afterPath="$PROJECT_DIR$/resources/views/reviewer/showDiscussion.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="conferencemanagementsystem.iws" />
@@ -38,17 +35,81 @@
     <option name="SORT_CHILDREN" value="false" />
     <option name="SHOW_TABLE_CONSTRAINTS" value="true" />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/app/User.php">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state vertical-scroll-proportion="-16.23077" vertical-offset="802" max-vertical-offset="1428">
+                    <caret line="72" column="54" selection-start-line="72" selection-start-column="35" selection-end-line="72" selection-end-column="54" />
+                    <folding>
+                      <element signature="e#22#58#0#PHP" expanded="true" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="Conference.php" pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/app/Conference.php">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state vertical-scroll-proportion="-13.730769" vertical-offset="0" max-vertical-offset="629">
+                    <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="Topic.php" pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/app/Topic.php">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state vertical-scroll-proportion="-13.076923" vertical-offset="0" max-vertical-offset="510">
+                    <caret line="20" column="35" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="35" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="ConfChairCreateConferenceController.php" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairCreateConferenceController.php">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state vertical-scroll-proportion="0.32108626" vertical-offset="1074" max-vertical-offset="2380">
+                    <caret line="75" column="53" selection-start-line="75" selection-start-column="53" selection-end-line="75" selection-end-column="53" />
+                    <folding>
+                      <element signature="e#49#68#0#PHP" expanded="true" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="conferencemanagementsystem" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ConfChairPaperReportController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairPaperReportController.php">
+      <file leaf-file-name="paperReport.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/conferenceChair/paperReport.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.076923" vertical-offset="0" max-vertical-offset="1955">
-              <caret line="20" column="16" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
+            <state vertical-scroll-proportion="-9.730769" vertical-offset="478" max-vertical-offset="1666">
+              <caret line="43" column="36" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConfChairInvitationController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairInvitationController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-67.34615" vertical-offset="0" max-vertical-offset="2856">
+              <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
               <folding>
                 <element signature="e#49#71#0#PHP" expanded="true" />
               </folding>
@@ -56,31 +117,61 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="paperReport.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/conferenceChair/paperReport.blade.php">
+      <file leaf-file-name="MessageLog.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/MessageLog.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.53125" vertical-offset="561" max-vertical-offset="1666">
-              <caret line="51" column="47" selection-start-line="51" selection-start-column="47" selection-end-line="51" selection-end-column="47" />
+            <state vertical-scroll-proportion="-24.192308" vertical-offset="0" max-vertical-offset="833">
+              <caret line="37" column="0" selection-start-line="37" selection-start-column="2" selection-end-line="40" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="finalizeAllPapers.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RecipientMessageLog.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/RecipientMessageLog.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-23.538462" vertical-offset="0" max-vertical-offset="1156">
+              <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="39" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="createConferenceFee.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/conferenceChair/createConferenceFee.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-15.692307" vertical-offset="0" max-vertical-offset="1360">
+              <caret line="24" column="46" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="finalizeAllPapers.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/conferenceChair/finalizeAllPapers.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.8461537" vertical-offset="0" max-vertical-offset="884">
-              <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.6642984" vertical-offset="153" max-vertical-offset="1054">
+              <caret line="31" column="46" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="invitation.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/conferenceChair/invitation.blade.php">
+      <file leaf-file-name="ConfChairFinalizePapersController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairFinalizePapersController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.038462" vertical-offset="0" max-vertical-offset="510">
-              <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
+            <state vertical-scroll-proportion="-7.1923075" vertical-offset="187" max-vertical-offset="1904">
+              <caret line="31" column="87" selection-start-line="31" selection-start-column="77" selection-end-line="31" selection-end-column="87" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="createConference.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/conferenceChair/createConference.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.538462" vertical-offset="423" max-vertical-offset="1751">
+              <caret line="41" column="40" selection-start-line="40" selection-start-column="56" selection-end-line="41" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -96,48 +187,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="createConference.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/conferenceChair/createConference.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="1751">
-              <caret line="5" column="124" selection-start-line="5" selection-start-column="124" selection-end-line="5" selection-end-column="124" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="discussion.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/reviewer/discussion.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.153846" vertical-offset="357" max-vertical-offset="952">
-              <caret line="35" column="40" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="89" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConfChairFinalizePapersController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairFinalizePapersController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.692307" vertical-offset="204" max-vertical-offset="2057">
-              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-              <folding>
-                <element signature="e#49#71#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="finalizePapers.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/conferenceChair/finalizePapers.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.730769" vertical-offset="0" max-vertical-offset="731">
-              <caret line="21" column="56" selection-start-line="21" selection-start-column="56" selection-end-line="21" selection-end-column="56" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="Git.Settings">
@@ -146,10 +195,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/database/migrations/2015_05_15_090430_create_address_table.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2015_05_15_091418_create_address_table.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2015_05_15_092157_create_address_country_table.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2015_05_15_092249_create_address_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_05_16_112725_create_user_role_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_05_16_120940_create_users_user_role_table.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php" />
@@ -167,11 +212,8 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairCreateConferenceController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_05_17_055759_create_recipient_message_logs_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_05_17_161246_create_message_logs_table.php" />
-        <option value="$PROJECT_DIR$/app/RecipientMessageLog.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_05_17_162213_create_recipient_message_logs_table.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
-        <option value="$PROJECT_DIR$/app/MessageLog.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairInvitationController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_05_11_031452_create_paper_reviews_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_05_18_022314_create_review_evaluation_definition_table.php" />
         <option value="$PROJECT_DIR$/resources/views/reviewer/showPaper.blade.php" />
@@ -193,10 +235,17 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairPaperReportController.php" />
         <option value="$PROJECT_DIR$/resources/views/conferenceChair/invitation.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/conferenceChair/invitationStatus.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/conferenceChair/createConference.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/conferenceChair/createTopic.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/conferenceChair/finalizeAllPapers.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/conferenceChair/paperReport.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairConferenceFeeController.php" />
+        <option value="$PROJECT_DIR$/resources/views/conferenceChair/createConference.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/app.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/conferenceChair/createConferenceFee.blade.php" />
+        <option value="$PROJECT_DIR$/app/Conference.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairInvitationController.php" />
+        <option value="$PROJECT_DIR$/app/RecipientMessageLog.php" />
+        <option value="$PROJECT_DIR$/app/MessageLog.php" />
+        <option value="$PROJECT_DIR$/resources/views/conferenceChair/finalizeAllPapers.blade.php" />
       </list>
     </option>
   </component>
@@ -1024,48 +1073,11 @@
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="6" />
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/mail.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35069445" vertical-offset="1634" max-vertical-offset="2210">
-          <caret line="108" column="43" selection-start-line="108" selection-start-column="43" selection-end-line="108" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_ide_helper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37122557" vertical-offset="20140" max-vertical-offset="188071">
-          <caret line="1203" column="52" selection-start-line="1203" selection-start-column="52" selection-end-line="1203" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="602">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/app.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21136767" vertical-offset="0" max-vertical-offset="1156">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairSendBulkEmailController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1513">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/emails/invitationMessage.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="576">
@@ -1115,13 +1127,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2015_05_17_162213_create_recipient_message_logs_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5284974" vertical-offset="102" max-vertical-offset="816">
-          <caret line="19" column="72" selection-start-line="19" selection-start-column="72" selection-end-line="19" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2015_05_17_161246_create_message_logs_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2951389" vertical-offset="102" max-vertical-offset="782">
@@ -1129,38 +1134,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="826" max-vertical-offset="1428">
-          <caret line="72" column="54" selection-start-line="72" selection-start-column="35" selection-end-line="72" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/RecipientMessageLog.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1071">
-          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="13" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/MessageLog.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="748">
-          <caret line="13" column="23" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2015_05_15_092249_create_address_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.543131" vertical-offset="51" max-vertical-offset="867">
           <caret line="24" column="42" selection-start-line="18" selection-start-column="11" selection-end-line="24" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairInvitationController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.5" vertical-offset="867" max-vertical-offset="2754">
-          <caret line="64" column="5" selection-start-line="64" selection-start-column="5" selection-end-line="65" selection-end-column="45" />
         </state>
       </provider>
     </entry>
@@ -1264,13 +1241,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairCreateConferenceController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14409722" vertical-offset="104" max-vertical-offset="2261">
-          <caret line="18" column="4" selection-start-line="18" selection-start-column="4" selection-end-line="23" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/PaperDiscussion.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2951389" vertical-offset="0" max-vertical-offset="576">
@@ -1327,7 +1297,7 @@
         <state vertical-scroll-proportion="-39.153847" vertical-offset="376" max-vertical-offset="2788">
           <caret line="82" column="23" selection-start-line="82" selection-start-column="23" selection-end-line="82" selection-end-column="23" />
           <folding>
-            <element signature="e#48#70#0#PHP" expanded="true" />
+            <element signature="e#48#70#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1340,28 +1310,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairPaperReportController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.076923" vertical-offset="0" max-vertical-offset="1955">
-          <caret line="20" column="16" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
-          <folding>
-            <element signature="e#49#71#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/conferenceChair/invitation.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-15.038462" vertical-offset="0" max-vertical-offset="510">
           <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/conferenceChair/invitationStatus.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.115385" vertical-offset="0" max-vertical-offset="1105">
-          <caret line="17" column="46" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
           <folding />
         </state>
       </provider>
@@ -1374,32 +1326,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/conferenceChair/createConference.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="1751">
-          <caret line="5" column="124" selection-start-line="5" selection-start-column="124" selection-end-line="5" selection-end-column="124" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairFinalizePapersController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.692307" vertical-offset="204" max-vertical-offset="2057">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding>
-            <element signature="e#49#71#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/conferenceChair/finalizeAllPapers.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.8461537" vertical-offset="0" max-vertical-offset="884">
-          <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/conferenceChair/finalizePapers.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.730769" vertical-offset="0" max-vertical-offset="731">
@@ -1408,10 +1334,144 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/conferenceChair/invitationStatus.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.115385" vertical-offset="0" max-vertical-offset="1105">
+          <caret line="17" column="46" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/app.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5737122" vertical-offset="0" max-vertical-offset="1173">
+          <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/conferenceChair/createConference.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.538462" vertical-offset="423" max-vertical-offset="1751">
+          <caret line="41" column="40" selection-start-line="40" selection-start-column="56" selection-end-line="41" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2015_05_17_162213_create_recipient_message_logs_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38368055" vertical-offset="0" max-vertical-offset="816">
+          <caret line="14" column="75" selection-start-line="13" selection-start-column="5" selection-end-line="14" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairConferenceFeeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.6909414" vertical-offset="610" max-vertical-offset="1530">
+          <caret line="18" column="55" selection-start-line="18" selection-start-column="55" selection-end-line="18" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.23077" vertical-offset="802" max-vertical-offset="1428">
+          <caret line="72" column="54" selection-start-line="72" selection-start-column="35" selection-end-line="72" selection-end-column="54" />
+          <folding>
+            <element signature="e#22#58#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Conference.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.730769" vertical-offset="0" max-vertical-offset="629">
+          <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Topic.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.076923" vertical-offset="0" max-vertical-offset="510">
+          <caret line="20" column="35" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/conferenceChair/createConferenceFee.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.692307" vertical-offset="0" max-vertical-offset="1360">
+          <caret line="24" column="46" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairPaperReportController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.120781526" vertical-offset="0" max-vertical-offset="1955">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/conferenceChair/paperReport.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53125" vertical-offset="561" max-vertical-offset="1666">
-          <caret line="51" column="47" selection-start-line="51" selection-start-column="47" selection-end-line="51" selection-end-column="47" />
+        <state vertical-scroll-proportion="-9.730769" vertical-offset="478" max-vertical-offset="1666">
+          <caret line="43" column="36" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairCreateConferenceController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32108626" vertical-offset="1074" max-vertical-offset="2380">
+          <caret line="75" column="53" selection-start-line="75" selection-start-column="53" selection-end-line="75" selection-end-column="53" />
+          <folding>
+            <element signature="e#49#68#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/MessageLog.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-24.192308" vertical-offset="0" max-vertical-offset="833">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="2" selection-end-line="40" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/RecipientMessageLog.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-23.538462" vertical-offset="0" max-vertical-offset="1156">
+          <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="39" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairInvitationController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-67.34615" vertical-offset="0" max-vertical-offset="2856">
+          <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
+          <folding>
+            <element signature="e#49#71#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConfChair/ConfChairFinalizePapersController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.1923075" vertical-offset="187" max-vertical-offset="1904">
+          <caret line="31" column="87" selection-start-line="31" selection-start-column="77" selection-end-line="31" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/conferenceChair/finalizeAllPapers.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6642984" vertical-offset="153" max-vertical-offset="1054">
+          <caret line="31" column="46" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
           <folding />
         </state>
       </provider>

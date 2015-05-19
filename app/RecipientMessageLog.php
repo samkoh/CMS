@@ -34,6 +34,11 @@ class RecipientMessageLog extends Model {
         return $this;
     }
 
+//    public function message()
+//    {
+//        return $this->belongsToMany('App\MessageLog');
+//    }
+
 //    public function recipient()
 //    {
 //        return $this->belongsTo('App\RecipientMessageLog', 'recipient_id');

@@ -8,6 +8,7 @@ use App\RecipientMessageLog;
 use App\MessageLog;
 use Illuminate\Auth\Guard;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
 
@@ -61,20 +62,25 @@ class ConfChairInvitationController extends Controller {
         return view()->file(app_path('Http/Templates/invitationTemplate.blade.php'), $data);
     }
 
-    private function createInvitation(Request $request)
+    private function createInvitation(Request $request, RecipientMessageLog $recipientMessageLog)
     {
         $data = session()->get('invitation');
         $recipientEmail = session()->get('invitation.email');
 
-        $content = RecipientMessageLog::open($data)->useTemplate($request->input('template'));
+        $content = MessageLog::open($data)->useTemplate($request->input('template'));
 
-        $content->user_id = Auth::user()->email;
-        $content->recipient_id = $recipientEmail;
+        $recipientMessageLog->user_id = Auth::user()->email;
+        $recipientMessageLog->recipient_id = $recipientEmail;
 
         $content->save();
-        session()->flash('flash_message', 'Your invitation has been sent out successfully');
+        //This is to get the last inserted current id that has been inserted into MessageLog database
+        $contentId = DB::getPdo()->lastInsertId();
+
+        $recipientMessageLog->messagelog_id = $contentId;
+        $recipientMessageLog->save();
 
         return $content;
+        return $recipientMessageLog;
 
 //        $content = session()->get('invitation') + ['template' => $request->input('template')];
 //
@@ -90,17 +96,17 @@ class ConfChairInvitationController extends Controller {
      *
      * @return Response
      */
-    public function store(Request $request)
+    public function store(Request $request, RecipientMessageLog $recipientMessageLog)
     {
-        $content = $this->createInvitation($request);
-        $sender = $content->user_id;
-        $recipient = $content->recipient_id;
-//dd($recipient);
+        $content = $this->createInvitation($request, $recipientMessageLog);
+        $senderEmail = $recipientMessageLog->user_id;
+        $recipientEmail = $recipientMessageLog->recipient_id;
+
         //Email
-        \Mail::queue('emails.invitationMessage', compact('content'), function ($message) use ($content)
+        \Mail::queue('emails.invitationMessage', compact('content', 'senderEmail', 'recipientEmail'), function ($message) use ($content,$senderEmail,$recipientEmail)
         {
-            $sender = $content->user_id;
-            $recipient = $content->recipient_id;
+            $sender = $senderEmail;
+            $recipient = $recipientEmail;
             $message->from($sender)
                 ->to($recipient)
                 ->subject('Invitation');

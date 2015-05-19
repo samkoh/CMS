@@ -8,14 +8,13 @@
                     <div class="panel-heading">Create Conference Fee</div>
                     <div class="panel-body">
 
-                        <h3>Conference Fee</h3>
+                        <h2>Conference Fee</h2>
 
                         <hr/>
 
                         <div class="form-group">
                             {!! Form::label('conference', 'Please select a conference (name) :') !!}
-                            {!! Form::select('conference',$conference, 'null', ['class' =>
-                            'form-control'])!!}
+                            {!! Form::select('conference',$conference, 'null', ['class' => 'form-control'])!!}
                         </div>
 
                         <br/>

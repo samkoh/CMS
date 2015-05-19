@@ -12,7 +12,8 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                             <th>All Reviewed Papers</th>
-                            <th>Status</th>
+                            <th>Temporary Status</th>
+                            <th>Final Status</th>
                             </thead>
 
                             <tbody>
@@ -22,12 +23,21 @@
                                         <a href="/conferenceChair/finalizeAllPapers/{{ $reviewedPapers->id }}">{{ $reviewedPapers->title }}</a>
                                     </td>
                                     <td>
+                                        @if($reviewedPapers->tempStatus == 1 )
+                                            Accept
+                                        @elseif($reviewedPapers->tempStatus == -1)
+                                            Reject
+                                        @else
+                                            Evaluating
+                                        @endif
+                                    </td>
+                                    <td>
                                         @if($reviewedPapers->status == 1 )
                                             Accept
                                         @elseif($reviewedPapers->status == -1)
                                             Reject
                                         @else
-                                            Evaluating
+                                            Not yet finalized
                                         @endif
                                     </td>
                                 </tr>
