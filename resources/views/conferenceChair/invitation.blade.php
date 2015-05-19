@@ -2,7 +2,7 @@
 
 @section('content')
 	
-	<h3>Send Invitation to reviewer</h3>
+	<h2>Send Invitation to reviewer</h2>
 
     {!! Form::open(['method' => 'GET', 'action' => 'ConfChair\ConfChairInvitationController@confirm']) !!}
 		<div class="form-group">

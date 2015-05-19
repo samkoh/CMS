@@ -3,7 +3,7 @@
 @section('content')
 
     <div style="float: left; width: 20%;">
-        <h3>Conference Topic List created by <strong><font color="yellow">{{ Auth::user()->firstname }}</font></strong>:</h3>
+        <h4>Conference Topic List created by <strong><font color="yellow">{{ Auth::user()->firstname }}</font></strong>:</h4>
 
         @foreach($conferences as $conference)
 
@@ -15,7 +15,7 @@
     </div>
 
     <div style="float:left; width: 70%; margin-left: 50px;">
-        <h3>Create a Conference</h3>
+        <h2>Create a Conference</h2>
 
         {!! Form::open(['action' => 'ConfChair\ConfChairCreateConferenceController@store']) !!}
 

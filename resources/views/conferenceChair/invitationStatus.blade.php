@@ -8,7 +8,7 @@
 				<div class="panel-heading">Invitation Status</div>
 				<div class="panel-body">
 
-				<h3>Reviewer Invitation Status</h3>
+				<h2>Reviewer Invitation Status</h2>
 
 				<hr/>
 

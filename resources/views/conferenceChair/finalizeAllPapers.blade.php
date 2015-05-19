@@ -26,6 +26,8 @@
                                             Accept
                                         @elseif($reviewedPapers->status == -1)
                                             Reject
+                                        @else
+                                            Evaluating
                                         @endif
                                     </td>
                                 </tr>

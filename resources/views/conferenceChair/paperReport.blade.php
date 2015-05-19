@@ -9,10 +9,47 @@
                     <div class="panel-heading">Paper Reports</div>
                     <div class="panel-body">
 
+                        <h4>Summary</h4>
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                            <th>Type</th>
+                            <th>Number of Papers</th>
+                            </thead>
+
+                            <tbody>
+                            <tr>
+                                <td>
+                                    Number of Accepted Papers
+                                </td>
+                                <td>
+                                    {{$acceptNum}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Number of Rejected Papers
+                                </td>
+                                <td>
+                                    {{$rejectNum}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Number of All Submitted Papers
+                                </td>
+                                <td>
+                                    {{$allPapersNum}}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <hr/>
+
+                        <h4>Paper List</h4>
                         <table class="table table-striped table-bordered">
                             <thead>
                             <th>All Reviewed Papers</th>
-                            <th>Reviewers</th>
+                            <th>Reviewers' Name</th>
                             <th>Status</th>
                             <th>Submission Date</th>
                             </thead>
@@ -29,17 +66,20 @@
                                     <td>
                                         @if($allPaper->status == 1 )
                                             Accept
-                                        @else
+                                        @elseif($allPaper->status == -1 )
                                             Reject
+                                        @else
+                                            Evaluating
                                         @endif
                                     </td>
                                     <td>
-                                        {{ $allPaper->created_at }}
+                                        {{ date("d M Y",strtotime($allPaper->created_at)) }}
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
+
 
                     </div>
                 </div>

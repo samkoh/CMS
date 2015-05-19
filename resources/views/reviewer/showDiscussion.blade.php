@@ -10,8 +10,8 @@
 
                         @include('partials.reviewer_nav')
 
-                        <h3 align="left">Discussion Paper</h3>
-                        <h4 align="left">Paper Title: <i>{{ $paper->title }}</i> </h4>
+                        <h3 align="left">Discussion Paper:</h3>
+                        <h4 align="left">{{ $paper->title }}</h4>
 
                         <br/>
 
@@ -24,8 +24,7 @@
                         {{--</div>--}}
                         <div class="form-group">
                             {!! Form::label('1', 'Add a comment')!!}
-                            {!! Form::textarea('content', '' , array('required', 'class' => 'form-control', 'size' =>
-                            '20x2',
+                            {!! Form::textarea('content', '' , array('required', 'class' => 'form-control', 'size' => '20x2',
                             'placeholder'=>'Add new comment here')) !!}
                         </div>
 
@@ -33,30 +32,27 @@
                             {!! Form::submit('Add Comment', ['class' => 'btn btn-primary form-control']) !!}
                         </div>
                         <br/>
-                        @foreach($paperDiscussion as $index => $Discussion)
+                        {{--@foreach($paperDiscussion as $index => $Discussion)--}}
                             {{--<div class="form-group">--}}
-                            {{--<h4 align="center">{!! Form::label('1', 'Reviewer Comment')!!}</h4>--}}
-                            {{--{!! Form::label('created_at', 'Posted On:')!!}--}}
-                            {{--{!! Form::input('created_at', '1', $Discussion->created_at, array('disabled' => 'disabled', 'class'=> 'form-control', 'size' => '10x2')) !!}--}}
-                            {{--{!! Form::label('1', 'Comments:')!!}--}}
-                            {{--{!! Form::textarea('content', $Discussion->content, array('disabled' => 'disabled', 'class' =>--}}
-                            {{--'form-control',  'size' => '10x2')) !!}--}}
+                                {{--<h4 align="center">{!! Form::label('1', 'Reviewer Comment')!!}</h4>--}}
+                                {{--{!! Form::label('created_at', 'Posted On:')!!}--}}
+                                {{--{!! Form::input('created_at', '1', $Discussion->created_at, array('disabled' => 'disabled', 'class'=> 'form-control', 'size' => '10x2')) !!}--}}
+                                {{--{!! Form::label('1', 'Comments:')!!}--}}
+                                {{--{!! Form::textarea('content', $Discussion->content, array('disabled' => 'disabled', 'class' =>--}}
+                                {{--'form-control',  'size' => '10x2')) !!}--}}
                             {{--</div>--}}
-
-                            <div class="form-group">
-                                <h4 align="center">
-                                    {!! Form::input('created_at', '1', $Discussion->created_at, array('disabled' =>
-                                    'disabled', 'class'=> 'form-control', 'size' => '10x2')) !!}
-
-                                    {!! Form::textarea('content', $Discussion->content, array('disabled' => 'disabled',
-                                    'class' =>
-                                    'form-control', 'size' => '10x2')) !!}
-                            </div>
-                        @endforeach
+                        {{--@endforeach--}}
+                        <h4 align="left">{!! Form::label('1', 'Reviewer Comments')!!}</h4>
+                        <ul class="list-group">
+                            @foreach($paperDiscussion as $index => $Discussion)
+                                <li class="list-group-item">
+                                    <strong><i>Reviewer :</i></strong><br/> {{$Discussion->content}}<br/> on <strong><i>{{  \Carbon\Carbon::createFromTimeStamp(strtotime($Discussion->created_at))->diffForHumans() }}</i></strong>
+                            @endforeach
+                        </ul>
 
                         {!! Form::close() !!}
 
-
+{{--                        {{ date("d M Y",strtotime($Discussion->created_at)) }}--}}
                     </div>
                 </div>
             </div>

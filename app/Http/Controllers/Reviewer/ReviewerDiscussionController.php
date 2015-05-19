@@ -6,9 +6,9 @@ use App\PaperDiscussion;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-
 use App\Paper;
 use Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class ReviewerDiscussionController extends Controller {
 
@@ -79,7 +79,9 @@ class ReviewerDiscussionController extends Controller {
 
         session()->flash('flash_message', 'Your comment has been added');
 
-        return redirect('reviewer/discussion');
+//        return redirect('reviewer/discussion/');
+        return Redirect::back();
+
     }
 
 	/**

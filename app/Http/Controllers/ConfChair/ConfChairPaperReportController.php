@@ -7,94 +7,103 @@ use Illuminate\Http\Request;
 
 class ConfChairPaperReportController extends Controller {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-//        $allPapers = DB::table('papers')
-//            ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
-//            ->join('users', 'paper_reviews.reviewer_id', '=', 'users.email')
-//            ->select('papers.title', 'papers.status', 'paper_reviews.reviewer_id', 'users.firstname')
-//            ->get();
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index()
+    {
         $allPapers = DB::table('papers')
             ->leftjoin('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
             ->leftjoin('users', 'paper_reviews.reviewer_id', '=', 'users.email')
-            ->select('papers.title', 'papers.status', 'paper_reviews.reviewer_id','papers.created_at', DB::raw('group_concat(users.firstname) as firstname'))
+            ->select('papers.title', 'papers.status', 'paper_reviews.reviewer_id',
+                'papers.created_at', DB::raw('group_concat(users.firstname) as firstname'))
             ->groupBy('papers.title')
             ->orderBy('papers.status', 'desc')
             ->get();
 
-//        dd($allPapers);
+        $acceptNum = DB::table('papers')
+            ->select('status')
+            ->where('status', '=', 1)
+            ->count('status');
 
-        return view('conferenceChair.paperReport', compact('allPapers'));
+        $rejectNum = DB::table('papers')
+            ->select('status')
+            ->where('status', '=', - 1)
+            ->count('status');
+
+        $allPapersNum = DB::table('papers')
+            ->select('status')
+            ->count('status');
+
+//dd($allPapersNum);
+
+        return view('conferenceChair.paperReport', compact('allPapers', 'acceptNum', 'rejectNum', 'allPapersNum'));
     }
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        //
+    }
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function store()
+    {
+        //
+    }
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
+    /**
+     * Display the specified resource.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        //
+    }
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        //
+    }
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function update($id)
+    {
+        //
+    }
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
 
 }

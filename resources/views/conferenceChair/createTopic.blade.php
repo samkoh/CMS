@@ -4,7 +4,7 @@
     <div id="wrapper">
         <div style="width: 100%;">
             <div style="float: left; width: 20%;">
-                <h3>Conference Topic List:</h3>
+                <h4>Conference Topic List:</h4>
 
                 @foreach($topics as $topic)
 
@@ -16,7 +16,7 @@
             </div>
 
             <div style="float:left; width: 70%; margin-left: 50px;">
-                <h3>Insert a new conference topic</h3>
+                <h2>Insert a new conference topic</h2>
 
                 {!! Form::open(['action' => 'ConfChair\ConfChairCreateTopicController@store']) !!}
                 <div class="form-group">
