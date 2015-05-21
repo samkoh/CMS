@@ -74,6 +74,7 @@ class ReviewerDiscussionController extends Controller {
         $this->paperDiscussion->user_id = $userId;
         $this->paperDiscussion->paper_id = $id;
         $this->paperDiscussion->content = Input::get('content');
+        $this->paperDiscussion->status = 1;
 
         $this->paperDiscussion->save();
 
@@ -101,6 +102,7 @@ class ReviewerDiscussionController extends Controller {
         $paperDiscussion = DB::table('paper_discussions')
             ->where('paper_id', '=', $paper->id)
             ->select('content', 'created_at')
+            ->where('status', '=', 1) //status is active
             ->orderBy('created_at', 'desc')
             ->get();
 //    dd($paperDiscussion);

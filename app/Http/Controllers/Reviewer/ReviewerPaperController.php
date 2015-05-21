@@ -171,20 +171,20 @@ class ReviewerPaperController extends Controller {
             ->where('reviewer_id', '=', $userId)
             ->first();
 
-//        if ($paperReview->score != null)
-//        {
+        if ($paperReview->flag == 6)
+        {
 
-        $paperReview->quality = Input::get('quality');
-        $paperReview->rationale = Input::get('rationale');
-        $paperReview->hypothesis = Input::get('hypothesis');
-        $paperReview->manuscript = Input::get('manuscript');
-        $paperReview->structure = Input::get('structure');
-        $paperReview->paperEvaluation = Input::get('paperEvaluation');
+            $paperReview->quality = Input::get('quality');
+            $paperReview->rationale = Input::get('rationale');
+            $paperReview->hypothesis = Input::get('hypothesis');
+            $paperReview->manuscript = Input::get('manuscript');
+            $paperReview->structure = Input::get('structure');
+            $paperReview->paperEvaluation = Input::get('paperEvaluation');
 
 //            $paperReview->score = ($num1 + $num2 + $num3 + $num4 + $num5);
-        $paperReview->comment = Input::get('comment');
-        $paperReview->reviewed_date = Carbon::now();
-        $paperReview->save();
+            $paperReview->comment = Input::get('comment');
+            $paperReview->reviewed_date = Carbon::now();
+            $paperReview->save();
 //        } else
 //        {
 //            return 'You have evaluated this paper before';
@@ -256,9 +256,9 @@ class ReviewerPaperController extends Controller {
 //            $paper->status = 'Rejected';
 //        }
 
-        /*
-         * Evaluation according to the agree and reject statement
-         */
+            /*
+             * Evaluation according to the agree and reject statement
+             */
 //        $numStrongReject = DB::table('papers')
 //        ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
 //        ->select('papers.id', 'paper_reviews.paperEvaluation')
@@ -307,71 +307,158 @@ class ReviewerPaperController extends Controller {
 //            $paper->tempStatus = 'Accept';
 //        }
 
-        /*
-         * Evaluation based on the mean score
-         */
+            /*
+             * Evaluation based on the mean score
+             */
 
-        $numReject = DB::table('paper_reviews')
-            ->select('paper_id', 'paperEvaluation')
-            ->where('paperEvaluation', '=', '-1')
-            ->where('paper_id', '=', $id)
-            ->count('paper_id');
+//        $numReject = DB::table('paper_reviews')
+//            ->select('paper_id', 'paperEvaluation')
+//            ->where('paperEvaluation', '=', '-1')
+//            ->where('paper_id', '=', $id)
+//            ->count('paper_id');
+//
+//        $numStrongReject = DB::table('paper_reviews')
+//            ->select('paper_id', 'paperEvaluation')
+//            ->where('paperEvaluation', '=', '-2')
+//            ->where('paper_id', '=', $id)
+//            ->count('paper_id');
+//
+//        $numAccept = DB::table('paper_reviews')
+//            ->select('paper_id', 'paperEvaluation')
+//            ->where('paperEvaluation', '=', '1')
+//            ->where('paper_id', '=', $id)
+//            ->count('paper_id');
+//
+//        $numStrongAccept = DB::table('paper_reviews')
+//            ->select('paper_id', 'paperEvaluation')
+//            ->where('paperEvaluation', '=', '2')
+//            ->where('paper_id', '=', $id)
+//            ->count('paper_id');
+//
+//        $paperEvaluationSum = DB::table('paper_reviews')
+//            ->select('paper_id', 'paperEvaluation')
+//            ->where('paper_id', '=', $id)
+//            ->sum('paperEvaluation');
+//
+//        $numberOfReviewers = DB::table('papers')
+//            ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
+//            ->select('paper_reviews.paper_id', 'paper_reviews.score')
+//            ->where('papers.id', '=', $id)
+//            ->count('paper_reviews.score');
+//
+//        $paperEvaluationMean = $paperEvaluationSum / $numberOfReviewers;
+//        $paperReview->score = $paperEvaluationMean;
+//
+//        if (($numberOfReviewers == 2) && ($numStrongAccept == 1 || $numAccept == 1) && ($numStrongReject == 1 || $numReject == 1))
+//        {
+//            $paper->tempStatus = -1;
+//        } else
+//        {
+//            if ($paperEvaluationMean > 0)
+//            {
+//                $paper->tempStatus = 1;
+//            } else
+//            {
+//                $paper->tempStatus = -1;
+//            }
+//        }
 
-        $numStrongReject = DB::table('paper_reviews')
-            ->select('paper_id', 'paperEvaluation')
-            ->where('paperEvaluation', '=', '-2')
-            ->where('paper_id', '=', $id)
-            ->count('paper_id');
+            //This query is to get the number of reviewers that already reviewed that particular paper
+            $numberOfReviewers = DB::table('papers')
+                ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
+                ->select('paper_reviews.paper_id', 'paper_reviews.reviewer_id')
+                ->where('papers.id', '=', $id)
+                ->where('paper_reviews.paperEvaluation', '!=', '')
+                ->count('paper_reviews.reviewer_id');
 
-        $numAccept = DB::table('paper_reviews')
-            ->select('paper_id', 'paperEvaluation')
-            ->where('paperEvaluation', '=', '1')
-            ->where('paper_id', '=', $id)
-            ->count('paper_id');
+            /*
+             * This is the paper evaluation calculation using the max and min
+             */
+            $max = DB::table('papers')
+                ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
+                ->select('paper_reviews.paper_id', 'paper_reviews.score')
+                ->where('papers.id', '=', $id)
+                ->max('paper_reviews.paperEvaluation');
 
-        $numStrongAccept = DB::table('paper_reviews')
-            ->select('paper_id', 'paperEvaluation')
-            ->where('paperEvaluation', '=', '2')
-            ->where('paper_id', '=', $id)
-            ->count('paper_id');
+            $min = DB::table('papers')
+                ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
+                ->select('paper_reviews.paper_id', 'paper_reviews.score')
+                ->where('papers.id', '=', $id)
+                ->min('paper_reviews.paperEvaluation');
 
-        $paperEvaluationSum = DB::table('paper_reviews')
-            ->select('paper_id', 'paperEvaluation')
-            ->where('paper_id', '=', $id)
-            ->sum('paperEvaluation');
+            $positiveCount = DB::table('papers')
+                ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
+                ->select('paper_reviews.paper_id', 'paper_review.paperEvaluation')
+                ->where('papers.id', '=', $id)
+                ->where('paper_reviews.paperEvaluation', '>', 0)
+                ->count('paper_reviews.paper_id');
 
-        $numberOfReviewers = DB::table('papers')
-            ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
-            ->select('paper_reviews.paper_id', 'paper_reviews.score')
-            ->where('papers.id', '=', $id)
-            ->count('paper_reviews.score');
+            $negativeCount = DB::table('papers')
+                ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
+                ->select('paper_reviews.paper_id', 'paper_review.paperEvaluation')
+                ->where('papers.id', '=', $id)
+                ->where('paper_reviews.paperEvaluation', '<', 0)
+                ->count('paper_reviews.paper_id');
 
-        $paperEvaluationMean = $paperEvaluationSum / $numberOfReviewers;
-        $paperReview->score = $paperEvaluationMean;
-
-        if (($numberOfReviewers == 2) && ($numStrongAccept == 1 || $numAccept == 1) && ($numStrongReject == 1 || $numReject == 1))
-        {
-            $paper->tempStatus = -1;
-        } else
-        {
-            if ($paperEvaluationMean > 0)
+            //AND Boolean expression has been used in validating the paper, if the reviewers for a particular paper is 2 then a conflict will occur
+            if(((is_int($max) && $max > 0) == true) && ((is_int($min) && $min > 0) == true))
             {
                 $paper->tempStatus = 1;
-            } else
+            }
+            elseif(((is_int($max) && $max > 0) == true) && ((is_int($min) && $min > 0) == false))
+            {
+                if ($numberOfReviewers == 2)
+                {
+                    $paper->tempStatus = - 3;
+                } else
+                {
+                    if($positiveCount > $negativeCount)
+                    {
+                        $paper->tempStatus = 1;
+                    }
+                    else
+                    {
+                        $paper->tempStatus = -1;
+                    }
+                }
+            }
+            elseif(((is_int($max) && $max > 0) == false) && ((is_int($min) && $min > 0) == true))
+            {
+                if ($numberOfReviewers == 2)
+                {
+                    $paper->tempStatus = - 3;
+                } else
+                {
+                    if($positiveCount > $negativeCount)
+                    {
+                        $paper->tempStatus = 1;
+                    }
+                    else
+                    {
+                        $paper->tempStatus = -1;
+                    }
+                }
+            }
+            elseif(((is_int($max) && $max > 0) == false) && ((is_int($min) && $min > 0) == false))
             {
                 $paper->tempStatus = -1;
             }
+
+//        dd( $paper->tempStatus);
+
+            //Update the data in the database
+
+            session()->flash('flash_message', 'This paper has been evaluated');
+
+            $paper->save();
+            $paperReview->save();
+
+            return redirect('reviewer/');
+
+        } else
+        {
+            return 'This paper has been closed for review';
         }
-
-
-//        dd($numTest);
-        //Update the data in the database
-
-        session()->flash('flash_message', 'This paper has been evaluated');
-
-        $paper->save();
-        $paperReview->save();
-        return redirect('reviewer/');
     }
 
     /**

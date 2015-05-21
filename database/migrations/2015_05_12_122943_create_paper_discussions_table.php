@@ -18,6 +18,7 @@ class CreatePaperDiscussionsTable extends Migration {
             $table->string('user_id');
             $table->bigInteger('paper_id')->unsigned();
             $table->text('content');
+            $table->binary('status');
             $table->timestamps();
         });
 

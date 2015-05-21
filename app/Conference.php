@@ -18,7 +18,7 @@ class Conference extends Model {
         'endDate'
     ];
 
-	public function user()
+    public function user()
     {
         return $this->belongsTo('App\User');
     }
@@ -26,6 +26,6 @@ class Conference extends Model {
     public function  topic()
     {
         return $this->belongsToMany('App\Topic')->withTimestamps();
-}
+    }
 
 }

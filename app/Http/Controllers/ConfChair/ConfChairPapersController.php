@@ -81,6 +81,7 @@ class ConfChairPapersController extends Controller {
         $paperReview->reviewer_id = $getReviewers;
         $paperReview->assigned_by = $userId;
 		$paperReview->paper_id = $id;
+        $paperReview->flag = 6; //6 means that the flag is active
 
         $reviewer = DB::table('paper_reviews')
             ->select('reviewer_id', 'paper_id')

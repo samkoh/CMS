@@ -22,7 +22,7 @@
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 						<div class="form-group">
-                            <label class="col-md-4 control-label">First Name:</label>
+                            <label class="col-md-4 control-label">First Name: <font color="red">*</font></label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="firstname" value="{{ old('firstname') }}">
                             </div>
@@ -36,14 +36,14 @@
                         </div>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">E-Mail Address:</label>
+							<label class="col-md-4 control-label">E-Mail Address: <font color="red">*</font></label>
 							<div class="col-md-6">
 								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Password:</label>
+							<label class="col-md-4 control-label">Password: <font color="red">*</font></label>
 							<div class="col-md-6">
 								<input type="password" class="form-control" name="password">
 							</div>
@@ -73,7 +73,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Gender:</label>
+                            <label class="col-md-4 control-label">Gender: <font color="red">*</font></label>
                             <div class="col-md-6">
                                 {{--<input type="dropdownlist" class="form-control" name="gender">--}}
                                 <select class="form-control" name="gender">
@@ -85,7 +85,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Date of Birth:</label>
+                            <label class="col-md-4 control-label">Date of Birth: <font color="red">*</font></label>
                             <div class="col-md-6">
                                 <input type="date" class="form-control" name="dateOfBirth">
                             </div>
@@ -106,7 +106,7 @@
                         {{--</div>--}}
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Address Line 1:</label>
+                            <label class="col-md-4 control-label">Address Line 1: <font color="red">*</font></label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="addressLine1">
                             </div>
@@ -184,7 +184,7 @@
 
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Contact No:</label>
+                            <label class="col-md-4 control-label">Contact No: <font color="red">*</font></label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="contactNo">
                             </div>
@@ -204,21 +204,21 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">User Role:</label>
-                            <div class="col-md-6">
-                                <select class="form-control" name="user_role">
-                                    <option value="" disabled="disabled" selected="selected">Please select </option>
-                                    <option value="Conference Chair">Conference Chair</option>
-                                    <option value="Conference Manager">Conference Manager</option>
-                                    <option value="Technical Committee">Technical Committee</option>
-                                    <option value="Program Committee">Program Committee</option>
-                                    <option value="Author">Author</option>
-                                    <option value="Reviewer">Reviewer</option>
-                                    <option value="Participant">Participant</option>
-                                </select>
-                            </div>
-                        </div>
+                        {{--<div class="form-group">--}}
+                            {{--<label class="col-md-4 control-label">User Role:</label>--}}
+                            {{--<div class="col-md-6">--}}
+                                {{--<select class="form-control" name="user_role">--}}
+                                    {{--<option value="" disabled="disabled" selected="selected">Please select </option>--}}
+                                    {{--<option value="Conference Chair">Conference Chair</option>--}}
+                                    {{--<option value="Conference Manager">Conference Manager</option>--}}
+                                    {{--<option value="Technical Committee">Technical Committee</option>--}}
+                                    {{--<option value="Program Committee">Program Committee</option>--}}
+                                    {{--<option value="Author">Author</option>--}}
+                                    {{--<option value="Reviewer">Reviewer</option>--}}
+                                    {{--<option value="Participant">Participant</option>--}}
+                                {{--</select>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
 
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">

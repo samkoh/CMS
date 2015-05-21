@@ -46,7 +46,7 @@
                         <ul class="list-group">
                             @foreach($paperDiscussion as $index => $Discussion)
                                 <li class="list-group-item">
-                                    <strong><i>Reviewer :</i></strong><br/> {{$Discussion->content}}<br/> on <strong><i>{{  \Carbon\Carbon::createFromTimeStamp(strtotime($Discussion->created_at))->diffForHumans() }}</i></strong>
+                                    <strong><i>Reviewer :</i></strong><br/> {{$Discussion->content}}<br/> at <strong><i>{{  \Carbon\Carbon::createFromTimeStamp(strtotime($Discussion->created_at))->diffForHumans() }}</i></strong>
                             @endforeach
                         </ul>
 

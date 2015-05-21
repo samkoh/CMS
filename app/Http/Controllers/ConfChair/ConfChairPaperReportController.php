@@ -15,14 +15,24 @@ class ConfChairPaperReportController extends Controller {
     public function index()
     {
         $allPapers = DB::table('papers')
-            ->leftjoin('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
-            ->leftjoin('users', 'paper_reviews.reviewer_id', '=', 'users.email')
-            ->select('papers.title', 'papers.status', 'paper_reviews.reviewer_id',
-                'papers.created_at', DB::raw('group_concat(users.firstname) as firstname'))
+        ->leftjoin('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
+        ->leftjoin('users', 'paper_reviews.reviewer_id', '=', 'users.email')
+        ->select('papers.title', 'papers.status', 'paper_reviews.reviewer_id',
+            'papers.created_at', DB::raw('group_concat(users.firstname) as firstname'))
+        ->groupBy('papers.title')
+        ->orderBy('papers.status', 'desc')
+        ->get();
+
+        $nullReviewer = DB::table('papers')
+            ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
+            ->join('users', 'paper_reviews.reviewer_id', '=', 'users.email')
+            ->select('papers.title', DB::raw('group_concat(users.firstname) as firstname'))
+            ->whereNull('paper_reviews.paperEvaluation')
             ->groupBy('papers.title')
             ->orderBy('papers.status', 'desc')
             ->get();
 
+//dd($nullReviewer);
         $acceptNum = DB::table('papers')
             ->select('status')
             ->where('status', '=', 1)
@@ -39,7 +49,7 @@ class ConfChairPaperReportController extends Controller {
 
 //dd($allPapersNum);
 
-        return view('conferenceChair.paperReport', compact('allPapers', 'acceptNum', 'rejectNum', 'allPapersNum'));
+        return view('conferenceChair.paperReport', compact('allPapers','nullReviewer', 'acceptNum', 'rejectNum', 'allPapersNum'));
     }
 
     /**

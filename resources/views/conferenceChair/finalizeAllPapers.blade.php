@@ -24,11 +24,11 @@
                                     </td>
                                     <td>
                                         @if($reviewedPapers->tempStatus == 1 )
-                                            Accept
+                                            Accept ( {{$reviewedPapers->evaluation}} )
                                         @elseif($reviewedPapers->tempStatus == -1)
-                                            Reject
+                                            Reject ( {{$reviewedPapers->evaluation}} )
                                         @else
-                                            Evaluating
+                                            Evaluating ( {{$reviewedPapers->evaluation}} )
                                         @endif
                                     </td>
                                     <td>

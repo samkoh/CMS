@@ -27,6 +27,7 @@ class CreatePaperReviewsTable extends Migration {
             $table->tinyInteger('structure')->nullable();
             $table->text('comment');
             $table->dateTime('reviewed_date');
+            $table->tinyInteger('flag');
             $table->timestamps();
 		});
 

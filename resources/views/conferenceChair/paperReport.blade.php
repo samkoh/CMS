@@ -48,7 +48,7 @@
                         <h4>Paper List</h4>
                         <table class="table table-striped table-bordered">
                             <thead>
-                            <th>All Reviewed Papers</th>
+                            <th>All Papers</th>
                             <th>Reviewers' Name</th>
                             <th>Status</th>
                             <th>Submission Date</th>
@@ -74,6 +74,27 @@
                                     </td>
                                     <td>
                                         {{ date("d M Y",strtotime($allPaper->created_at)) }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+
+                        <h4>Paper List</h4>
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                            <th>All Papers</th>
+                            <th>Reviewers' Name</th>
+                            </thead>
+
+                            <tbody>
+                            @foreach($nullReviewer as $allPaper)
+                                <tr>
+                                    <td>
+                                        {{ $allPaper->title }}
+                                    </td>
+                                    <td>
+                                        {{$allPaper->firstname}}
                                     </td>
                                 </tr>
                             @endforeach
