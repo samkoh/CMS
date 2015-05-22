@@ -61,10 +61,10 @@
                         <span>Border Line</span><br/>
 
                         {!! Form::radio('quality', '-1',['class' => 'form-control']) !!}
-                        <span>Reject</span><br/>
+                        <span>Disagree</span><br/>
 
                         {!! Form::radio('quality', '-2',['class' => 'form-control']) !!}
-                        <span>Strongly Reject</span>
+                        <span>Strongly Disagree</span>
                     </div>
 
 					<div class="form-group">
@@ -80,10 +80,10 @@
                         <span>Border Line</span><br/>
 
                         {!! Form::radio('rationale', '-1',['class' => 'form-control']) !!}
-                        <span>Reject</span><br/>
+                        <span>Disagree</span><br/>
 
                         {!! Form::radio('rationale', '-2',['class' => 'form-control']) !!}
-                        <span>Strongly Reject</span><br/>
+                        <span>Strongly Disagree</span><br/>
                     </div>
 
 					<div class="form-group">
@@ -99,10 +99,10 @@
                         <span>Border Line</span><br/>
 
                         {!! Form::radio('hypothesis', '-1',['class' => 'form-control']) !!}
-                        <span>Reject</span><br/>
+                        <span>Disagree</span><br/>
 
                         {!! Form::radio('hypothesis', '-2',['class' => 'form-control']) !!}
-                        <span>Strongly Reject</span><br/>
+                        <span>Strongly Disagree</span><br/>
 					</div>
 
 					<div class="form-group">
@@ -118,10 +118,10 @@
                         <span>Border Line</span><br/>
 
                         {!! Form::radio('manuscript', '-1',['class' => 'form-control']) !!}
-                        <span>Reject</span><br/>
+                        <span>Disagree</span><br/>
 
                         {!! Form::radio('manuscript', '-2',['class' => 'form-control']) !!}
-                        <span>Strongly Reject</span><br/>
+                        <span>Strongly Disagree</span><br/>
 					</div>
 
                     <div class="form-group">
@@ -137,20 +137,20 @@
                         <span>Border Line</span><br/>
 
                         {!! Form::radio('structure', '-1',['class' => 'form-control']) !!}
-                        <span>Reject</span><br/>
+                        <span>Disagree</span><br/>
 
                         {!! Form::radio('structure', '-2',['class' => 'form-control']) !!}
-                        <span>Strongly Reject</span><br/>
+                        <span>Strongly Disagree</span><br/>
                     </div>
 
                     <div class="form-group">
                         {!! Form::label('paperEvaluation', 'Overall Evaluation: ')!!}<br/>
 
                         {!! Form::radio('paperEvaluation', '2',['class' => 'form-control']) !!}
-                        <span>Strongly Agree- <i>Paper is recommended for publish in its present form</i> </span><br/>
+                        <span>Strongly Accept- <i>Paper is recommended for publish in its present form</i> </span><br/>
 
                         {!! Form::radio('paperEvaluation', '1',['class' => 'form-control']) !!}
-                        <span>Agree - <i>Paper is recommended for publish with changes as indicated</i></span><br/>
+                        <span>Accept - <i>Paper is recommended for publish with changes as indicated</i></span><br/>
 
                         {!! Form::radio('paperEvaluation', '0',['class' => 'form-control']) !!}
                         <span>Border Line - <i>Paper is recommended for major revision</i></span><br/>

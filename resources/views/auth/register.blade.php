@@ -204,6 +204,11 @@
                             </div>
                         </div>
 
+
+                            {{--<input type="hidden" name="user_id" value="sam910615@gmail.com">--}}
+                            <input type="hidden" name="conference_id" value="{{$conferenceId}}">
+
+
                         {{--<div class="form-group">--}}
                             {{--<label class="col-md-4 control-label">User Role:</label>--}}
                             {{--<div class="col-md-6">--}}

@@ -73,9 +73,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->hasMany('App\RecipientMessageLog');
     }
 
-//    public function userConferences()
-//    {
-//        return $this->hasMany('App\UserConference');
-//    }
+    public function userConferences()
+    {
+        return $this->belongsToMany('App\Conference')->withTimestamps();
+    }
 
 }

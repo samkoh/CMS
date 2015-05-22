@@ -62,7 +62,9 @@ class Registrar implements RegistrarContract {
             'contactNo' => $data['contactNo'],
             'faxNo' => $data['faxNo'],
             'education' => $data['education'],
-            'user_role' => $data['user_role'],
+//            'user_role' => $data['user_role'],
+//            'user_id' => $data['user_id'],
+            'conference_id' => $data['conference_id'],
 
         ]);
 	}

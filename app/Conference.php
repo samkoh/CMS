@@ -28,4 +28,9 @@ class Conference extends Model {
         return $this->belongsToMany('App\Topic')->withTimestamps();
     }
 
+    public function conferenceUser()
+    {
+        return $this->belongsToMany('App\User');
+    }
+
 }

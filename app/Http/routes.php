@@ -63,6 +63,8 @@ Route::resource('author', 'Author\SubmitPaperController');
 
 //Route::resource('auth/register', 'Auth\AuthController');
 
+
+
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',

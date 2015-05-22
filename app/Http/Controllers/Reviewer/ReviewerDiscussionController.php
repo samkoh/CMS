@@ -45,6 +45,7 @@ class ReviewerDiscussionController extends Controller {
             ->select('papers.id','papers.title', 'papers.tempStatus', 'papers.averageMarks', 'papers.created_at')
             ->where('paper_reviews.reviewer_id', '=', $userId)
             ->where('papers.tempStatus', '=', -1)
+            ->orWhere('papers.tempStatus', '=', -3)
             ->orderBy('papers.created_at', 'desc')
             ->get();
 

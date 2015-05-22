@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers\ConfChair;
 
+use App\Conference;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -22,7 +23,10 @@ class ConfChairInvitationController extends Controller {
 
     public function index()
     {
-        return view('conferenceChair.invitation');
+        $conferenceName = Conference::lists('conferenceName', 'id');
+
+//dd($conferenceName);
+        return view('conferenceChair.invitation', compact('conferenceName'));
     }
 
     /**
@@ -39,7 +43,7 @@ class ConfChairInvitationController extends Controller {
     public function confirm(Requests\PrepareInvitationRequest $request, Guard $auth)
     {
         $template = $this->compileInvitationTemplate($data = $request->all(), $auth);
-
+//dd($template);
         session()->flash('invitation', $data);
 
         return view('conferenceChair.invitationConfirm', compact('template'));
@@ -57,7 +61,17 @@ class ConfChairInvitationController extends Controller {
         $data = $data + [
                 'SenderName' => $auth->user()->firstname,
                 'SenderEmail' => $auth->user()->email,
+                'ConferenceNames' => \Crypt::encrypt($data['conferenceName']),
+//                'ConferenceNames' => \Crypt::encrypt('ConferenceName'),
+//                'ConferenceNames' => md5('ConferenceName'),
+//                'ConferenceNames' => password_hash("ConferenceName", PASSWORD_BCRYPT, array()),
+
             ];
+//        $newData = $data['conferenceName'];
+//
+//        $encryptData = \Crypt::encrypt('$newData');
+
+//        dd($data);
 
         return view()->file(app_path('Http/Templates/invitationTemplate.blade.php'), $data);
     }
