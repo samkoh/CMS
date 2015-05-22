@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersUserRoleTable extends Migration {
+class CreateUserUserRolesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,16 +12,16 @@ class CreateUsersUserRoleTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('users_user_role', function(Blueprint $table)
+		Schema::create('user_user_roles', function(Blueprint $table)
 		{
-			$table->increments('id');
+            $table->bigIncrements('id');
             $table->string('user_id');
             $table->bigInteger('user_role_id')->unsigned();
-            $table->bigInteger('conference_id')->unsigned()->nullable();
+            $table->bigInteger('conference_id')->unsigned();
             $table->timestamps();
 		});
 
-        Schema::table('users_user_role', function(Blueprint $table)
+        Schema::table('user_user_roles', function(Blueprint $table)
         {
             $table->foreign('user_id')->references('email')->on('users')->onDelete('cascade');
             $table->foreign('user_role_id')->references('id')->on('user_role')->onDelete('cascade');
@@ -36,7 +36,7 @@ class CreateUsersUserRoleTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('users_user_role');
+		Schema::drop('user_user_roles');
 	}
 
 }

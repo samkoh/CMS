@@ -25,6 +25,10 @@ class ConfChairInvitationController extends Controller {
     {
         $conferenceName = Conference::lists('conferenceName', 'id');
 
+//        $conferenceName = DB::table('conferences')
+//            ->select('id', 'conferenceName')
+//            ->get();
+
 //dd($conferenceName);
         return view('conferenceChair.invitation', compact('conferenceName'));
     }
@@ -58,16 +62,22 @@ class ConfChairInvitationController extends Controller {
      */
     private function compileInvitationTemplate($data, Guard $auth)
     {
+        $conferenceName = DB::table('conferences')
+            ->select('conferenceName')
+            ->where('id', '=', $data['conferenceName'])
+            ->get();
+//        dd($conferenceName);
         $data = $data + [
                 'SenderName' => $auth->user()->firstname,
                 'SenderEmail' => $auth->user()->email,
-                'ConferenceNames' => \Crypt::encrypt($data['conferenceName']),
-//                'ConferenceNames' => \Crypt::encrypt('ConferenceName'),
-//                'ConferenceNames' => md5('ConferenceName'),
-//                'ConferenceNames' => password_hash("ConferenceName", PASSWORD_BCRYPT, array()),
+                'ConferenceName' => $conferenceName,
+                'ConferenceId' => \Crypt::encrypt($data['conferenceName']),
+//                'ConferenceId' => \Crypt::encrypt('ConferenceName'),
+//                'ConferenceId' => md5('ConferenceName'),
+//                'ConferenceId' => password_hash("ConferenceId", PASSWORD_BCRYPT, array()),
 
             ];
-//        $newData = $data['conferenceName'];
+//        $newData = $data['ConferenceId'];
 //
 //        $encryptData = \Crypt::encrypt('$newData');
 
