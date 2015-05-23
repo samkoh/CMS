@@ -86,12 +86,17 @@ class ConfChairInvitationController extends Controller {
         return view()->file(app_path('Http/Templates/invitationTemplate.blade.php'), $data);
     }
 
-    private function createInvitation(Request $request, RecipientMessageLog $recipientMessageLog)
+    private function createInvitation(Request $request, RecipientMessageLog $recipientMessageLog, MessageLog $messageLog)
     {
         $data = session()->get('invitation');
+        $mailTitle = session()->get('invitation.subject');
         $recipientEmail = session()->get('invitation.email');
+        $conferenceId = session()->get('invitation.conferenceName');
 
         $content = MessageLog::open($data)->useTemplate($request->input('template'));
+
+        $content->title = $mailTitle;
+        $content->conference_id = $conferenceId;
 
         $recipientMessageLog->user_id = Auth::user()->email;
         $recipientMessageLog->recipient_id = $recipientEmail;
@@ -115,25 +120,26 @@ class ConfChairInvitationController extends Controller {
 ////        $content->save();
     }
 
-    /**
+    /**again
      * Store a newly created resource in storage.
      *
      * @return Response
      */
-    public function store(Request $request, RecipientMessageLog $recipientMessageLog)
+    public function store(Request $request, RecipientMessageLog $recipientMessageLog, MessageLog $messageLog)
     {
-        $content = $this->createInvitation($request, $recipientMessageLog);
+        $content = $this->createInvitation($request, $recipientMessageLog, $messageLog);
         $senderEmail = $recipientMessageLog->user_id;
         $recipientEmail = $recipientMessageLog->recipient_id;
-
+        $subject = $content->title;
+//dd($subject);
         //Email
-        \Mail::queue('emails.invitationMessage', compact('content', 'senderEmail', 'recipientEmail'), function ($message) use ($content,$senderEmail,$recipientEmail)
+        \Mail::queue('emails.invitationMessage', compact('content', 'senderEmail', 'recipientEmail', 'subject'), function ($message) use ($content, $senderEmail, $recipientEmail, $subject)
         {
             $sender = $senderEmail;
             $recipient = $recipientEmail;
             $message->from($sender)
                 ->to($recipient)
-                ->subject('Invitation');
+                ->subject($subject);
         });
 
         return redirect('/');

@@ -80,7 +80,7 @@
                             </tbody>
                         </table>
 
-                        <h4>Paper List</h4>
+                        <h4>List of reviewer that not review paper</h4>
                         <table class="table table-striped table-bordered">
                             <thead>
                             <th>All Papers</th>

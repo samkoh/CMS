@@ -12,7 +12,12 @@
     </div>
 
     <div class="form-group">
-        {!! Form::label('name', 'Name:')!!}
+        {!! Form::label('subject', 'Email Message Subject:')!!}
+        {!! Form::text('subject', null, array('required','class'=>'form-control','placeholder'=>'Email Subject')) !!}
+    </div>
+
+    <div class="form-group">
+        {!! Form::label('name', 'Recipient Name:')!!}
         {!! Form::text('name', null, array('required','class'=>'form-control','placeholder'=>'Name')) !!}
     </div>
 

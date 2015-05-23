@@ -10,7 +10,7 @@
 
                         @include('partials.reviewer_nav')
 
-                        <h3 align="left">Discussion Paper:</h3>
+                        <h3 align="left">Paper Discussion:</h3>
                         <h4 align="left">{{ $paper->title }}</h4>
 
                         <br/>
@@ -42,11 +42,20 @@
                                 {{--'form-control',  'size' => '10x2')) !!}--}}
                             {{--</div>--}}
                         {{--@endforeach--}}
-                        <h4 align="left">{!! Form::label('1', 'Reviewer Comments')!!}</h4>
+                        <h4 align="left">{!! Form::label('1', 'Comments')!!}</h4>
                         <ul class="list-group">
                             @foreach($paperDiscussion as $index => $Discussion)
                                 <li class="list-group-item">
-                                    <strong><i>Reviewer :</i></strong><br/> {{$Discussion->content}}<br/> at <strong><i>{{  \Carbon\Carbon::createFromTimeStamp(strtotime($Discussion->created_at))->diffForHumans() }}</i></strong>
+                                    @if($Discussion->user_role == 1)
+                                        <strong><i>Conference Chair :</i></strong>
+                                        @else
+                                        <strong><i>Reviewer :</i></strong>
+                                    @endif
+                                    <br/>
+                                    {{$Discussion->content}}
+                                    <br/>
+                                    at
+                                    <strong><i>{{  \Carbon\Carbon::createFromTimeStamp(strtotime($Discussion->created_at))->diffForHumans() }}</i></strong>
                             @endforeach
                         </ul>
 
