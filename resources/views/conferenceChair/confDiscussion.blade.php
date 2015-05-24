@@ -9,7 +9,7 @@
                     <div class="panel-body">
 
 
-                        @include('partials.reviewer_nav')
+{{--                        @include('partials.reviewer_nav')--}}
 
                         <br/>
 
@@ -31,7 +31,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="/reviewer/discussion/{{ $paper->id }}">{{ $paper->title }}</a>
+                                        <a href="/conferenceChair/confDiscussion/{{ $paper->id }}">{{ $paper->title }}</a>
                                     </td>
                                     <td>{{ date("d M Y",strtotime($paper->created_at)) }}</td>
                                 </tr>

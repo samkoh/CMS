@@ -26,6 +26,7 @@
                                 <li><a href="/conferenceChair/createTopic">Create Topic</a></li>
                                 <li><a href="/conferenceChair/finalizeAllPapers">Finalize All Papers</a></li>
                                 <li><a href="/conferenceChair/paperReport">Paper Report</a></li>
+                                <li><a href="/conferenceChair/confDiscussion">Paper Discussion</a></li>
 
                             </ul>
 					</li>

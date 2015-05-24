@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Conference;
 use App\Paper;
 use App\Topic;
+use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller {
 
@@ -50,7 +52,15 @@ class HomeController extends Controller {
 //
 //        return view('reviewerHome', compact('papers'));
 
-        if(\Auth::check() && \Auth::user()->id == '1')
+        $userEmail = Auth::user()->email;
+
+        $userRole = DB::table('user_user_roles')
+                    ->select('user_role_id')
+                    ->where('user_id', '=', $userEmail)
+                    ->first();
+
+//        if(\Auth::check() && \Auth::user()->id == '1')
+          if(Auth::check() && $userRole->user_role_id == 5)
         {
             $papers = $this->paper->get();
 

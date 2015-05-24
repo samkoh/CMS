@@ -11,46 +11,65 @@
 |
 */
 
- Route::get('/', 'WelcomeController@index');
+Route::get('/', 'WelcomeController@index');
 
 Route::resource('home', 'HomeController');
 //Route::resource('home', 'ReviewerHomeController');
 
+Route::get('conferenceChair/confDiscussion', ['middleware' => 'auth', 'uses' => 'Reviewer\ReviewerDiscussionController@index']);
+Route::get('conferenceChair/confDiscussion/{id}', ['middleware' => 'auth', 'uses' => 'Reviewer\ReviewerDiscussionController@show']);
+Route::post('conferenceChair/confDiscussion/{id}', ['middleware' => 'auth', 'uses' => 'Reviewer\ReviewerDiscussionController@store']);
 
-Route::get('conferenceChair/allPapers', 'ConfChair\ConfChairPapersController@index');
-Route::get('conferenceChair/allPapers/{id}', 'ConfChair\ConfChairPapersController@show');
-Route::post('conferenceChair/allPapers/{id}', 'ConfChair\ConfChairPapersController@store');
+Route::get('conferenceChair/allPapers', ['middleware' => 'auth', 'uses' => 'ConfChair\ConfChairPapersController@index']);
+Route::get('conferenceChair/allPapers/{id}', ['middleware' => 'auth', 'uses' => 'ConfChair\ConfChairPapersController@show']);
+Route::post('conferenceChair/allPapers/{id}', ['middleware' => 'auth', 'uses' => 'ConfChair\ConfChairPapersController@store']);
 
-Route::get('conferenceChair/finalizeAllPapers', 'ConfChair\ConfChairFinalizePapersController@index');
-Route::get('conferenceChair/finalizeAllPapers/{id}', 'ConfChair\ConfChairFinalizePapersController@show');
-Route::patch('conferenceChair/finalizeAllPapers/{id}', 'ConfChair\ConfChairFinalizePapersController@update');
+//Route::get('conferenceChair/finalizeAllPapers', ['middleware' => 'auth', 'uses' => 'ConfChair\ConfChairFinalizePapersController@index']);
 
-Route::get('conferenceChair/paperReport', 'ConfChair\ConfChairPaperReportController@index');
+// Allow users with the permission "access" to see the page.
+// Apply the middleware to a single route.
+//Route::group(['middleware' =>'auth', 'permissions.required'], function() {
+//    Route::get('conferenceChair/finalizeAllPapers',[
+//        'permissions' => ['conference_chair', 'reviewer'],
+//        'uses' => 'ConfChair\ConfChairFinalizePapersController@index',
+//        'permissions_require_all' => true, //true means need to fulfill both permissions (AND)
+//    ]);
+//});
+Route::get('conferenceChair/finalizeAllPapers',[
+    'middleware' =>['auth', 'permissions.required'] ,
+    'permissions' => ['conference_chair'],
+    'uses' => 'ConfChair\ConfChairFinalizePapersController@index',
+    'permissions_require_all' => true,
+]);
+Route::get('conferenceChair/finalizeAllPapers/{id}', ['middleware' => 'auth', 'uses' => 'ConfChair\ConfChairFinalizePapersController@show']);
+Route::patch('conferenceChair/finalizeAllPapers/{id}', ['middleware' => 'auth', 'uses' => 'ConfChair\ConfChairFinalizePapersController@update']);
 
-Route::get('conferenceChair/invitationStatus', 'ConfChair\ConfChairInvitationStatusController@index');
-Route::get('conferenceChair/invitation/confirm', 'ConfChair\ConfChairInvitationController@confirm');
-Route::get('conferenceChair/invitationCancel', 'ConfChair\ConfChairInvitationCancelController@index');
-Route::get('conferenceChair/sendBulkEmail', 'ConfChair\ConfChairSendBulkEmailController@index');
+Route::get('conferenceChair/paperReport', ['middleware' => 'auth', 'uses' => 'ConfChair\ConfChairPaperReportController@index']);
 
-//Route::get('conferenceChair/createTopic', 'ConfChair\ConfChairCreateTopicController@create');
+Route::get('conferenceChair/invitationStatus', ['middleware' => 'auth', 'uses' => 'ConfChair\ConfChairInvitationStatusController@index']);
+Route::get('conferenceChair/invitation/confirm', ['middleware' => 'auth', 'uses' => 'ConfChair\ConfChairInvitationController@confirm']);
+Route::get('conferenceChair/invitationCancel', ['middleware' => 'auth', 'uses' => 'ConfChair\ConfChairInvitationCancelController@index']);
+Route::get('conferenceChair/sendBulkEmail', ['middleware' => 'auth', 'uses' => 'ConfChair\ConfChairSendBulkEmailController@index']);
+
+//Route::get('conferenceChair/createTopic', ['middleware' => 'auth', 'uses' => 'ConfChair\ConfChairCreateTopicController@create']);
 Route::resource('conferenceChair/createTopic','ConfChair\ConfChairCreateTopicController' );
 
 //Route::get('conferenceChair/createConference', 'ConfChair\ConfChairCreateConferenceController@index');
 Route::resource('conferenceChair/createConference', 'ConfChair\ConfChairCreateConferenceController');
 //Route::get('conferenceChair/createConference', 'ConfChairCreateConference@store');
-Route::get('conferenceChair/createConferenceFee', 'ConfChair\ConfChairConferenceFeeController@index');
+Route::get('conferenceChair/createConferenceFee', ['middleware' => 'auth', 'uses' => 'ConfChair\ConfChairConferenceFeeController@index']);
 Route::resource('conferenceChair', 'ConfChair\ConfChairInvitationController');
 
 
-Route::get('reviewer/discussion', 'Reviewer\ReviewerDiscussionController@index');
-Route::get('reviewer/discussion/{id}', 'Reviewer\ReviewerDiscussionController@show');
-Route::post('reviewer/discussion/{id}', 'Reviewer\ReviewerDiscussionController@store');
+Route::get('reviewer/discussion', ['middleware' => 'auth', 'uses' => 'Reviewer\ReviewerDiscussionController@index']);
+Route::get('reviewer/discussion/{id}', ['middleware' => 'auth', 'uses' => 'Reviewer\ReviewerDiscussionController@show']);
+Route::post('reviewer/discussion/{id}', ['middleware' => 'auth', 'uses' => 'Reviewer\ReviewerDiscussionController@store']);
 
-Route::get('reviewer/reviewerRegistration', 'Reviewer\ReviewerRegistrationController@index');
-Route::get('reviewer/paperReviewRequest', 'Reviewer\ReviewerPaperReviewRequestController@index');
+Route::get('reviewer/reviewerRegistration', ['middleware' => 'auth', 'uses' => 'Reviewer\ReviewerRegistrationController@index']);
+Route::get('reviewer/paperReviewRequest', ['middleware' => 'auth', 'uses' => 'Reviewer\ReviewerPaperReviewRequestController@index']);
 
-Route::get('reviewer/', 'Reviewer\ReviewerPaperController@index');
-Route::get('reviewer/paper/{id}', 'Reviewer\ReviewerPaperController@show');
+Route::get('reviewer/', ['middleware' => 'auth', 'uses' => 'Reviewer\ReviewerPaperController@index']);
+Route::get('reviewer/paper/{id}', ['middleware' => 'auth', 'uses' => 'Reviewer\ReviewerPaperController@show']);
 Route::patch('reviewer/paper/{id}', 'Reviewer\ReviewerPaperController@update');
 //Route::post('reviewer/paper/{id}', 'Reviewer\ReviewerPaperController@store');
 

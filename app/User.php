@@ -16,6 +16,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var string
      */
     protected $table = 'users';
+//    protected $primaryKey = 'email';
 
     /**
      * The attributes that are mass assignable.
@@ -73,9 +74,16 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->hasMany('App\RecipientMessageLog');
     }
 
+    //Dunno gt use or not, leave it first
     public function userConferences()
     {
         return $this->belongsToMany('App\Conference')->withTimestamps();
+    }
+
+    //This is related to user role
+    public function permissions()
+    {
+        return $this->belongsToMany('App\UserRole', 'user_user_roles', 'user_id', 'user_role_id')->withTimestamps();
     }
 
 }

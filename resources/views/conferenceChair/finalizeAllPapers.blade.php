@@ -27,6 +27,8 @@
                                             Accept ( {{$reviewedPapers->evaluation}} )
                                         @elseif($reviewedPapers->tempStatus == -1)
                                             Reject ( {{$reviewedPapers->evaluation}} )
+                                        @elseif($reviewedPapers->tempStatus == -3)
+                                            Conflicting ( {{$reviewedPapers->evaluation}} )
                                         @else
                                             Evaluating ( {{$reviewedPapers->evaluation}} )
                                         @endif

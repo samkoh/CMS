@@ -64,6 +64,9 @@ class ReviewerDiscussionController extends Controller {
                 ->whereIn('tempStatus', [- 1, - 3])
                 ->orderBy('created_at', 'desc')
                 ->get();
+
+            return view('conferenceChair.confDiscussion', compact('papers'));
+
         } else
         {
             $papers = DB::table('papers')
@@ -73,11 +76,13 @@ class ReviewerDiscussionController extends Controller {
                 ->whereIn('papers.tempStatus', [- 1, - 3])
                 ->orderBy('papers.created_at', 'desc')
                 ->get();
+
+            return view('reviewer.discussion', compact('papers'));
         }
 
 
 //        dd($papers);
-        return view('reviewer.discussion', compact('papers'));
+//        return view('reviewer.discussion', compact('papers'));
     }
 
     /**
@@ -144,7 +149,25 @@ class ReviewerDiscussionController extends Controller {
             ->get();
 
 //    dd($paperDiscussion);
-        return view('reviewer.showDiscussion', compact('paper', 'paperDiscussion'));
+
+        $userId = Auth::user()->email;
+
+        //Check whether the user is conference chair or not
+        $userRole = DB::table('users')
+            ->select('email')
+            ->where('email', '=', $userId)
+            ->where('user_role', '=', 1)
+            ->get();
+
+        if($userRole != null)
+        {
+            return view('conferenceChair.confShowDiscussion', compact('paper', 'paperDiscussion'));
+        }
+        else
+        {
+            return view('reviewer.showDiscussion', compact('paper', 'paperDiscussion'));
+
+        }
     }
 
     /**
