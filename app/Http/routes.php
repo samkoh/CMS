@@ -26,15 +26,7 @@ Route::post('conferenceChair/allPapers/{id}', ['middleware' => 'auth', 'uses' =>
 
 //Route::get('conferenceChair/finalizeAllPapers', ['middleware' => 'auth', 'uses' => 'ConfChair\ConfChairFinalizePapersController@index']);
 
-// Allow users with the permission "access" to see the page.
-// Apply the middleware to a single route.
-//Route::group(['middleware' =>'auth', 'permissions.required'], function() {
-//    Route::get('conferenceChair/finalizeAllPapers',[
-//        'permissions' => ['conference_chair', 'reviewer'],
-//        'uses' => 'ConfChair\ConfChairFinalizePapersController@index',
-//        'permissions_require_all' => true, //true means need to fulfill both permissions (AND)
-//    ]);
-//});
+
 Route::get('conferenceChair/finalizeAllPapers',[
     'middleware' =>['auth', 'permissions.required'] ,
     'permissions' => ['conference_chair'],

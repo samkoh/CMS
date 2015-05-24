@@ -41,14 +41,13 @@ class ReviewerDiscussionController extends Controller {
         $userId = Auth::user()->email;
 
         //Check whether the user is conference chair or not
-        $userRole = DB::table('users')
-            ->select('email')
-            ->where('email', '=', $userId)
-            ->where('user_role', '=', 1)
-            ->get();
+        $userRole = DB::table('user_user_roles')
+            ->select('user_role_id')
+            ->where('user_id', '=', $userId)
+            ->first();
 
 //dd($userRole);
-        if ($userRole != null)
+        if ($userRole->user_role_id == 1)
         {
 //            $papers = DB::table('papers')
 //                ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
@@ -142,8 +141,9 @@ class ReviewerDiscussionController extends Controller {
 
         $paperDiscussion = DB::table('paper_discussions')
             ->join('users', 'paper_discussions.user_id', '=', 'users.email')
+            ->join('user_user_roles','paper_discussions.user_id', '=', 'user_user_roles.user_id')
             ->where('paper_discussions.paper_id', '=', $paper->id)
-            ->select('paper_discussions.content', 'users.user_role', 'paper_discussions.created_at')
+            ->select('paper_discussions.content', 'user_user_roles.user_role_id', 'paper_discussions.created_at')
             ->where('paper_discussions.status', '=', 1)//status is active
             ->orderBy('paper_discussions.created_at', 'desc')
             ->get();
@@ -153,13 +153,12 @@ class ReviewerDiscussionController extends Controller {
         $userId = Auth::user()->email;
 
         //Check whether the user is conference chair or not
-        $userRole = DB::table('users')
-            ->select('email')
-            ->where('email', '=', $userId)
-            ->where('user_role', '=', 1)
-            ->get();
-
-        if($userRole != null)
+        $userRole = DB::table('user_user_roles')
+            ->select('user_role_id')
+            ->where('user_id', '=', $userId)
+            ->first();
+//dd($userRole);
+        if ($userRole->user_role_id == 1)
         {
             return view('conferenceChair.confShowDiscussion', compact('paper', 'paperDiscussion'));
         }

@@ -46,7 +46,7 @@
                         <ul class="list-group">
                             @foreach($paperDiscussion as $index => $Discussion)
                                 <li class="list-group-item">
-                                    @if($Discussion->user_role == 1)
+                                    @if($Discussion->user_role_id == 1)
                                         <strong><i>Conference Chair :</i></strong>
                                         @else
                                         <strong><i>Reviewer :</i></strong>

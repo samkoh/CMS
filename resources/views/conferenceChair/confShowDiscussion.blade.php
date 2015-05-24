@@ -8,7 +8,6 @@
                     <div class="panel-heading">Discussion</div>
                     <div class="panel-body">
 
-{{--                        @include('partials.reviewer_nav')--}}
 
                         <h3 align="left">Paper Discussion:</h3>
                         <h4 align="left">{{ $paper->title }}</h4>
@@ -46,7 +45,7 @@
                         <ul class="list-group">
                             @foreach($paperDiscussion as $index => $Discussion)
                                 <li class="list-group-item">
-                                    @if($Discussion->user_role == 1)
+                                    @if($Discussion->user_role_id == 1)
                                         <strong><i>Conference Chair :</i></strong>
                                     @else
                                         <strong><i>Reviewer :</i></strong>

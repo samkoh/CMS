@@ -1,10 +1,12 @@
 <?php namespace App;
 
 use Illuminate\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
@@ -17,6 +19,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     protected $table = 'users';
 //    protected $primaryKey = 'email';
+
+
+
 
     /**
      * The attributes that are mass assignable.
@@ -83,7 +88,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     //This is related to user role
     public function permissions()
     {
-        return $this->belongsToMany('App\UserRole', 'user_user_roles', 'user_id', 'user_role_id')->withTimestamps();
+        return $this->belongsToMany('App\UserRole', 'user_user_roles','user_table_id', 'user_role_id')->withTimestamps();
+
     }
 
 }

@@ -9,7 +9,7 @@
                     <div class="panel-body">
 
 
-{{--                        @include('partials.reviewer_nav')--}}
+
 
                         <br/>
 
