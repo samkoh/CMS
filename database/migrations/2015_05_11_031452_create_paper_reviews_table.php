@@ -20,6 +20,7 @@ class CreatePaperReviewsTable extends Migration {
             $table->bigInteger('paper_id')->unsigned();
             $table->decimal('score');
             $table->tinyInteger('paperEvaluation')->nullable();
+            $table->tinyInteger('confidenceLevel')->nullable();
             $table->tinyInteger('quality')->nullable();
             $table->tinyInteger('rationale')->nullable();
             $table->tinyInteger('hypothesis')->nullable();

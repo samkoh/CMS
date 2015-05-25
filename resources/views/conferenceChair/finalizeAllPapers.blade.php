@@ -24,13 +24,13 @@
                                     </td>
                                     <td>
                                         @if($reviewedPapers->tempStatus == 1 )
-                                            Accept ( {{$reviewedPapers->evaluation}} )
+                                            Accept ( {{$reviewedPapers->evaluation}} ) -> Weighted Average ( {{round($reviewedPapers->WeightedAverage/$reviewedPapers->ReviewerNo, 2)}} )
                                         @elseif($reviewedPapers->tempStatus == -1)
-                                            Reject ( {{$reviewedPapers->evaluation}} )
+                                            Reject ( {{$reviewedPapers->evaluation}} ) -> Weighted Average ( {{round($reviewedPapers->WeightedAverage/$reviewedPapers->ReviewerNo, 2)}} )
                                         @elseif($reviewedPapers->tempStatus == -3)
-                                            Conflicting ( {{$reviewedPapers->evaluation}} )
+                                            Conflicting ( {{$reviewedPapers->evaluation}} ) -> Weighted Average ( {{round($reviewedPapers->WeightedAverage/$reviewedPapers->ReviewerNo, 2)}} )
                                         @else
-                                            Evaluating ( {{$reviewedPapers->evaluation}} )
+                                            Evaluating ( {{$reviewedPapers->evaluation}} ) -> Weighted Average ( {{round($reviewedPapers->WeightedAverage/$reviewedPapers->ReviewerNo, 2)}} )
                                         @endif
                                     </td>
                                     <td>

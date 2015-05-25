@@ -48,6 +48,7 @@ class ConfChairInvitationController extends Controller {
     {
         $template = $this->compileInvitationTemplate($data = $request->all(), $auth);
 //dd($template);
+
         session()->flash('invitation', $data);
 
         return view('conferenceChair.invitationConfirm', compact('template'));
@@ -66,12 +67,20 @@ class ConfChairInvitationController extends Controller {
             ->select('conferenceName')
             ->where('id', '=', $data['conferenceName'])
             ->get();
+        //Encryption method for the Conference Id
+//        $hashedConferenceId = \Crypt::encrypt($data['conferenceName']);
+//        $hashedConferenceId = password_hash("ConferenceId", PASSWORD_BCRYPT, array());
+        $hashedConferenceId = md5('conferenceName');
+
+        //Session for hashedConferenceId
+        session()->flash('hashConferenceId', $hashedConferenceId);
+
 //        dd($conferenceName);
         $data = $data + [
                 'SenderName' => $auth->user()->firstname,
                 'SenderEmail' => $auth->user()->email,
                 'ConferenceName' => $conferenceName,
-                'ConferenceId' => \Crypt::encrypt($data['conferenceName']),
+                'ConferenceId' => $hashedConferenceId,
 //                'ConferenceId' => \Crypt::encrypt('ConferenceName'),
 //                'ConferenceId' => md5('ConferenceName'),
 //                'ConferenceId' => password_hash("ConferenceId", PASSWORD_BCRYPT, array()),
@@ -92,15 +101,16 @@ class ConfChairInvitationController extends Controller {
         $mailTitle = session()->get('invitation.subject');
         $recipientEmail = session()->get('invitation.email');
         $conferenceId = session()->get('invitation.conferenceName');
+        $hashedConferenceId = session()->get('hashConferenceId');
 
         $content = MessageLog::open($data)->useTemplate($request->input('template'));
 
         $content->title = $mailTitle;
         $content->conference_id = $conferenceId;
-
+        $content->conference_hash_id = $hashedConferenceId;
         $recipientMessageLog->user_id = Auth::user()->email;
         $recipientMessageLog->recipient_id = $recipientEmail;
-
+//dd($content);
         $content->save();
         //This is to get the last inserted current id that has been inserted into MessageLog database
         $contentId = DB::getPdo()->lastInsertId();

@@ -162,6 +162,25 @@
                         <span>Strongly Reject - <i>Paper is out of topic and rejected</i></span>
                     </div>
 
+                    <div class="form-group">
+                        {!! Form::label('confidenceLevel', 'Confidence Level upon overall evaluation: ')!!}<br/>
+
+                        {!! Form::radio('confidenceLevel', '4',['class' => 'form-control']) !!}
+                        <span>4 (expert)</span><br/>
+
+                        {!! Form::radio('confidenceLevel', '3',['class' => 'form-control']) !!}
+                        <span>3 (high)</span><br/>
+
+                        {!! Form::radio('confidenceLevel', '2',['class' => 'form-control']) !!}
+                        <span>2 (medium)</span><br/>
+
+                        {!! Form::radio('confidenceLevel', '1',['class' => 'form-control']) !!}
+                        <span>1 (low)</span><br/>
+
+                        {!! Form::radio('confidenceLevel', '0',['class' => 'form-control']) !!}
+                        <span>0 (null)</span>
+                    </div>
+
 					<hr/>
 
 					<div class="form-group">

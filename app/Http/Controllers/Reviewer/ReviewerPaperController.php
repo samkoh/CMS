@@ -180,6 +180,7 @@ class ReviewerPaperController extends Controller {
             $paperReview->manuscript = Input::get('manuscript');
             $paperReview->structure = Input::get('structure');
             $paperReview->paperEvaluation = Input::get('paperEvaluation');
+            $paperReview->confidenceLevel = Input::get('confidenceLevel');
 
 //            $paperReview->score = ($num1 + $num2 + $num3 + $num4 + $num5);
             $paperReview->comment = Input::get('comment');
@@ -386,19 +387,26 @@ class ReviewerPaperController extends Controller {
                 ->where('papers.id', '=', $id)
                 ->min('paper_reviews.paperEvaluation');
 
-            $positiveCount = DB::table('papers')
-                ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
-                ->select('paper_reviews.paper_id', 'paper_review.paperEvaluation')
-                ->where('papers.id', '=', $id)
-                ->where('paper_reviews.paperEvaluation', '>', 0)
-                ->count('paper_reviews.paper_id');
+//            $weightedMarks = DB::table('papers')
+//                ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
+//                ->select(DB::raw('sum(paper_reviews.paperEvaluation * paper_reviews.confidenceLevel) AS WeightedAverage,
+//                count(paper_reviews.reviewer_id) as NumOfReviewers'))
+//                ->where('papers.id', '=', $id)
+//                ->first();
 
-            $negativeCount = DB::table('papers')
-                ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
-                ->select('paper_reviews.paper_id', 'paper_review.paperEvaluation')
-                ->where('papers.id', '=', $id)
-                ->where('paper_reviews.paperEvaluation', '<', 0)
-                ->count('paper_reviews.paper_id');
+//            $positiveCount = DB::table('papers')
+//                ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
+//                ->select('paper_reviews.paper_id', 'paper_review.paperEvaluation')
+//                ->where('papers.id', '=', $id)
+//                ->where('paper_reviews.paperEvaluation', '>', 0)
+//                ->count('paper_reviews.paper_id');
+//
+//            $negativeCount = DB::table('papers')
+//                ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
+//                ->select('paper_reviews.paper_id', 'paper_review.paperEvaluation')
+//                ->where('papers.id', '=', $id)
+//                ->where('paper_reviews.paperEvaluation', '<', 0)
+//                ->count('paper_reviews.paper_id');
 
             //AND Boolean expression has been used in validating the paper, if the reviewers for a particular paper is 2 then a conflict will occur
             if(((is_int($max) && $max > 0) == true) && ((is_int($min) && $min > 0) == true))
@@ -407,44 +415,32 @@ class ReviewerPaperController extends Controller {
             }
             elseif(((is_int($max) && $max > 0) == true) && ((is_int($min) && $min > 0) == false))
             {
-                if ($numberOfReviewers == 2)
-                {
-                    $paper->tempStatus = - 3;
-                } else
-                {
-                    if($positiveCount > $negativeCount)
-                    {
-                        $paper->tempStatus = 1;
-                    }
-                    else
-                    {
-                        $paper->tempStatus = -1;
-                    }
-                }
+//                if ($numberOfReviewers == 2)
+//                {
+//                    $paper->tempStatus = - 3;
+//                } else
+//                {
+//                    if($positiveCount > $negativeCount)
+//                    {
+//                        $paper->tempStatus = 1;
+//                    }
+//                    else
+//                    {
+//                        $paper->tempStatus = -1;
+//                    }
+//                }
+                $paper->tempStatus = -3;
+
             }
             elseif(((is_int($max) && $max > 0) == false) && ((is_int($min) && $min > 0) == true))
             {
-                if ($numberOfReviewers == 2)
-                {
-                    $paper->tempStatus = - 3;
-                } else
-                {
-                    if($positiveCount > $negativeCount)
-                    {
-                        $paper->tempStatus = 1;
-                    }
-                    else
-                    {
-                        $paper->tempStatus = -1;
-                    }
-                }
+                $paper->tempStatus = - 3;
             }
             elseif(((is_int($max) && $max > 0) == false) && ((is_int($min) && $min > 0) == false))
             {
                 $paper->tempStatus = -1;
             }
 
-//        dd( $paper->tempStatus);
 
             //Update the data in the database
 

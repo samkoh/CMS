@@ -17,7 +17,7 @@ class ConfChairPaperReportController extends Controller {
         $allPapers = DB::table('papers')
         ->leftjoin('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
         ->leftjoin('users', 'paper_reviews.reviewer_id', '=', 'users.email')
-        ->select('papers.title', 'papers.status', 'paper_reviews.reviewer_id',
+        ->select('papers.id','papers.title', 'papers.status', 'paper_reviews.reviewer_id',
             'papers.created_at', DB::raw('group_concat(users.firstname) as firstname'))
         ->groupBy('papers.title')
         ->orderBy('papers.status', 'desc')
@@ -26,13 +26,15 @@ class ConfChairPaperReportController extends Controller {
         $nullReviewer = DB::table('papers')
             ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
             ->join('users', 'paper_reviews.reviewer_id', '=', 'users.email')
-            ->select('papers.title', DB::raw('group_concat(users.firstname) as firstname'))
+            ->select('papers.id', 'papers.title', DB::raw('group_concat(users.firstname) as firstname'))
             ->whereNull('paper_reviews.paperEvaluation')
             ->groupBy('papers.title')
             ->orderBy('papers.status', 'desc')
             ->get();
 
-//dd($nullReviewer);
+
+//dd($final_results);
+
         $acceptNum = DB::table('papers')
             ->select('status')
             ->where('status', '=', 1)

@@ -13,6 +13,7 @@ class MessageLog extends Model {
         'user_id',
         'recipient_id',
         'conference_id',
+        'conference_hash_id',
         'title',
         'content'
     ];

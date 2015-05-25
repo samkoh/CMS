@@ -27,15 +27,16 @@ class ConfChairFinalizePapersController extends Controller {
      */
     public function index()
     {
+        //Get all the reviewed papers
         $allReviewedPapers = DB::table('papers')
             ->leftJoin('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
             ->select(DB::raw('papers.id, papers.title, papers.status, papers.tempStatus,
             group_concat(paper_reviews.paperEvaluation) as evaluation,
-             count(paper_reviews.reviewer_id) as ReviewerNo'))
+             count(paper_reviews.reviewer_id) as ReviewerNo, sum(paper_reviews.paperEvaluation * paper_reviews.confidenceLevel) AS WeightedAverage'))
             ->where('papers.tempStatus', '!=', '')
             ->groupBy('papers.id')
             ->get();
-//        dd($allReviewedPapers);
+//dd($allReviewedPapers);
 
         return view('conferenceChair.finalizeAllPapers', compact('allReviewedPapers'));
     }
