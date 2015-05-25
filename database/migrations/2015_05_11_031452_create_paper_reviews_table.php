@@ -15,6 +15,7 @@ class CreatePaperReviewsTable extends Migration {
 		Schema::create('paper_reviews', function(Blueprint $table)
 		{
             $table->bigIncrements('id');
+            $table->integer('tempId');
             $table->string('reviewer_id');
             $table->string('assigned_by');
             $table->bigInteger('paper_id')->unsigned();

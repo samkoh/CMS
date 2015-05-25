@@ -89,9 +89,20 @@ class ConfChairPapersController extends Controller {
             ->where('paper_id', '=', $id )
             ->get();
 
+        $tempId = DB::table('paper_reviews')
+            ->select('tempId')
+            ->where('paper_id', '=', $id )
+            ->max('tempId');
+
+
+
+
         if($reviewer == null)
         {
+            $paperReview->tempId = $tempId + 1;//Increment on the reviewer assigned number
+
             $paperReview->save();
+
             session()->flash('flash_message', 'This paper has been assigned to the reviewer respectively');
         }
         else

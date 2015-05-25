@@ -49,7 +49,7 @@
                                     @if($Discussion->user_role_id == 1)
                                         <strong><i>Conference Chair :</i></strong>
                                         @else
-                                        <strong><i>Reviewer :</i></strong>
+                                        <strong><i>Reviewer : {{$Discussion->tempId}}</i></strong>
                                     @endif
                                     <br/>
                                     {{$Discussion->content}}

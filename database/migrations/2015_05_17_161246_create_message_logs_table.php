@@ -16,6 +16,7 @@ class CreateMessageLogsTable extends Migration {
 		{
 			$table->bigIncrements('id');
             $table->bigInteger('conference_id')->unsigned()->nullable();
+            $table->text('conference_hash_id');
             $table->string('title');
             $table->text('content');
 			$table->timestamps();

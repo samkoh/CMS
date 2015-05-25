@@ -129,21 +129,44 @@ class ReviewerDiscussionController extends Controller {
 //        $paper = $this->paper->get()[$id];
         $paper = Paper::find($id);
 
-//        dd($userRole);
-//        $paperDiscussion = $this->paperDiscussion->get() [$paper->id];
+//        $arrangement = DB::table('paper_reviews')
+//            ->select('id')
+//            ->where('paper_id', '=', $id)
+//            ->get();
+//
+//        $array_size = count($arrangement);
+//
+//        for($i=0; $i < $array_size; $i++)
+//        {
+//            for($j=0; $j < $array_size; $j++)
+//            {
+//                if($arrangement[$i] < $arrangement[$j])
+//                {
+//                    $temp = $arrangement[$i];
+//                    $arrangement[$i] = $arrangement[$j];
+//                    $arrangement[$j] = $temp;
+//                }
+//            }
+//        }
+//dd($arrangement[$i]);
 
 //        $paperDiscussion = DB::table('paper_discussions')
-//            ->where('paper_id', '=', $paper->id)
-//            ->select('content', 'created_at')
-//            ->where('status', '=', 1) //status is active
-//            ->orderBy('created_at', 'desc')
+//            ->join('user_user_roles','paper_discussions.user_id', '=', 'user_user_roles.user_id')
+//            ->where('paper_discussions.paper_id', '=', $paper->id)
+//            ->select('paper_discussions.content', 'user_user_roles.user_role_id', 'paper_discussions.created_at')
+//            ->where('paper_discussions.status', '=', 1)//status is active
+//            ->orderBy('paper_discussions.created_at', 'desc')
 //            ->get();
 
         $paperDiscussion = DB::table('paper_discussions')
-            ->join('users', 'paper_discussions.user_id', '=', 'users.email')
             ->join('user_user_roles','paper_discussions.user_id', '=', 'user_user_roles.user_id')
+//            ->leftJoin('paper_reviews', 'paper_reviews.reviewer_id', '=', 'user_user_roles.user_id' && 'paper_reviews.paper_id', '=', 'paper_discussions.paper_id')
+            ->leftJoin('paper_reviews', function($join){
+                $join->on('paper_reviews.reviewer_id', '=', 'user_user_roles.user_id');
+                $join->on('paper_reviews.paper_id', '=', 'paper_discussions.paper_id');
+            })
             ->where('paper_discussions.paper_id', '=', $paper->id)
-            ->select('paper_discussions.content', 'user_user_roles.user_role_id', 'paper_discussions.created_at')
+            ->select('paper_discussions.content', 'user_user_roles.user_role_id', 'paper_discussions.created_at', 'paper_reviews.tempId')
             ->where('paper_discussions.status', '=', 1)//status is active
             ->orderBy('paper_discussions.created_at', 'desc')
             ->get();
