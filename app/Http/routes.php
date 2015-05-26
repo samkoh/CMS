@@ -15,7 +15,7 @@ Route::get('/', 'WelcomeController@index');
 
 Route::resource('home', 'HomeController');
 //Route::resource('home', 'ReviewerHomeController');
-
+#Conference Chair Discussion
 Route::get('conferenceChair/confDiscussion', ['middleware' => 'auth', 'uses' => 'Reviewer\ReviewerDiscussionController@index']);
 Route::get('conferenceChair/confDiscussion/{id}', ['middleware' => 'auth', 'uses' => 'Reviewer\ReviewerDiscussionController@show']);
 Route::post('conferenceChair/confDiscussion/{id}', ['middleware' => 'auth', 'uses' => 'Reviewer\ReviewerDiscussionController@store']);
@@ -26,6 +26,7 @@ Route::post('conferenceChair/allPapers/{id}', ['middleware' => 'auth', 'uses' =>
 
 //Route::get('conferenceChair/finalizeAllPapers', ['middleware' => 'auth', 'uses' => 'ConfChair\ConfChairFinalizePapersController@index']);
 
+Route::resource('conferenceChair/usersProfile', 'ConfChair\ConfChairUserProfileController');
 
 Route::get('conferenceChair/finalizeAllPapers',[
     'middleware' =>['auth', 'permissions.required'] ,
@@ -70,7 +71,13 @@ Route::get('reviewer/get/{fullPaperUrl}', ['as' => 'getpaper', 'uses' => 'Review
 //Route::resource('reviewer', 'Reviewer\ReviewerPaperController');
 
 
+//Route::get('profile', 'Author\AuthorProfileController@index');
+//Route::get('profile/show', 'Author\AuthorProfileController@show');
+//Route::get('profile/edit', 'Author\AuthorProfileController@edit');
+Route::patch('profile/{email}', 'Author\AuthorProfileController@update');
+Route::resource('profile','Author\AuthorProfileController');
 Route::resource('author', 'Author\SubmitPaperController');
+
 
 //Route::resource('auth/register', 'Auth\AuthController');
 

@@ -20,6 +20,7 @@
 
 					<form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="conference_id" value="{{$conferenceId}}">
 
 						<div class="form-group">
                             <label class="col-md-4 control-label">First Name: <font color="red">*</font></label>
@@ -204,9 +205,16 @@
                             </div>
                         </div>
 
+                        @if($conferenceId == null)
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Register as:</label>
 
-                            {{--<input type="hidden" name="user_id" value="sam910615@gmail.com">--}}
-                            <input type="hidden" name="conference_id" value="{{$conferenceId}}">
+                                <div class="col-md-6">
+                                    <input checked="checked" name="user_role" type="radio" value="6"> Author<br>
+                                    <input name="user_role" type="radio" value="7"> Participant
+                                </div>
+                            </div>
+                        @endif
 
 
                         {{--<div class="form-group">--}}

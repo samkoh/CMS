@@ -67,11 +67,12 @@ class ConfChairInvitationController extends Controller {
             ->select('conferenceName')
             ->where('id', '=', $data['conferenceName'])
             ->get();
+//        dd($conferenceName);
         //Encryption method for the Conference Id
 //        $hashedConferenceId = \Crypt::encrypt($data['conferenceName']);
-//        $hashedConferenceId = password_hash("ConferenceId", PASSWORD_BCRYPT, array());
-        $hashedConferenceId = md5('conferenceName');
-
+//        $hashedConferenceId = password_hash("conferenceName", PASSWORD_BCRYPT, array());
+        $hashedConferenceId = md5($data['conferenceName']);
+//dd($hashedConferenceId);
         //Session for hashedConferenceId
         session()->flash('hashConferenceId', $hashedConferenceId);
 
@@ -118,19 +119,15 @@ class ConfChairInvitationController extends Controller {
         $recipientMessageLog->messagelog_id = $contentId;
         $recipientMessageLog->save();
 
+        //Clear the session
+        \Session::forget('invitation');
+        \Session::forget('hashConferenceId');
+
         return $content;
         return $recipientMessageLog;
-
-//        $content = session()->get('invitation') + ['template' => $request->input('template')];
-//
-//        $content = $recipientEmail->invitations()->create($content);
-//        dd($content);
-//
-//        return $content;
-////        $content->save();
     }
 
-    /**again
+    /**
      * Store a newly created resource in storage.
      *
      * @return Response

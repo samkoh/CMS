@@ -62,6 +62,7 @@
                                     </td>
                                     <td>
                                         {{$allPaper->firstname}}
+{{--                                        <a href="http://test.com">{{$allPaper->firstname}}</a>--}}
                                     </td>
                                     <td>
                                         @if($allPaper->status == 1 )

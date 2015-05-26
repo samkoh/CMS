@@ -1,7 +1,7 @@
 Hello, {{ $name }} with email {{ $email }}
 
 @foreach($ConferenceName as $confName)
-I am the program chair of {{$confName->conferenceName}} 2015.
+    I am the program chair of {{$confName->conferenceName}} 2015.
 @endforeach
 
 I am here to invite you to become one of the Paper Committee Member of this conference.

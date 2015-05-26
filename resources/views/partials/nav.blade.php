@@ -27,7 +27,7 @@
                                 <li><a href="/conferenceChair/finalizeAllPapers">Finalize All Papers</a></li>
                                 <li><a href="/conferenceChair/paperReport">Paper Report</a></li>
                                 <li><a href="/conferenceChair/confDiscussion">Paper Discussion</a></li>
-
+                                <li><a href="/conferenceChair/usersProfile">User Profile</a></li>
                             </ul>
 					</li>
 
@@ -45,6 +45,8 @@
                             <li><a href="/author">Submit Paper</a></li>
                         </ul>
                     </li>
+
+                    <li class="active"><a href="/profile">Profile</a></li>
 
 				</ul>				
 
