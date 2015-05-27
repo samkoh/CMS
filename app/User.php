@@ -47,7 +47,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         'country',
         'contactNo',
         'faxNo',
-        'education'];
+        'education',
+        'registerUponInvitation'
+        ];
 
     /**
      * The attributes excluded from the model's JSON form.

@@ -6,9 +6,11 @@
 
     <br/>
 
-    {!! Form::open(['action' => 'ConfChairInvitationController@store']) !!}
+    {{--{!! Form::open(['action' => 'ConfChairInvitationController@store']) !!}--}}
+    {!! Form::open() !!}
 
-        <!--Name Form Input -->
+
+    <!--Name Form Input -->
         <div class="form-group">
             {!! Form::label('name', 'Name:') !!}
             {!! Form::text('name', 'John Cena', ['class' => 'form-control']) !!}

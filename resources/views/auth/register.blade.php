@@ -22,6 +22,14 @@
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="conference_id" value="{{$conferenceId}}">
 
+                        @if($conferenceId == null)
+                            {{--0 means register without invitation request--}}
+                            <input type="hidden" name="register_upon_invitation" value="0">
+                        @else
+                            {{--1 means register invitation request--}}
+                            <input type="hidden" name="register_upon_invitation" value="1">
+                        @endif
+
 						<div class="form-group">
                             <label class="col-md-4 control-label">First Name: <font color="red">*</font></label>
                             <div class="col-md-6">
@@ -32,7 +40,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">Last Name:</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="lastname" value="{{ old('lastmame') }}">
+                                <input type="text" class="form-control" name="lastname" value="{{ old('lastname') }}">
                             </div>
                         </div>
 

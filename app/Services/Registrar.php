@@ -65,7 +65,7 @@ class Registrar implements RegistrarContract {
 //            'user_role' => $data['user_role'],
 //            'user_id' => $data['user_id'],
             'conference_id' => $data['conference_id'],
-
+            'registerUponInvitation' => $data['register_upon_invitation'],
         ]);
 	}
 

@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ConfChairInvitationStatusController extends Controller {
 
@@ -14,7 +15,14 @@ class ConfChairInvitationStatusController extends Controller {
 	 */
 	public function index()
 	{
-		return view('conferenceChair.invitationStatus');
+        $invitations = DB::table('recipient_message_logs')
+            ->leftJoin('users', 'recipient_message_logs.recipient_id', '=', 'users.email')
+            ->select('recipient_message_logs.recipient_id', 'users.registerUponInvitation', 'recipient_message_logs.created_at')
+            ->get();
+
+//        dd($invitations);
+
+		return view('conferenceChair.invitationStatus', compact('invitations'));
 	}
 
 	/**
