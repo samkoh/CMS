@@ -17,6 +17,19 @@
     </div>
 
     <div class="form-group">
+        {!! Form::label('nameTitlePrefix', 'Name Title Prefix :') !!}
+        {!! Form::select('nameTitlePrefix',[
+        'Sir' => 'Sir.',
+        'Mr' => 'Mr.',
+        'Mrs' => 'Mrs.',
+        'Miss' => 'Miss.',
+        'Dr' => 'Dr.',
+        'Prof' => 'Prof.'],
+        'null', ['id' => '','class' => 'form-control', ''])!!}
+
+    </div>
+
+    <div class="form-group">
         {!! Form::label('name', 'Recipient Name:')!!}
         {!! Form::text('name', null, array('required','class'=>'form-control','placeholder'=>'Name')) !!}
     </div>

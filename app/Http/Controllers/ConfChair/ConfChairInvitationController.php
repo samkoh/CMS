@@ -135,13 +135,15 @@ class ConfChairInvitationController extends Controller {
     public function store(Request $request, RecipientMessageLog $recipientMessageLog, MessageLog $messageLog)
     {
         $content = $this->createInvitation($request, $recipientMessageLog, $messageLog);
+
         $senderEmail = $recipientMessageLog->user_id;
         $recipientEmail = $recipientMessageLog->recipient_id;
         $subject = $content->title;
-//dd($subject);
         //Email
-        \Mail::queue('emails.invitationMessage', compact('content', 'senderEmail', 'recipientEmail', 'subject'), function ($message) use ($content, $senderEmail, $recipientEmail, $subject)
-        {
+
+//        \Mail::queue('emails.invitationMessage', compact('content', 'senderEmail', 'recipientEmail', 'subject'), function ($message) use ($content, $senderEmail, $recipientEmail, $subject)
+                \Mail::queue(['text' => 'emails.invitationMessage'],compact('content', 'senderEmail', 'recipientEmail', 'subject'), function ($message) use ($content, $senderEmail, $recipientEmail, $subject)
+                {
             $sender = $senderEmail;
             $recipient = $recipientEmail;
             $message->from($sender)
