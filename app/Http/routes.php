@@ -78,6 +78,16 @@ Route::get('conferenceChair/finalizeAllPapers/{id}',[
 ]);
 Route::patch('conferenceChair/finalizeAllPapers/{id}', ['middleware' => 'auth', 'uses' => 'ConfChair\ConfChairFinalizePapersController@update']);
 
+#Conference Chair create Topic
+//Route::resource('conferenceChair/createTopic','ConfChair\ConfChairCreateTopicController' );
+Route::group(['middleware' => ['auth', 'permissions.required'],
+    'permissions' => ['conference_chair'],
+    'permissions_require_all' => true,
+], function ()
+{
+    Route::resource('conferenceChair/createTopic', 'ConfChair\ConfChairCreateTopicController');
+});
+
 
 #Conference Chair View Paper Report
 //Route::get('conferenceChair/paperReport', ['middleware' => 'auth', 'uses' => 'ConfChair\ConfChairPaperReportController@index']);
@@ -87,6 +97,16 @@ Route::get('conferenceChair/paperReport',[
     'uses' => 'ConfChair\ConfChairPaperReportController@index',
     'permissions_require_all' => true,
 ]);
+
+#Conference Chair create a conference
+//Route::resource('conferenceChair/createConference', 'ConfChair\ConfChairCreateConferenceController');
+Route::group(['middleware' => ['auth', 'permissions.required'],
+    'permissions' => ['conference_chair'],
+    'permissions_require_all' => true,
+], function ()
+{
+    Route::resource('conferenceChair/createConference', 'ConfChair\ConfChairCreateConferenceController');
+});
 
 
 #Conference Chair view Invitation
@@ -99,14 +119,6 @@ Route::get('conferenceChair/invitationStatus',[
 ]);
 
 #Conference Chair Send Invitation
-//Route::resource('conferenceChair', 'ConfChair\ConfChairInvitationController');
-Route::group(['middleware' => ['auth', 'permissions.required'],
-    'permissions' => ['conference_chair'],
-    'permissions_require_all' => true,
-], function ()
-{
-    Route::resource('conferenceChair', 'ConfChair\ConfChairInvitationController');
-});
 
 //Route::get('conferenceChair/invitation/confirm', ['middleware' => 'auth', 'uses' => 'ConfChair\ConfChairInvitationController@confirm']);
 Route::get('conferenceChair/invitation/confirm',[
@@ -123,6 +135,15 @@ Route::get('conferenceChair/invitationCancel',[
     'permissions_require_all' => true,
 ]);
 
+//Route::resource('conferenceChair', 'ConfChair\ConfChairInvitationController');
+Route::group(['middleware' => ['auth', 'permissions.required'],
+    'permissions' => ['conference_chair'],
+    'permissions_require_all' => true,
+], function ()
+{
+    Route::resource('conferenceChair', 'ConfChair\ConfChairInvitationController');
+});
+
 #Conference Chair send Bulk email
 //Route::get('conferenceChair/sendBulkEmail', ['middleware' => 'auth', 'uses' => 'ConfChair\ConfChairSendBulkEmailController@index']);
 Route::get('conferenceChair/sendBulkEmail',[
@@ -134,28 +155,11 @@ Route::get('conferenceChair/sendBulkEmail',[
 
 //Route::get('conferenceChair/createTopic', ['middleware' => 'auth', 'uses' => 'ConfChair\ConfChairCreateTopicController@create']);
 
-#Conference Chair create Topic
-//Route::resource('conferenceChair/createTopic','ConfChair\ConfChairCreateTopicController' );
-Route::group(['middleware' => ['auth', 'permissions.required'],
-    'permissions' => ['conference_chair'],
-    'permissions_require_all' => true,
-], function ()
-{
-    Route::resource('conferenceChair/createTopic', 'ConfChair\ConfChairCreateTopicController');
-});
 
 //Route::get('conferenceChair/createConference', 'ConfChair\ConfChairCreateConferenceController@index');
 //Route::get('conferenceChair/createConference', 'ConfChairCreateConference@store');
 
-#Conference Chair create a conference
-//Route::resource('conferenceChair/createConference', 'ConfChair\ConfChairCreateConferenceController');
-Route::group(['middleware' => ['auth', 'permissions.required'],
-    'permissions' => ['conference_chair'],
-    'permissions_require_all' => true,
-], function ()
-{
-    Route::resource('conferenceChair/createConference', 'ConfChair\ConfChairCreateConferenceController');
-});
+
 
 #Conference Chair create conference fee
 //Route::get('conferenceChair/createConferenceFee', ['middleware' => 'auth', 'uses' => 'ConfChair\ConfChairConferenceFeeController@index']);

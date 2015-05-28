@@ -19,6 +19,7 @@ class ConfChairUserProfileController extends Controller {
             ->join('user_user_roles', 'users.email', '=', 'user_user_roles.user_id')
             ->select('user_user_roles.user_role_id','users.firstname','users.lastname','users.email')
             ->where('user_user_roles.user_role_id', '!=', 1)
+            ->orderBy('user_user_roles.user_role_id', 'asc')
             ->get();
 //dd($users);
         return view('conferenceChair.usersProfile', compact('users'));

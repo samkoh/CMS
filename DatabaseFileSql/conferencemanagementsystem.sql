@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2015 at 06:57 PM
+-- Generation Time: May 28, 2015 at 03:32 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `conferences` (
   `endDate` date NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `conferences`
@@ -49,7 +49,9 @@ CREATE TABLE IF NOT EXISTS `conferences` (
 
 INSERT INTO `conferences` (`id`, `user_id`, `conferenceName`, `acronym`, `theme`, `address`, `websiteUrl`, `conferenceEmail`, `contactNo`, `faxNo`, `startDate`, `endDate`, `created_at`, `updated_at`) VALUES
 (1, 'sam910615@gmail.com', 'First-Conference', 'first', 'First', '22,Jln Sri Serdang,23000', 'www.firstConference.com', 'test@mail.com', 12345, 12345, '2015-05-24', '2015-05-24', '2015-05-24 15:08:40', '2015-05-24 15:08:40'),
-(2, 'sam910615@gmail.com', 'Second-Conference', 'secConf', 'Information System', 'Universiti Putra Malaysia', 'www.secondConf.com.my', 'secondConf@mail.com', 123456789, 3456789, '2015-05-24', '2015-05-27', '2015-05-24 07:11:40', '2015-05-24 07:11:40');
+(2, 'sam910615@gmail.com', 'Second-Conference', 'secConf', 'Information System', 'Universiti Putra Malaysia', 'www.secondConf.com.my', 'secondConf@mail.com', 123456789, 3456789, '2015-05-24', '2015-05-27', '2015-05-24 07:11:40', '2015-05-24 07:11:40'),
+(3, 'sam910615@gmail.com', 'Test20150527', 'Test20150527', 'Test20150527', 'Test20150527', 'www.Test20150527.com', 'Test20150527@mail.com', 123, 123, '0000-00-00', '0000-00-00', '2015-05-26 08:10:20', '2015-05-26 08:10:20'),
+(4, 'sam910615@gmail.com', 'Test20150528', 'Test20150528', 'Test20150528', 'Test20150528', 'www.Test20150528.com', 'Test20150528@mail.com', 123, 123, '0000-00-00', '0000-00-00', '2015-05-27 16:09:24', '2015-05-27 16:09:24');
 
 -- --------------------------------------------------------
 
@@ -63,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `conference_topic` (
   `topic_id` bigint(20) unsigned NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `conference_topic`
@@ -77,7 +79,33 @@ INSERT INTO `conference_topic` (`id`, `conference_id`, `topic_id`, `created_at`,
 (5, 2, 6, '2015-05-24 07:11:40', '2015-05-24 07:11:40'),
 (6, 2, 7, '2015-05-24 07:11:40', '2015-05-24 07:11:40'),
 (7, 2, 13, '2015-05-24 07:11:40', '2015-05-24 07:11:40'),
-(8, 2, 17, '2015-05-24 07:11:40', '2015-05-24 07:11:40');
+(8, 2, 17, '2015-05-24 07:11:40', '2015-05-24 07:11:40'),
+(9, 3, 5, '2015-05-26 08:10:21', '2015-05-26 08:10:21'),
+(10, 3, 6, '2015-05-26 08:10:21', '2015-05-26 08:10:21'),
+(11, 4, 5, '2015-05-27 16:09:24', '2015-05-27 16:09:24'),
+(12, 4, 7, '2015-05-27 16:09:24', '2015-05-27 16:09:24');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `invitation_registration_status`
+--
+
+CREATE TABLE IF NOT EXISTS `invitation_registration_status` (
+`id` int(10) unsigned NOT NULL,
+  `statusId` bigint(20) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `invitation_registration_status`
+--
+
+INSERT INTO `invitation_registration_status` (`id`, `statusId`, `name`, `created_at`, `updated_at`) VALUES
+(1, 0, 'without invitation', '2015-05-27 05:37:32', '2015-05-27 05:37:32'),
+(2, 1, 'with invitation', '2015-05-27 05:37:32', '2015-05-27 05:37:32');
 
 -- --------------------------------------------------------
 
@@ -88,20 +116,42 @@ INSERT INTO `conference_topic` (`id`, `conference_id`, `topic_id`, `created_at`,
 CREATE TABLE IF NOT EXISTS `message_logs` (
 `id` bigint(20) unsigned NOT NULL,
   `conference_id` bigint(20) unsigned DEFAULT NULL,
+  `conference_hash_id` text COLLATE utf8_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `content` text COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `message_logs`
 --
 
-INSERT INTO `message_logs` (`id`, `conference_id`, `title`, `content`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Invitation', 'Hello, John  with email sam910615@gmail.com\r\n\r\nI am the program chair of First-Conference 2015.\r\n\r\nI am here to invite you to become one of the Paper Committee Member of this conference.\r\n\r\nIf you are interested in joining us, please click the following link to register before 1st July 2015\r\n\r\nhttp://localhost/auth/show/eyJpdiI6IjlpWWg2TGwwSHI0RERQNEJBUGpaNkE9PSIsInZhbHVlIjoiQ2Y5dUMzQzU1Q05wOXZmMlwvTXpmMXc9PSIsIm1hYyI6ImI4ZTk2MTJjMDFiYTMxMDg0ZjlmMTIwYjBmMTQ4YjJjMjZiNGM4ZDIxY2JjODQ0OWU1YmUzMDc2NzVjYWY2MWYifQ==\r\n\r\nPlease do reply me if you are not interested in joining us.\r\n\r\nThank You,\r\n\r\nSincerely,\r\n\r\nsam\r\n\r\nsam910615@gmail.com', '2015-05-24 07:12:21', '2015-05-24 07:12:21'),
-(2, 1, 'Invitation', 'Hello, Nikki with email sam910615@gmail.com\r\n\r\nI am the program chair of First-Conference 2015.\r\n\r\nI am here to invite you to become one of the Paper Committee Member of this conference.\r\n\r\nIf you are interested in joining us, please click the following link to register before 1st July 2015\r\n\r\nhttp://localhost/auth/show/eyJpdiI6IjBWYW5mc3Bsc05SZVgzeFU2MHoxQUE9PSIsInZhbHVlIjoiNVZFYkFWNjRuUXNRNFwvQlhueXpzWWc9PSIsIm1hYyI6IjIwOGFmNzhhYmIxODlmNjAzMjMwY2VmZWM4M2ZhODViN2M4NDc5ZWM4MzM0MzFmN2E4NjcwZGUxNGZmYTYwYjIifQ==\r\n\r\nPlease do reply me if you are not interested in joining us.\r\n\r\nThank You,\r\n\r\nSincerely,\r\n\r\nsam\r\n\r\nsam910615@gmail.com', '2015-05-24 07:14:22', '2015-05-24 07:14:22'),
-(3, 1, 'Invitation', 'Hello, Dean with email sam910615@gmail.com\r\n\r\nI am the program chair of First-Conference 2015.\r\n\r\nI am here to invite you to become one of the Paper Committee Member of this conference.\r\n\r\nIf you are interested in joining us, please click the following link to register before 1st July 2015\r\n\r\nhttp://localhost/auth/show/eyJpdiI6ImZtY1BES2xCQWVlV1BsVkpmOEFEdFE9PSIsInZhbHVlIjoiR2JGZFpTYlJPYXlONXJFRnZKTGZ1dz09IiwibWFjIjoiMDBmM2QyZDc3NjYxNTJiMWUwYmQzZTUzOGRhOTBmODg4MzA3ZmE3OGViZjdmMjQ2ZDBhMTMxYjEwMjVlZDRkZCJ9\r\n\r\nPlease do reply me if you are not interested in joining us.\r\n\r\nThank You,\r\n\r\nSincerely,\r\n\r\nsam\r\n\r\nsam910615@gmail.com', '2015-05-24 07:16:17', '2015-05-24 07:16:17');
+INSERT INTO `message_logs` (`id`, `conference_id`, `conference_hash_id`, `title`, `content`, `created_at`, `updated_at`) VALUES
+(1, 2, 'eyJpdiI6InVOWUlHMUdEaWwxVnNmSXVtMk50WUE9PSIsInZhbHVlIjoibmZlVnlcL2VVZENPalhQK05kVGgyTGc9PSIsIm1hYyI6IjBmN2I3YjI1ZWUzMGMzMTA3MWIxY2VlNzgzY2ZlODdkZTA3NjE5YmMwZTA4ZjAzMTBlNWUzZTg3ZTY3OTM4YzEifQ==', 'sam910615@gmail.com', 'Hello, sam koh with email sam910615@gmail.com\r\n\r\nI am the program chair of Second-Conference 2015.\r\n\r\nI am here to invite you to become one of the Paper Committee Member of this conference.\r\n\r\nIf you are interested in joining us, please click the following link to register before 1st July 2015\r\n\r\nhttp://localhost/auth/show/eyJpdiI6InVOWUlHMUdEaWwxVnNmSXVtMk50WUE9PSIsInZhbHVlIjoibmZlVnlcL2VVZENPalhQK05kVGgyTGc9PSIsIm1hYyI6IjBmN2I3YjI1ZWUzMGMzMTA3MWIxY2VlNzgzY2ZlODdkZTA3NjE5YmMwZTA4ZjAzMTBlNWUzZTg3ZTY3OTM4YzEifQ==\r\n\r\nPlease do reply me if you are not interested in joining us.\r\n\r\nThank You,\r\n\r\nSincerely,\r\n\r\nsam\r\n\r\nsam910615@gmail.com', '2015-05-25 04:12:24', '2015-05-25 04:12:24'),
+(2, 2, '13da4f341157fab5a2810dce3d582217', 'sam910615@gmail.com', 'Hello, sam koh with email sam910615@gmail.com\r\n\r\nI am the program chair of Second-Conference 2015.\r\n\r\nI am here to invite you to become one of the Paper Committee Member of this conference.\r\n\r\nIf you are interested in joining us, please click the following link to register before 1st July 2015\r\n\r\nhttp://localhost/auth/show/13da4f341157fab5a2810dce3d582217\r\n\r\nPlease do reply me if you are not interested in joining us.\r\n\r\nThank You,\r\n\r\nSincerely,\r\n\r\nsam\r\n\r\nsam910615@gmail.com', '2015-05-25 04:18:50', '2015-05-25 04:18:50'),
+(3, 2, '$2y$10$xLyEmQB.sGdIiX1IulQkFuO4AXaH.6bG4o9SXKzLTH4.1iRGzpAYa', 'test', 'Hello, test with email sam910615@gmail.com\r\n\r\nI am the program chair of Second-Conference 2015.\r\n\r\nI am here to invite you to become one of the Paper Committee Member of this conference.\r\n\r\nIf you are interested in joining us, please click the following link to register before 1st July 2015\r\n\r\nhttp://localhost/auth/show/$2y$10$xLyEmQB.sGdIiX1IulQkFuO4AXaH.6bG4o9SXKzLTH4.1iRGzpAYa\r\n\r\nPlease do reply me if you are not interested in joining us.\r\n\r\nThank You,\r\n\r\nSincerely,\r\n\r\nsam\r\n\r\nsam910615@gmail.com', '2015-05-25 17:21:00', '2015-05-25 17:21:00'),
+(4, 1, '$2y$10$I7vvBfYPs4XqKk5KTWKLGuDk1My0ssVuwaTHzUIWeFveI2tiwNWS2', 'test', 'Hello, test with email sam910615@gmail.com\r\n\r\nI am the program chair of First-Conference 2015.\r\n\r\nI am here to invite you to become one of the Paper Committee Member of this conference.\r\n\r\nIf you are interested in joining us, please click the following link to register before 1st July 2015\r\n\r\nhttp://localhost/auth/show/$2y$10$I7vvBfYPs4XqKk5KTWKLGuDk1My0ssVuwaTHzUIWeFveI2tiwNWS2\r\n\r\nPlease do reply me if you are not interested in joining us.\r\n\r\nThank You,\r\n\r\nSincerely,\r\n\r\nsam\r\n\r\nsam910615@gmail.com', '2015-05-25 17:26:00', '2015-05-25 17:26:00'),
+(5, 1, '$2y$10$BrLGvAxMw/guVFUOsB7VZ.5oST3m.bi95DxgS4CZkGsSNgeCqDEea', 'test', 'Hello, test with email sam910615@gmail.com\r\n\r\nI am the program chair of First-Conference 2015.\r\n\r\nI am here to invite you to become one of the Paper Committee Member of this conference.\r\n\r\nIf you are interested in joining us, please click the following link to register before 1st July 2015\r\n\r\nhttp://localhost/auth/show/$2y$10$BrLGvAxMw/guVFUOsB7VZ.5oST3m.bi95DxgS4CZkGsSNgeCqDEea\r\n\r\nPlease do reply me if you are not interested in joining us.\r\n\r\nThank You,\r\n\r\nSincerely,\r\n\r\nsam\r\n\r\nsam910615@gmail.com', '2015-05-26 04:17:41', '2015-05-26 04:17:41'),
+(6, 2, '$2y$10$zXSP7ilrVIhVuozUNE9JC.Crk/2AUF/fxoLxEZCkoENtZ5Ow6ivku', 'test', 'Hello, test with email sam910615@gmail.com\r\n\r\nI am the program chair of Second-Conference 2015.\r\n\r\nI am here to invite you to become one of the Paper Committee Member of this conference.\r\n\r\nIf you are interested in joining us, please click the following link to register before 1st July 2015\r\n\r\nhttp://localhost/auth/show/$2y$10$zXSP7ilrVIhVuozUNE9JC.Crk/2AUF/fxoLxEZCkoENtZ5Ow6ivku\r\n\r\nPlease do reply me if you are not interested in joining us.\r\n\r\nThank You,\r\n\r\nSincerely,\r\n\r\nsam\r\n\r\nsam910615@gmail.com', '2015-05-26 04:21:24', '2015-05-26 04:21:24'),
+(7, 2, '13da4f341157fab5a2810dce3d582217', 'test', 'Hello, test with email sam910615@gmail.com\r\n\r\nI am the program chair of Second-Conference 2015.\r\n\r\nI am here to invite you to become one of the Paper Committee Member of this conference.\r\n\r\nIf you are interested in joining us, please click the following link to register before 1st July 2015\r\n\r\nhttp://localhost/auth/show/13da4f341157fab5a2810dce3d582217\r\n\r\nPlease do reply me if you are not interested in joining us.\r\n\r\nThank You,\r\n\r\nSincerely,\r\n\r\nsam\r\n\r\nsam910615@gmail.com', '2015-05-26 04:25:21', '2015-05-26 04:25:21'),
+(8, 1, '13da4f341157fab5a2810dce3d582217', 'test', '<!DOCTYPE html>\r\n<html lang="en-US">\r\n<head>\r\n    <meta charset="utf-8">\r\n</head>\r\n<body>\r\n<h2>Paper Committee Joining Request</h2>\r\n<div>\r\n    Hello, test , email sam910615@gmail.com\r\n</div>\r\n<div>         I am the program chair of First-Conference 2015.\r\n    </div>\r\n<div>\r\n    I am here to invite you to become one of the Paper Committee Member of this conference.\r\n</div>\r\n<div>\r\n    If you are interested in joining us, please click the following link to register before 1st July 2015\r\n</div>\r\n<div>\r\n    http://localhost/auth/show/13da4f341157fab5a2810dce3d582217\r\n</div>\r\n<div>\r\n    Please do reply me if you are not interested in joining us.\r\n</div>\r\n<div>\r\n    Thank You,\r\n</div>\r\n<div>\r\n    Sincerely,\r\n</div>\r\n<div>\r\n    sam\r\n    sam910615@gmail.com\r\n</div>\r\n</body>\r\n</html>', '2015-05-26 04:36:38', '2015-05-26 04:36:38'),
+(9, 1, '13da4f341157fab5a2810dce3d582217', 'test', '<h2>Hello test</h2>\r\n<p> http://localhost/auth/show/13da4f341157fab5a2810dce3d582217 </p>', '2015-05-26 04:44:11', '2015-05-26 04:44:11'),
+(10, 2, '13da4f341157fab5a2810dce3d582217', 'test', 'Hello, test with email sam910615@gmail.com\r\n\r\n    I am the program chair of Second-Conference 2015.\r\n\r\nI am here to invite you to become one of the Paper Committee Member of this conference.\r\n\r\nIf you are interested in joining us, please click the following link to register before 1st July 2015\r\n\r\nhttp://localhost/auth/show/13da4f341157fab5a2810dce3d582217\r\n\r\nPlease do reply me if you are not interested in joining us.\r\n\r\nThank You,\r\n\r\nSincerely,\r\n\r\nsam\r\n\r\nsam910615@gmail.com', '2015-05-26 05:09:48', '2015-05-26 05:09:48'),
+(11, 2, '13da4f341157fab5a2810dce3d582217', 'test', 'Hello, test with email sam910615@gmail.com\r\n\r\n    I am the program chair of Second-Conference 2015.\r\n\r\nI am here to invite you to become one of the Paper Committee Member of this conference.\r\n\r\nIf you are interested in joining us, please click the following link to register before 1st July 2015\r\n\r\nhttp://localhost/auth/show/13da4f341157fab5a2810dce3d582217\r\n\r\nPlease do reply me if you are not interested in joining us.\r\n\r\nThank You,\r\n\r\nSincerely,\r\n\r\nsam\r\n\r\nsam910615@gmail.com', '2015-05-26 06:44:39', '2015-05-26 06:44:39'),
+(12, 3, '13da4f341157fab5a2810dce3d582217', 'test', 'Hello, test with email sam910615@gmail.com\r\n\r\n    I am the program chair of Test20150527 2015.\r\n\r\nI am here to invite you to become one of the Paper Committee Member of this conference.\r\n\r\nIf you are interested in joining us, please click the following link to register before 1st July 2015\r\n\r\nhttp://localhost/auth/show/13da4f341157fab5a2810dce3d582217\r\n\r\nPlease do reply me if you are not interested in joining us.\r\n\r\nThank You,\r\n\r\nSincerely,\r\n\r\nsam\r\n\r\nsam910615@gmail.com', '2015-05-26 08:10:38', '2015-05-26 08:10:38'),
+(13, 3, 'eccbc87e4b5ce2fe28308fd9f2a7baf3', 'test', 'Hello, test with email sam910615@gmail.com\r\n\r\n    I am the program chair of Test20150527 2015.\r\n\r\nI am here to invite you to become one of the Paper Committee Member of this conference.\r\n\r\nIf you are interested in joining us, please click the following link to register before 1st July 2015\r\n\r\nhttp://localhost/auth/show/eccbc87e4b5ce2fe28308fd9f2a7baf3\r\n\r\nPlease do reply me if you are not interested in joining us.\r\n\r\nThank You,\r\n\r\nSincerely,\r\n\r\nsam\r\n\r\nsam910615@gmail.com', '2015-05-26 08:19:08', '2015-05-26 08:19:08'),
+(14, 3, 'eccbc87e4b5ce2fe28308fd9f2a7baf3', 'test', 'Hello, test with email sam910615@gmail.com\r\n\r\n    I am the program chair of Test20150527 2015.\r\n\r\nI am here to invite you to become one of the Paper Committee Member of this conference.\r\n\r\nIf you are interested in joining us, please click the following link to register before 1st July 2015\r\n\r\nhttp://localhost/auth/show/eccbc87e4b5ce2fe28308fd9f2a7baf3\r\n\r\nPlease do reply me if you are not interested in joining us.\r\n\r\nThank You,\r\n\r\nSincerely,\r\n\r\nsam\r\n\r\nsam910615@gmail.com', '2015-05-26 15:54:30', '2015-05-26 15:54:30'),
+(15, 1, 'c4ca4238a0b923820dcc509a6f75849b', 'test', 'Hello, test with email sam910615@gmail.com\r\n\r\n    I am the program chair of First-Conference 2015.\r\n\r\nI am here to invite you to become one of the Paper Committee Member of this conference.\r\n\r\nIf you are interested in joining us, please click the following link to register before 1st July 2015\r\n\r\nhttp://localhost/auth/show/c4ca4238a0b923820dcc509a6f75849b\r\n\r\nPlease do reply me if you are not interested in joining us.\r\n\r\nThank You,\r\n\r\nSincerely,\r\n\r\nsam\r\n\r\nsam910615@gmail.com', '2015-05-26 16:39:32', '2015-05-26 16:39:32'),
+(16, 2, 'c81e728d9d4c2f636f067f89cc14862c', 'test', 'Hello, test with email sam910615@gmail.com\r\n\r\n    I am the program chair of Second-Conference 2015.\r\n\r\nI am here to invite you to become one of the Paper Committee Member of this conference.\r\n\r\nIf you are interested in joining us, please click the following link to register before 1st July 2015\r\n\r\nhttp://localhost/auth/show/c81e728d9d4c2f636f067f89cc14862c\r\n\r\nPlease do reply me if you are not interested in joining us.\r\n\r\nThank You,\r\n\r\nSincerely,\r\n\r\nsam\r\n\r\nsam910615@gmail.com', '2015-05-26 21:39:21', '2015-05-26 21:39:21'),
+(17, 2, 'c81e728d9d4c2f636f067f89cc14862c', 'test', 'Hello, test with email nescafe@mail.com\r\n\r\n    I am the program chair of Second-Conference 2015.\r\n\r\nI am here to invite you to become one of the Paper Committee Member of this conference.\r\n\r\nIf you are interested in joining us, please click the following link to register before 1st July 2015\r\n\r\nhttp://localhost/auth/show/c81e728d9d4c2f636f067f89cc14862c\r\n\r\nPlease do reply me if you are not interested in joining us.\r\n\r\nThank You,\r\n\r\nSincerely,\r\n\r\nsam\r\n\r\nsam910615@gmail.com', '2015-05-26 22:21:23', '2015-05-26 22:21:23'),
+(18, 1, 'c4ca4238a0b923820dcc509a6f75849b', 'test', 'Hello, test with email sam910615@gmail.com\r\n\r\n    I am the program chair of First-Conference 2015.\r\n\r\nI am here to invite you to become one of the Paper Committee Member of this conference.\r\n\r\nIf you are interested in joining us, please click the following link to register before 1st July 2015\r\n\r\nhttp://localhost/auth/show/c4ca4238a0b923820dcc509a6f75849b\r\n\r\nPlease do reply me if you are not interested in joining us.\r\n\r\nThank You,\r\n\r\nSincerely,\r\n\r\nsam\r\n\r\nsam910615@gmail.com', '2015-05-27 08:21:24', '2015-05-27 08:21:24'),
+(19, 1, 'c4ca4238a0b923820dcc509a6f75849b', 'test', 'Hello, test with email sam910615@gmail.com\r\n\r\n    I am the program chair of First-Conference 2015.\r\n\r\nI am here to invite you to become one of the Paper Committee Member of this conference.\r\n\r\nIf you are interested in joining us, please click the following link to register before 1st July 2015\r\n\r\nhttp://localhost/auth/show/c4ca4238a0b923820dcc509a6f75849b\r\n\r\nPlease do reply me if you are not interested in joining us.\r\n\r\nThank You,\r\n\r\nSincerely,\r\n\r\nsam\r\n\r\nsam910615@gmail.com', '2015-05-27 08:24:07', '2015-05-27 08:24:07'),
+(20, 1, 'c4ca4238a0b923820dcc509a6f75849b', 'test', 'Hello, test with email sam910615@gmail.com\r\n\r\n    I am the program chair of First-Conference 2015.\r\n\r\nI am here to invite you to become one of the Paper Committee Member of this conference.\r\n\r\nIf you are interested in joining us, please click the following link to register before 1st July 2015\r\n\r\nhttp://localhost/auth/show/c4ca4238a0b923820dcc509a6f75849b?=sam910615@gmail.com\r\n\r\nPlease do reply me if you are not interested in joining us.\r\n\r\nThank You,\r\n\r\nSincerely,\r\n\r\nsam\r\n\r\nsam910615@gmail.com', '2015-05-27 08:46:01', '2015-05-27 08:46:01'),
+(21, 1, 'c4ca4238a0b923820dcc509a6f75849b', 'test', 'Hello, test with email sam910615@gmail.com\r\n\r\n    I am the program chair of First-Conference 2015.\r\n\r\nI am here to invite you to become one of the Paper Committee Member of this conference.\r\n\r\nIf you are interested in joining us, please click the following link to register before 1st July 2015\r\n\r\nhttp://localhost/auth/show/c4ca4238a0b923820dcc509a6f75849b?=sam910615@gmail.com\r\n\r\nPlease do reply me if you are not interested in joining us.\r\n\r\nThank You,\r\n\r\nSincerely,\r\n\r\nsam\r\n\r\nsam910615@gmail.com', '2015-05-27 08:47:06', '2015-05-27 08:47:06'),
+(22, 1, 'c4ca4238a0b923820dcc509a6f75849b', 'test', 'Hello, test with email sam910615@gmail.com\r\n\r\n    I am the program chair of First-Conference 2015.\r\n\r\nI am here to invite you to become one of the Paper Committee Member of this conference.\r\n\r\nIf you are interested in joining us, please click the following link to register before 1st July 2015\r\n\r\nhttp://localhost/auth/show/array(c4ca4238a0b923820dcc509a6f75849b?=sam910615@gmail.com)\r\n\r\nPlease do reply me if you are not interested in joining us.\r\n\r\nThank You,\r\n\r\nSincerely,\r\n\r\nsam\r\n\r\nsam910615@gmail.com', '2015-05-27 09:00:27', '2015-05-27 09:00:27'),
+(23, 1, 'c4ca4238a0b923820dcc509a6f75849b', 'test', 'Hello, test with email sam910615@gmail.com\r\n\r\n    I am the program chair of First-Conference 2015.\r\n\r\nI am here to invite you to become one of the Paper Committee Member of this conference.\r\n\r\nIf you are interested in joining us, please click the following link to register before 1st July 2015\r\n\r\nhttp://localhost/auth/show/c4ca4238a0b923820dcc509a6f75849b?=sam910615@gmail.com\r\n\r\nPlease do reply me if you are not interested in joining us.\r\n\r\nThank You,\r\n\r\nSincerely,\r\n\r\nsam\r\n\r\nsam910615@gmail.com', '2015-05-27 09:06:46', '2015-05-27 09:06:46'),
+(24, 2, 'c81e728d9d4c2f636f067f89cc14862c', 'test', 'Hello, test20150528 with email sam910615@gmail.com\r\n\r\n    I am the program chair of Second-Conference 2015.\r\n\r\nI am here to invite you to become one of the Paper Committee Member of this conference.\r\n\r\nIf you are interested in joining us, please click the following link to register before 1st July 2015\r\n\r\nhttp://localhost/auth/show/c81e728d9d4c2f636f067f89cc14862c\r\n\r\nPlease do reply me if you are not interested in joining us.\r\n\r\nThank You,\r\n\r\nSincerely,\r\n\r\nsam\r\n\r\nsam910615@gmail.com', '2015-05-27 15:56:48', '2015-05-27 15:56:48');
 
 -- --------------------------------------------------------
 
@@ -148,7 +198,8 @@ INSERT INTO `migrations` (`migration`, `batch`) VALUES
 ('2015_05_22_152445_create_user_role_table', 27),
 ('2015_05_22_153005_create_user_user_roles_table', 27),
 ('2015_05_23_152132_create_user_roles_table', 28),
-('2015_05_24_140239_create_user_user_roles_table', 29);
+('2015_05_24_140239_create_user_user_roles_table', 29),
+('2015_05_27_053129_create_invitation_registration_status_table', 30);
 
 -- --------------------------------------------------------
 
@@ -170,15 +221,18 @@ CREATE TABLE IF NOT EXISTS `papers` (
   `cameraReadyUrl` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `papers`
 --
 
 INSERT INTO `papers` (`id`, `conference_id`, `user_id`, `committeeApprove_id`, `title`, `abstractContent`, `status`, `tempStatus`, `averageMarks`, `fullPaperUrl`, `cameraReadyUrl`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'conan@gmail.com', NULL, 'Sample Paper for IEEE Sponsored Conferences & Symposia', 'The abstract goes here. What you need to do is to\r\ninsert your abstract here. Please try to make it less than 150\r\nwords. We suggest that you read this document carefully before\r\nyou begin preparing your manuscript. IEEE does not want\r\nconference papers to have keywords so you should remove your\r\nkeyword list. Also, at this time, IEEE only has some general\r\nguidelines about the format for conference papers. It is up to\r\neach individual conference to decide which format to use. In\r\norder to have a uniform look for all papers published in the\r\nWCCI 2006 Proceeding, we require that every author follow\r\nthe format of this sample paper. This sample paper is for latex\r\nusers. Authors may use the sample paper here to produce their\r\nown papers by following the same format as this sample paper.', '1', '-3', '0.00', 'cf112bb1da658842f3a644c43f1f85e1', NULL, '2015-05-24 07:18:20', '2015-05-24 08:30:41'),
-(2, NULL, 'conan@gmail.com', NULL, 'Fast Neutron Covariances for Evaluated Data Files', 'We describe implementation of the KALMAN code in the EMPIRE system\r\nand present rst covariance data generated for Gd and Ir isotopes. A complete\r\nset of covariances, in the full energy range, was produced for the chain of 8\r\nGadolinium isotopes for total, elastic, capture, total inelastic (MT=4), (n,2n),\r\n(n,p) and (n,alpha) reactions. Our correlation matrices, based on combination\r\nof model calculations and experimental data, are characterized by positive\r\nmid-range and negative long-range correlations. They differ from the modelgenerated\r\ncovariances that tend to show strong positive long-range correlations\r\nand those determined solely from experimental data that result in nearly diagonal\r\nmatrices. We have studied shapes of correlation matrices obtained in the\r\ncalculations and interpreted them in terms of the underlying reaction models.\r\nAn important result of this study is the prediction of narrow energy ranges with', '', '1', '0.00', '6f82ab79e0a3d0a3fc54fdbba31b9820', NULL, '2015-05-24 08:28:22', '2015-05-24 08:32:38');
+(1, NULL, 'conan@gmail.com', NULL, 'Sample Paper for IEEE Sponsored Conferences & Symposia', 'The abstract goes here. What you need to do is to\r\ninsert your abstract here. Please try to make it less than 150\r\nwords. We suggest that you read this document carefully before\r\nyou begin preparing your manuscript. IEEE does not want\r\nconference papers to have keywords so you should remove your\r\nkeyword list. Also, at this time, IEEE only has some general\r\nguidelines about the format for conference papers. It is up to\r\neach individual conference to decide which format to use. In\r\norder to have a uniform look for all papers published in the\r\nWCCI 2006 Proceeding, we require that every author follow\r\nthe format of this sample paper. This sample paper is for latex\r\nusers. Authors may use the sample paper here to produce their\r\nown papers by following the same format as this sample paper.', '1', '-3', '0.00', 'cf112bb1da658842f3a644c43f1f85e1', NULL, '2015-05-24 07:18:20', '2015-05-25 17:48:12'),
+(2, NULL, 'conan@gmail.com', NULL, 'Fast Neutron Covariances for Evaluated Data Files', 'We describe implementation of the KALMAN code in the EMPIRE system\r\nand present rst covariance data generated for Gd and Ir isotopes. A complete\r\nset of covariances, in the full energy range, was produced for the chain of 8\r\nGadolinium isotopes for total, elastic, capture, total inelastic (MT=4), (n,2n),\r\n(n,p) and (n,alpha) reactions. Our correlation matrices, based on combination\r\nof model calculations and experimental data, are characterized by positive\r\nmid-range and negative long-range correlations. They differ from the modelgenerated\r\ncovariances that tend to show strong positive long-range correlations\r\nand those determined solely from experimental data that result in nearly diagonal\r\nmatrices. We have studied shapes of correlation matrices obtained in the\r\ncalculations and interpreted them in terms of the underlying reaction models.\r\nAn important result of this study is the prediction of narrow energy ranges with', '', '-1', '0.00', '6f82ab79e0a3d0a3fc54fdbba31b9820', NULL, '2015-05-24 08:28:22', '2015-05-25 08:49:14'),
+(3, NULL, 'conan@gmail.com', NULL, 'An Example Conference Paper', 'The abstract contains a brief overview of the paper. It should be relatively short. There is usually\r\na “sales job” in the abstract too, meaning that you should have one or two sentences explaining\r\nwhy your work is the best thing since sliced bread. For example, “the results of this experimental\r\nindicate that, contrary to popular opinion, the replacement policies have very little impact on the\r\nmiss rate of the cache.”', '', '1', '0.00', '143e2988e94e94c833cbc8449a6c87e9', NULL, '2015-05-26 06:25:56', '2015-05-26 06:29:26'),
+(4, NULL, 'test@gmail.com', NULL, 'Test20150527', 'Test20150527', '-1', '-3', '0.00', 'bd4b31fa6924665c362d1ba9cf59a65a', NULL, '2015-05-26 08:24:00', '2015-05-26 08:29:16'),
+(5, NULL, 'testAuthor20150528@gmail.com', NULL, 'TestPaper20150528', 'TestPaper20150528', '', '-3', '0.00', '1aa6da78df96f4d5c7dde1e0fb4bb3d6', NULL, '2015-05-27 16:02:29', '2015-05-27 16:07:44');
 
 -- --------------------------------------------------------
 
@@ -194,16 +248,33 @@ CREATE TABLE IF NOT EXISTS `paper_discussions` (
   `status` tinyint(2) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `paper_discussions`
 --
 
 INSERT INTO `paper_discussions` (`id`, `user_id`, `paper_id`, `content`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'sam910615@gmail.com', 1, 'Hello guys, I am conference chair for this conference. The purpose I open this discussion platform is to discuss this paper with you guys', 1, '2015-05-24 08:18:04', '2015-05-24 08:18:04'),
-(2, 'dean@gmail.com', 1, 'I think this paper''s content is not in proper format', 1, '2015-05-24 08:27:28', '2015-05-24 08:27:28'),
-(3, 'sam910615@gmail.com', 1, 'I did discuss with another panels regarding to this paper, I think that this paper is presentable', 1, '2015-05-24 08:30:30', '2015-05-24 08:30:30');
+(1, 'john@gmail.com', 1, 'Test John', 1, '2015-05-25 08:40:58', '2015-05-25 08:40:58'),
+(2, 'nikki@gmail.com', 1, 'Nikki comment', 1, '2015-05-25 08:42:00', '2015-05-25 08:42:00'),
+(3, 'john@gmail.com', 1, 'Hi ', 1, '2015-05-25 08:42:58', '2015-05-25 08:42:58'),
+(4, 'john@gmail.com', 1, 'This is John', 1, '2015-05-25 08:48:36', '2015-05-25 08:48:36'),
+(5, 'john@gmail.com', 2, 'John here', 1, '2015-05-25 08:49:53', '2015-05-25 08:49:53'),
+(6, 'john@gmail.com', 2, 'Ello', 1, '2015-05-25 08:54:49', '2015-05-25 08:54:49'),
+(7, 'nikki@gmail.com', 2, 'i am nikki', 1, '2015-05-25 08:55:13', '2015-05-25 08:55:13'),
+(8, 'sam910615@gmail.com', 1, 'i am conference chair', 1, '2015-05-25 17:04:07', '2015-05-25 17:04:07'),
+(9, 'sam910615@gmail.com', 1, 'Please discuss on this paper', 1, '2015-05-25 17:49:22', '2015-05-25 17:49:22'),
+(10, 'dean@gmail.com', 1, 'The content is good but i have no idea why this paper is being rejected', 1, '2015-05-25 17:49:54', '2015-05-25 17:49:54'),
+(11, 'sam910615@gmail.com', 1, 'Any example that can support your view?\r\n#Reviewer : 3\r\n', 1, '2015-05-26 03:38:43', '2015-05-26 03:38:43'),
+(12, 'dean@gmail.com', 4, 'I am Dean, first comment', 1, '2015-05-26 08:27:36', '2015-05-26 08:27:36'),
+(13, 'john@gmail.com', 4, 'I am dean, second comment', 1, '2015-05-26 08:28:05', '2015-05-26 08:28:05'),
+(14, 'nikki@gmail.com', 4, 'I am nikki, third comment', 1, '2015-05-26 08:28:35', '2015-05-26 08:28:35'),
+(15, 'sam910615@gmail.com', 4, 'I am conference chair', 1, '2015-05-26 08:28:49', '2015-05-26 08:28:49'),
+(16, 'sam910615@gmail.com', 4, 'Hi guys', 1, '2015-05-26 22:43:09', '2015-05-26 22:43:09'),
+(17, 'john@gmail.com', 4, 'Hello', 1, '2015-05-27 07:48:29', '2015-05-27 07:48:29'),
+(18, 'sam910615@gmail.com', 5, 'This paper is conflicting', 1, '2015-05-27 16:06:54', '2015-05-27 16:06:54'),
+(19, 'dean@gmail.com', 5, 'What do you mean ?', 1, '2015-05-27 16:07:11', '2015-05-27 16:07:11'),
+(20, 'sam910615@gmail.com', 5, 'Conflict', 1, '2015-05-27 17:29:15', '2015-05-27 17:29:15');
 
 -- --------------------------------------------------------
 
@@ -234,11 +305,13 @@ INSERT INTO `paper_discussion_definition` (`id`, `name`, `created_at`, `updated_
 
 CREATE TABLE IF NOT EXISTS `paper_reviews` (
 `id` bigint(20) unsigned NOT NULL,
+  `tempId` int(11) DEFAULT NULL,
   `reviewer_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `assigned_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `paper_id` bigint(20) unsigned NOT NULL,
   `score` decimal(8,2) NOT NULL,
   `paperEvaluation` tinyint(255) DEFAULT NULL,
+  `confidenceLevel` tinyint(11) DEFAULT NULL,
   `quality` tinyint(255) DEFAULT NULL,
   `rationale` tinyint(255) DEFAULT NULL,
   `hypothesis` tinyint(255) DEFAULT NULL,
@@ -249,18 +322,25 @@ CREATE TABLE IF NOT EXISTS `paper_reviews` (
   `flag` tinyint(4) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `paper_reviews`
 --
 
-INSERT INTO `paper_reviews` (`id`, `reviewer_id`, `assigned_by`, `paper_id`, `score`, `paperEvaluation`, `quality`, `rationale`, `hypothesis`, `manuscript`, `structure`, `comment`, `reviewed_date`, `flag`, `created_at`, `updated_at`) VALUES
-(1, 'john@gmail.com', 'sam910615@gmail.com', 1, '0.00', 1, 0, 1, 1, -1, -2, 'Agree', '2015-05-24 16:07:18', 6, '2015-05-24 08:04:39', '2015-05-24 08:07:18'),
-(2, 'dean@gmail.com', 'sam910615@gmail.com', 1, '0.00', -2, -1, -1, 0, -1, 0, 'Strongly Reject', '2015-05-24 16:08:08', 6, '2015-05-24 08:04:44', '2015-05-24 08:08:08'),
-(3, 'john@gmail.com', 'sam910615@gmail.com', 2, '0.00', -2, -2, -2, -2, -2, -2, 'Strongly Reject', '2015-05-24 16:29:13', 6, '2015-05-24 08:28:35', '2015-05-24 08:29:13'),
-(4, 'nikki@gmail.com', 'sam910615@gmail.com', 2, '0.00', 1, 1, 1, 0, 1, 1, 'This paper is good', '2015-05-24 16:31:31', 6, '2015-05-24 08:28:41', '2015-05-24 08:31:31'),
-(5, 'dean@gmail.com', 'sam910615@gmail.com', 2, '0.00', 1, 0, 1, 0, 2, 1, 'Part of the paper is not clear, still have space of improvement\r\n', '2015-05-24 16:32:38', 6, '2015-05-24 08:28:46', '2015-05-24 08:32:38');
+INSERT INTO `paper_reviews` (`id`, `tempId`, `reviewer_id`, `assigned_by`, `paper_id`, `score`, `paperEvaluation`, `confidenceLevel`, `quality`, `rationale`, `hypothesis`, `manuscript`, `structure`, `comment`, `reviewed_date`, `flag`, `created_at`, `updated_at`) VALUES
+(1, 1, 'john@gmail.com', 'sam910615@gmail.com', 1, '0.00', -2, 2, -2, -2, -2, -2, -2, '', '2015-05-25 16:40:36', 6, '2015-05-25 08:40:09', '2015-05-25 08:40:36'),
+(2, 2, 'nikki@gmail.com', 'sam910615@gmail.com', 1, '0.00', -2, 0, -2, -2, -2, -2, -2, '', '2015-05-25 16:41:47', 6, '2015-05-25 08:40:14', '2015-05-25 08:41:47'),
+(3, 1, 'nikki@gmail.com', 'sam910615@gmail.com', 2, '0.00', -2, 0, -2, -2, -2, -2, -2, '', '2015-05-25 16:49:14', 6, '2015-05-25 08:48:54', '2015-05-25 08:49:14'),
+(4, 2, 'john@gmail.com', 'sam910615@gmail.com', 2, '0.00', -2, 4, -2, -2, -2, -2, -2, '', '2015-05-25 16:49:34', 6, '2015-05-25 08:48:59', '2015-05-25 08:49:34'),
+(5, 3, 'dean@gmail.com', 'sam910615@gmail.com', 1, '0.00', 1, 2, 2, 1, 1, 1, 1, '', '2015-05-26 01:48:12', 6, '2015-05-25 17:47:20', '2015-05-25 17:48:12'),
+(6, 1, 'dean@gmail.com', 'sam910615@gmail.com', 3, '0.00', 2, 4, 0, 1, 1, 0, 1, 'Totally agree with confidence', '2015-05-26 14:29:25', 6, '2015-05-26 06:28:19', '2015-05-26 06:29:25'),
+(7, 1, 'john@gmail.com', 'sam910615@gmail.com', 4, '0.00', -1, 2, -2, -2, -2, -2, -2, '', '2015-05-27 15:48:20', 6, '2015-05-26 08:24:24', '2015-05-27 07:48:20'),
+(8, 2, 'nikki@gmail.com', 'sam910615@gmail.com', 4, '0.00', 2, 3, -2, -2, -2, -2, -2, '', '2015-05-26 16:26:00', 6, '2015-05-26 08:24:29', '2015-05-26 08:26:00'),
+(9, 3, 'dean@gmail.com', 'sam910615@gmail.com', 4, '0.00', -1, 4, -2, -2, -2, -2, -2, '', '2015-05-26 16:26:43', 6, '2015-05-26 08:24:33', '2015-05-26 08:26:43'),
+(10, 1, 'john@gmail.com', 'sam910615@gmail.com', 5, '0.00', 1, 3, 1, 1, -1, 1, 0, 'This paper overall is ok', '2015-05-28 00:04:23', 6, '2015-05-27 16:03:05', '2015-05-27 16:04:23'),
+(11, 2, 'dean@gmail.com', 'sam910615@gmail.com', 5, '0.00', -1, 2, -2, -2, -2, -2, -2, 'Rejected', '2015-05-28 00:05:56', 6, '2015-05-27 16:03:15', '2015-05-27 16:05:56'),
+(12, 2, 'nikki@gmail.com', 'sam910615@gmail.com', 3, '0.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '0000-00-00 00:00:00', 6, '2015-05-27 17:28:38', '2015-05-27 17:28:38');
 
 -- --------------------------------------------------------
 
@@ -287,16 +367,20 @@ CREATE TABLE IF NOT EXISTS `recipient_message_logs` (
   `messagelog_id` bigint(20) unsigned DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `recipient_message_logs`
 --
 
 INSERT INTO `recipient_message_logs` (`id`, `user_id`, `recipient_id`, `messagelog_id`, `created_at`, `updated_at`) VALUES
-(1, 'sam910615@gmail.com', 'sam910615@gmail.com', 1, '2015-05-24 07:12:21', '2015-05-24 07:12:21'),
-(2, 'sam910615@gmail.com', 'sam910615@gmail.com', 2, '2015-05-24 07:14:22', '2015-05-24 07:14:22'),
-(3, 'sam910615@gmail.com', 'sam910615@gmail.com', 3, '2015-05-24 07:16:17', '2015-05-24 07:16:17');
+(1, 'sam910615@gmail.com', 'dean@gmail.com', 16, '2015-05-27 05:48:44', '2015-05-27 05:48:44'),
+(2, 'sam910615@gmail.com', 'nikki@gmail.com', 16, '2015-05-27 05:48:44', '2015-05-27 05:48:44'),
+(3, 'sam910615@gmail.com', 'john@gmail.com', 16, '2015-05-27 05:49:06', '2015-05-27 05:49:06'),
+(4, 'sam910615@gmail.com', 'oligo@gmail.com', 16, '2015-05-27 05:50:09', '2015-05-27 05:50:09'),
+(5, 'sam910615@gmail.com', 'ryback@gmail.com', 16, '2015-05-27 05:50:09', '2015-05-27 05:50:09'),
+(6, 'sam910615@gmail.com', 'nescafe@mail.com', 17, '2015-05-26 22:21:23', '2015-05-26 22:21:23'),
+(13, 'sam910615@gmail.com', 'sam910615@gmail.com', 24, '2015-05-27 15:56:48', '2015-05-27 15:56:48');
 
 -- --------------------------------------------------------
 
@@ -368,7 +452,6 @@ INSERT INTO `topics` (`id`, `name`, `created_at`, `updated_at`) VALUES
 
 CREATE TABLE IF NOT EXISTS `users` (
 `id` bigint(20) unsigned NOT NULL,
-  `user_role` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `firstname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `lastname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -389,20 +472,24 @@ CREATE TABLE IF NOT EXISTS `users` (
   `education` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `paymentModelId` bigint(20) NOT NULL,
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `registerUponInvitation` tinyint(4) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `user_role`, `firstname`, `lastname`, `email`, `password`, `nameTitlePrefix`, `gender`, `dateOfBirth`, `nationalIdentityNo`, `addressLine1`, `addressLine2`, `addressLine3`, `city`, `state`, `postalCode`, `country`, `contactNo`, `faxNo`, `education`, `paymentModelId`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, '', 'sam', 'koh', 'sam910615@gmail.com', '$2y$10$pgwxlPp9MDWmrvedZwjpIuBCa9QQHlCaxPGXVMoEX30uCkv94RqoC', 'Mr', 'Male', '2015-05-24', 123123, '123, 18/28', 'Jalan Sri Serdang', 'Seri Kembangan', 'Seri Kembangan', 'Selangor', 43300, 'India', 123456789, 3456789, 'Queensland', 0, 'oXTPwZyVS2zwkTIi1l4stXiQRmPdp5ACViwOEHbbWDqnyYA9QvkYTa3lZGri', '2015-05-24 07:05:39', '2015-05-24 07:15:14'),
-(2, '', 'John', 'Cena', 'john@gmail.com', '$2y$10$c0c6K6iO65kIJzP/M503J.hUPJ1kSmTU39H8SAebwiY5fV21.UQky', 'Mr', 'Male', '2015-05-24', 123456, '123, 18/28', 'Jalan Sri Serdang', 'Seri Kembangan', 'Seri Kembangan', 'Selangor', 43300, 'United State', 123456789, 3456789, 'Queensland', 0, 'VumGWH4o9Y5axucZ8XSftVtKUVv2k8TPJFCBCa15pVogrtxLy9iELr7qRNFo', '2015-05-24 07:13:37', '2015-05-24 08:30:48'),
-(3, '', 'Nikki', 'Bella', 'nikki@gmail.com', '$2y$10$O6dYcPSl7DneI2p4eJWDROtEdgiQS4lGi0S9CtOwlfi9M/GMMcXGu', 'Miss', 'Female', '2015-05-05', 123456, '123, 18/28', 'Jalan Sri Serdang', 'Seri Kembangan', 'Seri Kembangan', 'Selangor', 43300, 'India', 123456789, 3456789, 'Queensland', 0, 'zqMLuqvGvyhCS7s8lo3WdRqjKiCX41yelxyr1gjVmFL5Lml20RaCfRhhjrOy', '2015-05-24 07:15:03', '2015-05-24 08:31:45'),
-(4, '', 'Dean', 'Ambros', 'dean@gmail.com', '$2y$10$1cuVqtH560/Kzh2t3Uv2TOwbEeAB33F6ftKZ0J/Wj39R8SPH0LhAq', 'Dr', 'Male', '2015-05-17', 123456, '123, 18/28', 'Jalan Sri Serdang', 'Seri Kembangan', 'Seri Kembangan', 'Selangor', 43300, 'India', 123456789, 3456789, 'Queensland', 0, 'GJ8jxzRji4COIKaSGL3MxUOJdHQH2Ry0qBau1iqAvXYgzBCMyrXjXAZUIsQP', '2015-05-24 07:16:47', '2015-05-24 08:27:47'),
-(5, '', 'conan', 'beast', 'conan@gmail.com', '$2y$10$Q3trnfEMDSFKt6lCi79zMeHvDn0LVqbDKMegc79qo6FG/iNs2k4YC', 'Professor', 'Male', '2015-05-04', 123456, '123, 18/28', 'Jalan Sri Serdang', 'Seri Kembangan', 'Seri Kembangan', 'Selangor', 43300, 'India', 123456789, 3456789, 'Queensland', 0, 'yRx4jEjhWm1UfYSrz3cYOxfBXYjrcoNlvdkkI45rxyf1Mfbf5EpfzrXPvqcN', '2015-05-24 07:17:26', '2015-05-24 08:28:50');
+INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `nameTitlePrefix`, `gender`, `dateOfBirth`, `nationalIdentityNo`, `addressLine1`, `addressLine2`, `addressLine3`, `city`, `state`, `postalCode`, `country`, `contactNo`, `faxNo`, `education`, `paymentModelId`, `remember_token`, `registerUponInvitation`, `created_at`, `updated_at`) VALUES
+(1, 'sam', 'koh', 'sam910615@gmail.com', '$2y$10$pgwxlPp9MDWmrvedZwjpIuBCa9QQHlCaxPGXVMoEX30uCkv94RqoC', 'Mr', 'Male', '2015-05-24', 123123, '123, 18/28', 'Jalan Sri Serdang', 'Seri Kembangan', 'Seri Kembangan', 'Selangor', 43300, 'India', 123456789, 120123, 'Queensland', 0, 'L8LsEdE0ZoDeEiBqXXlXJK8VshtNNLDbAyWNEADfkOm7oFkf7YtANxNNUo3A', 0, '2015-05-24 07:05:39', '2015-05-27 08:42:42'),
+(2, 'John', 'Cena', 'john@gmail.com', '$2y$10$c0c6K6iO65kIJzP/M503J.hUPJ1kSmTU39H8SAebwiY5fV21.UQky', 'Mr', 'Male', '2015-05-24', 1, '1', 'q', '', 'Puchong', 'Selangor', 43300, 'United State', 12345, 132132132132, 'Queensland', 0, 'jq233wjLh32NgQCK8ZXjfc0h9OnPPyirJZ5UZoOG7M99FPO6qCGyXvPpEwxQ', 1, '2015-05-24 07:13:37', '2015-05-27 16:05:27'),
+(3, 'Nikki', 'Bella', 'nikki@gmail.com', '$2y$10$O6dYcPSl7DneI2p4eJWDROtEdgiQS4lGi0S9CtOwlfi9M/GMMcXGu', 'Miss', 'Female', '2015-05-05', 123456, '123, 18/28', 'Jalan Sri Serdang', 'Seri Kembangan', 'Seri Kembangan', 'Selangor', 43300, 'India', 123456789, 3456789, 'Queensland', 0, 'pPeRCtQlQ04QFsAw48YSYh9Gn1Ix1t8QLJGmeGLpo7s14YJNnlMoDPQuIIHD', 1, '2015-05-24 07:15:03', '2015-05-27 07:35:49'),
+(4, 'Dean', 'Ambros', 'dean@gmail.com', '$2y$10$1cuVqtH560/Kzh2t3Uv2TOwbEeAB33F6ftKZ0J/Wj39R8SPH0LhAq', 'Dr', 'Male', '2015-05-17', 123456, '123, 18/28', 'Jalan Sri Serdang', 'Seri Kembangan', 'Seri Kembangan', 'Selangor', 43300, 'India', 123456789, 3456789, 'Queensland', 0, 'Newxv0llvtkfkskl3ikGhGFA9rbiFBJ5RAVpk6B05MXANyLf5qTdpRCBzKnL', 1, '2015-05-24 07:16:47', '2015-05-26 08:27:43'),
+(5, 'conan', 'beast', 'conan@gmail.com', '$2y$10$Q3trnfEMDSFKt6lCi79zMeHvDn0LVqbDKMegc79qo6FG/iNs2k4YC', 'Professor', 'Male', '2015-05-04', 123456, '123, 18/28', 'Jalan Sri Serdang', 'Seri Kembangan', 'Seri Kembangan', 'Selangor', 43300, 'India', 123456789, 3456789, 'Queensland', 0, 'UhU0NhLwCNJTv9sxZaEb9FDBUDrBgIWBM8MMSpkLpP2niT4EMNiuqXLC6juo', 0, '2015-05-24 07:17:26', '2015-05-27 08:22:30'),
+(23, 'test20150525', 'test', 'test@gmail.com', '$2y$10$ofip1LAghnJNEqTtRoXfU.YcNkONlhDJD77aNZsAh.MvgMeaHNqoi', 'Mr', 'Male', '2015-05-18', 123456, '123, 18/28', 'Jalan Sri Serdang', 'Seri Kembangan', 'Seri Kembangan', 'Selangor', 43300, 'United Kingdom', 123456789, 3456789, 'Queensland', 0, 'rsjn6XaskmeLjkGCYr98obi2s7jTx8GFYQpjl4YiPbtRKjBmzD9qGV4PVq64', 0, '2015-05-26 08:23:21', '2015-05-26 08:24:48'),
+(24, 'test20150528', 'koh', 'test20150528@gmail.com', '$2y$10$TdCRYIwkttYIEkE.l4ZcJ.w2lP78i0/jzDujvh6/jCEuOMWPMl1gm', 'Sir', 'Male', '2015-05-27', 123456, '123, 18/28', 'Jalan Sri Serdang', 'Seri Kembangan', 'Seri Kembangan', 'Selangor', 43300, 'United Kingdom', 123456789, 3456789, 'Queensland', 0, 'I6lSywthtLkN7dOSarrkVKbRrRXjTkjKTlKLW0McHK4YLInmrdC6XRTRdCou', 1, '2015-05-27 15:57:50', '2015-05-27 16:01:03'),
+(25, 'testAuthor20150528', 'koh', 'testAuthor20150528@gmail.com', '$2y$10$rS9aBfVCwOcN/8Q462/mJOVcc3nOAgFj7mkh3LQ7syVBSybpWfsKe', 'Sir', 'Male', '2015-05-25', 123456, '123, 18/28', 'Jalan Sri Serdang', 'Seri Kembangan', 'Seri Kembangan', 'Selangor', 43300, 'United Kingdom', 123, 3456789, 'Queensland', 0, 'oTDfW538hlQxBbWbHHMA0sJHQjDfaG1mEMYFVSyW5xdofd4XoARRTUQ7VaJB', 0, '2015-05-27 16:01:44', '2015-05-27 16:03:31');
 
 -- --------------------------------------------------------
 
@@ -470,7 +557,11 @@ INSERT INTO `user_user_roles` (`user_table_id`, `user_id`, `user_role_id`, `conf
 (2, 'john@gmail.com', 5, 1, '2015-05-24 07:13:37', '2015-05-24 07:13:37'),
 (3, 'nikki@gmail.com', 5, 1, '2015-05-24 07:15:03', '2015-05-24 07:15:03'),
 (4, 'dean@gmail.com', 5, 1, '2015-05-24 07:16:48', '2015-05-24 07:16:48'),
-(5, 'conan@gmail.com', 6, 1, '2015-05-24 07:17:26', '2015-05-24 07:17:26');
+(5, 'conan@gmail.com', 6, 1, '2015-05-24 07:17:26', '2015-05-24 07:17:26'),
+(23, 'test@gmail.com', 5, 3, '2015-05-26 08:23:21', '2015-05-26 08:23:21'),
+(5, 'conan@gmail.com', 5, 1, '2015-05-27 16:02:52', '2015-05-27 16:02:52'),
+(24, 'test20150528@gmail.com', 5, 2, '2015-05-27 15:57:50', '2015-05-27 15:57:50'),
+(25, 'testAuthor20150528@gmail.com', 6, 1, '2015-05-27 16:01:44', '2015-05-27 16:01:44');
 
 --
 -- Indexes for dumped tables
@@ -487,6 +578,12 @@ ALTER TABLE `conferences`
 --
 ALTER TABLE `conference_topic`
  ADD PRIMARY KEY (`id`), ADD KEY `conference_topic_conference_id_foreign` (`conference_id`), ADD KEY `conference_topic_topic_id_foreign` (`topic_id`);
+
+--
+-- Indexes for table `invitation_registration_status`
+--
+ALTER TABLE `invitation_registration_status`
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `message_logs`
@@ -574,27 +671,32 @@ ALTER TABLE `user_user_roles`
 -- AUTO_INCREMENT for table `conferences`
 --
 ALTER TABLE `conferences`
-MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `conference_topic`
 --
 ALTER TABLE `conference_topic`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `invitation_registration_status`
+--
+ALTER TABLE `invitation_registration_status`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `message_logs`
 --
 ALTER TABLE `message_logs`
-MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `papers`
 --
 ALTER TABLE `papers`
-MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `paper_discussions`
 --
 ALTER TABLE `paper_discussions`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `paper_discussion_definition`
 --
@@ -604,7 +706,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT for table `paper_reviews`
 --
 ALTER TABLE `paper_reviews`
-MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `password_resets`
 --
@@ -614,7 +716,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `recipient_message_logs`
 --
 ALTER TABLE `recipient_message_logs`
-MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `review_evaluation_definition`
 --
@@ -629,7 +731,7 @@ MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `user_conferences`
 --

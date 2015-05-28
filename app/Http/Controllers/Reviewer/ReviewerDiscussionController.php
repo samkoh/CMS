@@ -61,6 +61,7 @@ class ReviewerDiscussionController extends Controller {
             $papers = DB::table('papers')
                 ->select('id', 'title', 'tempStatus', 'averageMarks', 'created_at')
                 ->whereIn('tempStatus', [- 1, - 3])
+                ->where('status', '=', '')
                 ->orderBy('created_at', 'desc')
                 ->get();
 
@@ -73,6 +74,7 @@ class ReviewerDiscussionController extends Controller {
                 ->select('papers.id', 'papers.title', 'papers.tempStatus', 'papers.averageMarks', 'papers.created_at')
                 ->where('paper_reviews.reviewer_id', '=', $userId)
                 ->whereIn('papers.tempStatus', [- 1, - 3])
+                ->where('status', '=', '')
                 ->orderBy('papers.created_at', 'desc')
                 ->get();
 
