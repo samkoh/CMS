@@ -26,7 +26,7 @@
                             {{--0 means register without invitation request--}}
                             <input type="hidden" name="register_upon_invitation" value="0">
                         @else
-                            {{--1 means register invitation request--}}
+                            {{--1 means register upon invitation request--}}
                             <input type="hidden" name="register_upon_invitation" value="1">
                         @endif
 

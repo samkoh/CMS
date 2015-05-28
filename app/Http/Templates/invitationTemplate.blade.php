@@ -10,7 +10,7 @@ You are invited by {{$SenderName}} to be a PC member or Reviewer to {{$confName-
 
 Please register here if you are keen:
 
-http://localhost/auth/show/{{$ConferenceId}}
+http://localhost/auth/show/{{$ConferenceId}}?email={{ $email }}
 
 For more information, please visit the conference website:
 
