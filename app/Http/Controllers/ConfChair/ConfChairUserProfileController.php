@@ -15,6 +15,9 @@ class ConfChairUserProfileController extends Controller {
 	 */
 	public function index()
 	{
+        //Session for navigation menu bar
+        \Session::flash('confChair', '1');
+
         $users = DB::table('users')
             ->join('user_user_roles', 'users.email', '=', 'user_user_roles.user_id')
             ->select('user_user_roles.user_role_id','users.firstname','users.lastname','users.email')

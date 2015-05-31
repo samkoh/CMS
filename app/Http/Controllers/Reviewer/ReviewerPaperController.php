@@ -30,6 +30,9 @@ class ReviewerPaperController extends Controller {
      */
     public function index()
     {
+        //Session for navigation menu bar
+        \Session::flash('reviewer', '5');
+
 //		$papers = $this->getPapers();
 //
 //		return view('reviewer.paper', compact('papers'));
@@ -439,6 +442,10 @@ class ReviewerPaperController extends Controller {
             elseif(((is_int($max) && $max > 0) == false) && ((is_int($min) && $min > 0) == false))
             {
                 $paper->tempStatus = -1;
+            }
+            else
+            {
+                $paper->tempStatus = -3;
             }
 
 

@@ -31,6 +31,9 @@ class ConfChairPapersController extends Controller {
 	 */
 	public function index()
 	{
+        //Session for navigation menu bar
+        \Session::flash('confChair', '1');
+
 //		$papers = $this->getPapers();
 //        $papers = $this->paper
 //                ->select('title')

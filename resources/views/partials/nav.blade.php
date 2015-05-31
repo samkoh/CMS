@@ -14,6 +14,7 @@
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="/home">Home</a></li>
 
+                    @if(Session::has('confChair'))
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Conference Chair <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
@@ -30,7 +31,9 @@
                                 <li><a href="/conferenceChair/usersProfile">User Profile</a></li>
                             </ul>
 					</li>
+                    @endif
 
+                    @if(Session::has('reviewer'))
 					<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reviewer <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
@@ -38,13 +41,16 @@
                             <li><a href="/reviewer">My Paper</a></li>
                         </ul>
                     </li>
+                    @endif
 
+                @if(Session::has('author'))
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Author <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="/author">Submit Paper</a></li>
                         </ul>
                     </li>
+                    @endif
 
                     <li class="active"><a href="/profile">Profile</a></li>
 

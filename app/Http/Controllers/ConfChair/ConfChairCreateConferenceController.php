@@ -30,6 +30,9 @@ class ConfChairCreateConferenceController extends Controller {
      */
     public function index()
     {
+        //Session for navigation menu bar
+        \Session::flash('confChair', '1');
+
         $topics = Topic::lists('name', 'id');
 //        $conferences = $this->conference->get();
         $conferences = $this->conference->where('user_id', Auth::user()->email)->get();

@@ -29,6 +29,7 @@ class ReviewerDiscussionController extends Controller {
      */
     public function index()
     {
+
 //		$papers = $this->getPapers();
         /*
          * Get the partially accepted status papers
@@ -49,6 +50,9 @@ class ReviewerDiscussionController extends Controller {
 //dd($userRole);
         if ($userRole->user_role_id == 1)
         {
+            //Session for navigation menu bar
+            \Session::flash('confChair', '1');
+
 //            $papers = DB::table('papers')
 //                ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
 //                ->join('users', 'paper_reviews.reviewer_id', '=', 'users.email')
@@ -69,6 +73,9 @@ class ReviewerDiscussionController extends Controller {
 
         } else
         {
+            //Session for navigation menu bar
+            \Session::flash('reviewer', '5');
+
             $papers = DB::table('papers')
                 ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
                 ->select('papers.id', 'papers.title', 'papers.tempStatus', 'papers.averageMarks', 'papers.created_at')

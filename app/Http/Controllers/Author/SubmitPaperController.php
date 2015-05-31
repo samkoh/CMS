@@ -26,6 +26,9 @@ class SubmitPaperController extends Controller {
      */
     public function index()
     {
+        //Session for navigation menu bar
+        \Session::flash('author', '6');
+
         return view('author.submitPaper');
     }
 

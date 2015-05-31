@@ -27,6 +27,9 @@ class ConfChairFinalizePapersController extends Controller {
      */
     public function index()
     {
+        //Session for navigation menu bar
+        \Session::flash('confChair', '1');
+
         //Get all the reviewed papers
         $allReviewedPapers = DB::table('papers')
             ->leftJoin('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')

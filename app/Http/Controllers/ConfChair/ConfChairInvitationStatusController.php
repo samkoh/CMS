@@ -15,6 +15,9 @@ class ConfChairInvitationStatusController extends Controller {
 	 */
 	public function index()
 	{
+        //Session for navigation menu bar
+        \Session::flash('confChair', '1');
+
         $invitations = DB::table('recipient_message_logs')
             ->leftJoin('users', 'recipient_message_logs.recipient_id', '=', 'users.email')
             ->select('recipient_message_logs.recipient_id', 'users.registerUponInvitation', 'recipient_message_logs.created_at')

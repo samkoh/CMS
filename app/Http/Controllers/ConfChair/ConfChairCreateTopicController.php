@@ -23,6 +23,9 @@ class ConfChairCreateTopicController extends Controller {
 	 */
 	public function index()
 	{
+        //Session for navigation menu bar
+        \Session::flash('confChair', '1');
+
         $topics = $this->topic->orderBy('name', 'asc')->get();
 
         return view('conferenceChair.createTopic', compact('topics'));

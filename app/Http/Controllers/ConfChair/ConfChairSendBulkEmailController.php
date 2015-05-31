@@ -14,6 +14,9 @@ class ConfChairSendBulkEmailController extends Controller {
 	 */
 	public function index()
 	{
+        //Session for navigation menu bar
+        \Session::flash('confChair', '1');
+
         $date= ['January', 'February','March','April','May','June','July','August','September','October','November','December'];
 
         return view('conferenceChair.sendBulkEmail',compact('date'));

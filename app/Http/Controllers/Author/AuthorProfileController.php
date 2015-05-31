@@ -27,6 +27,9 @@ class AuthorProfileController extends Controller {
 	 */
 	public function index()
 	{
+        //Session for navigation menu bar
+        \Session::flash('author', '6');
+
         $userEmail = Auth::user()->email;
 
             $user = DB::table('users')

@@ -16,6 +16,9 @@ class ConfChairConferenceFeeController extends Controller {
 	 */
 	public function index()
 	{
+        //Session for navigation menu bar
+        \Session::flash('confChair', '1');
+
         $conference = Conference::lists('conferenceName');
         $fee = ['Member', 'Non-Member', 'Non-Malaysian'];
 

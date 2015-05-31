@@ -14,6 +14,9 @@ class ConfChairInvitationCancelController extends Controller {
 	 */
 	public function index()
 	{
+        //Session for navigation menu bar
+        \Session::flash('confChair', '1');
+
         $message = 'Hello John, Sorry for taking your time to considerate my invitation to the xxx Conferecence 2015,Since you are unable to reply your confirmation towards the invitation, our committee had decided to cancel your invitation. Sorry for any incovenience caused.
                     Thank you.';
 

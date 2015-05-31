@@ -23,6 +23,9 @@ class ConfChairInvitationController extends Controller {
 
     public function index()
     {
+        //Session for navigation menu bar
+        \Session::flash('confChair', '1');
+
         $conferenceName = Conference::lists('conferenceName', 'id');
 
 //        $conferenceName = DB::table('conferences')

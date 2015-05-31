@@ -14,6 +14,9 @@ class ConfChairPaperReportController extends Controller {
      */
     public function index()
     {
+        //Session for navigation menu bar
+        \Session::flash('confChair', '1');
+
         $allPapers = DB::table('papers')
         ->leftjoin('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
         ->leftjoin('users', 'paper_reviews.reviewer_id', '=', 'users.email')
