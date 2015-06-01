@@ -50,48 +50,54 @@
                 {{--</div>--}}
 
                 <!-- end #posts -->
-                <div id="links">
-                    <ul>
-                        <li>
-                            <h2><strong><i>Announcement</i></strong></h2>
-                            <ul>
-                                <li>To be inform that our last paper review is before <strong><p class="date">July
-                                            25,2015</p></strong></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <h2>Conference Chair</h2>
-                            <ul>
-                                <li>Richard Sayre</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <h2>Conference Speaker</h2>
-                            <ul>
-                                <li>Micah Atkin, <i>Australia</i></li>
-                                <li>Dr Till T. Bachmann, <i>UK</i></li>
-                                <li>Prof. Nigel James , <i>UK</i></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <br/>
-
-                <div>
-                    <div class="post">
-                        <div class="post">
-                            <h2>Overall created Conferences List</h2>
-
+                <div style="float: left;">
+                        <h2>Overall created Conferences List</h2>
+                        <ol>
                             @foreach($conferences as $conference)
-                                <li>
-                                    {{ $conference->conferenceName }}
-                                </li>
+                                <li>{{ $conference->conferenceName }}</li>
                             @endforeach
+                        </ol>
 
-                        </div>
+                    <h2>Conference Manager's Name</h2>
+                    <ol>
+                        @foreach($conferenceManagers as $conferenceManager)
+                            <li>{{$conferenceManager->nameTitlePrefix}}
+                                . {{  $conferenceManager->firstname }} {{  $conferenceManager->lastname }},
+                                <i>  {{ $conferenceManager->country }}</i></li>
+                        @endforeach
+                    </ol>
+
+                    <h2>Committees' Name</h2>
+                    <ol>
+                        @foreach($committeeNames as $committeeName)
+                            <li>{{$committeeName->nameTitlePrefix}}
+                                . {{  $committeeName->firstname }} {{  $committeeName->lastname }},
+                                <i>  {{ $committeeName->country }}</i></li>
+                        @endforeach
+                    </ol>
+                </div>
+                <div>
+                    <div style="float:right; ">
+                        <h2>Reviewers' Name</h2>
+                        <ol>
+                            @foreach($reviewerNames as $reviewerName)
+                                <li>{{$reviewerName->nameTitlePrefix}}
+                                    . {{  $reviewerName->firstname }} {{  $reviewerName->lastname }},
+                                    <i>  {{ $reviewerName->country }}</i></li>
+                            @endforeach
+                        </ol>
+
+                        <h2>Author' Name</h2>
+                        <ol>
+                            @foreach($authorNames as $authorName)
+                                <li>{{$reviewerName->nameTitlePrefix}}
+                                    . {{  $authorName->firstname }} {{  $reviewerName->lastname }},
+                                    <i>  {{ $reviewerName->country }}</i></li>
+                            @endforeach
+                        </ol>
                     </div>
                 </div>
-                <!-- end #links -->
+                <!-- end #list -->
                 <div style="clear: both;">&nbsp;</div>
             </div>
         </div>

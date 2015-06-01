@@ -18,13 +18,13 @@ class ConfChairPaperReportController extends Controller {
         \Session::flash('confChair', '1');
 
         $allPapers = DB::table('papers')
-        ->leftjoin('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
-        ->leftjoin('users', 'paper_reviews.reviewer_id', '=', 'users.email')
-        ->select('papers.id','papers.title', 'papers.status', 'paper_reviews.reviewer_id',
-            'papers.created_at', DB::raw('group_concat(users.firstname) as firstname'))
-        ->groupBy('papers.title')
-        ->orderBy('papers.status', 'desc')
-        ->get();
+            ->leftjoin('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
+            ->leftjoin('users', 'paper_reviews.reviewer_id', '=', 'users.email')
+            ->select('papers.id', 'papers.title', 'papers.status', 'paper_reviews.reviewer_id',
+                'papers.created_at', DB::raw('group_concat(users.firstname) as firstname'))
+            ->groupBy('papers.title')
+            ->orderBy('papers.status', 'desc')
+            ->get();
 
         $nullReviewer = DB::table('papers')
             ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
@@ -54,7 +54,7 @@ class ConfChairPaperReportController extends Controller {
 
 //dd($allPapersNum);
 
-        return view('conferenceChair.paperReport', compact('allPapers','nullReviewer', 'acceptNum', 'rejectNum', 'allPapersNum'));
+        return view('conferenceChair.paperReport', compact('allPapers', 'nullReviewer', 'acceptNum', 'rejectNum', 'allPapersNum'));
     }
 
     /**

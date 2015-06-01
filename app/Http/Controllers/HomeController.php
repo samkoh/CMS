@@ -55,9 +55,34 @@ class HomeController extends Controller {
         $userEmail = Auth::user()->email;
 
         $userRole = DB::table('user_user_roles')
-            ->select('user_role_id')
-            ->where('user_id', '=', $userEmail)
-            ->first();
+        ->select('user_role_id')
+        ->where('user_id', '=', $userEmail)
+        ->first();
+
+        $conferenceManagers = DB::table('users')
+            ->join('user_user_roles', 'user_user_roles.user_id', '=', 'users.email')
+            ->select('users.nameTitlePrefix','users.firstname', 'users.lastname', 'users.country')
+            ->where('user_role_id','=', 2)
+            ->get();
+
+        $committeeNames = DB::table('users')
+            ->join('user_user_roles', 'user_user_roles.user_id', '=', 'users.email')
+            ->select('users.nameTitlePrefix','users.firstname', 'users.lastname', 'users.country')
+            ->whereIn('user_role_id', array(3,4))
+            ->get();
+
+        $reviewerNames = DB::table('users')
+            ->join('user_user_roles', 'user_user_roles.user_id', '=', 'users.email')
+            ->select('users.nameTitlePrefix','users.firstname', 'users.lastname', 'users.country')
+            ->where('user_role_id','=', 5)
+            ->get();
+
+        $authorNames = DB::table('users')
+            ->join('user_user_roles', 'user_user_roles.user_id', '=', 'users.email')
+            ->select('users.nameTitlePrefix','users.firstname', 'users.lastname', 'users.country')
+            ->where('user_role_id','=', 6)
+            ->get();
+
 
 //        if(\Auth::check() && \Auth::user()->id == '1')
         if (Auth::check() && $userRole->user_role_id == 5)
@@ -88,7 +113,7 @@ class HomeController extends Controller {
 
             $conferences = $this->conference->get();
 
-            return view('conferenceChairHome', compact('conferences'));
+            return view('conferenceChairHome', compact('conferences','committeeNames','reviewerNames','authorNames','conferenceManagers'));
         }
 
     }

@@ -47,7 +47,7 @@ class SubmitPaperController extends Controller {
      *
      * @return Response
      */
-    public function store(Request $request, Paper $paper)
+    public function store(Request $request, Paper $paper, Requests\UploadFileRequest $request)
     {
         $paper->title = Input::get('title');
         $paper->abstractContent = Input::get('abstractContent');

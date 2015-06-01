@@ -19,7 +19,7 @@
     </div>
 
     <div class="form-group">
-        {!! Form::label('fullPaperUrl', 'Upload File:')!!}
+        {!! Form::label('fullPaperUrl', 'Upload File: PDF file format only')!!}
         {!! Form::file('fullPaperUrl') !!}
     </div>
 
@@ -28,5 +28,13 @@
     </div>
 
     {!! Form::close() !!}
+
+    @if($errors->any())
+        <ul class="alert alert-danger">
+            @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+            @endforeach
+        </ul>
+    @endif
 
 @endsection

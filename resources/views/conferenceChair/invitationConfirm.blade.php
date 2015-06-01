@@ -10,7 +10,7 @@
 
 		<div class="form-group">
 			{!! Form::label('template', 'Template:')!!}<br/>
-			{!! Form::textarea('template', $template, array('required','class'=>'form-control','placeholder'=>'Name')) !!}
+			{!! Form::textarea('template', $template, array('required','class'=>'form-control','placeholder'=>'Message')) !!}
 		</div>
 
 		<div class="form-group">

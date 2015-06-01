@@ -54,22 +54,34 @@ class ReviewerDiscussionController extends Controller {
             \Session::flash('confChair', '1');
 
 //            $papers = DB::table('papers')
-//                ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
-//                ->join('users', 'paper_reviews.reviewer_id', '=', 'users.email')
-//                ->select('papers.id','papers.title', 'papers.tempStatus', 'papers.averageMarks', 'papers.created_at')
-////            ->where('paper_reviews.reviewer_id', '=', $userId)
-//                ->whereIn('papers.tempStatus', [-1,-3])
-////                ->orWhere('users.user_role', '=', 1)
-//                ->orderBy('papers.created_at', 'desc')
-//                ->get();
-            $papers = DB::table('papers')
+//            ->select('id', 'title', 'tempStatus', 'averageMarks', 'created_at')
+//            ->whereIn('tempStatus', [- 1, - 3])
+//            ->where('status', '=', '')
+//            ->orderBy('created_at', 'desc')
+//            ->get();
+
+            $conflictPapers = DB::table('papers')
                 ->select('id', 'title', 'tempStatus', 'averageMarks', 'created_at')
-                ->whereIn('tempStatus', [- 1, - 3])
-                ->where('status', '=', '')
+                ->where('tempStatus', '=', - 3)
+//                ->where('status', '=', '')
                 ->orderBy('created_at', 'desc')
                 ->get();
 
-            return view('conferenceChair.confDiscussion', compact('papers'));
+            $rejectPapers = DB::table('papers')
+                ->select('id', 'title', 'tempStatus', 'averageMarks', 'created_at')
+                ->where('tempStatus', '=', - 1)
+//                ->where('status', '=', '')
+                ->orderBy('created_at', 'desc')
+                ->get();
+
+            $acceptPapers = DB::table('papers')
+                ->select('id', 'title', 'tempStatus', 'averageMarks', 'created_at')
+                ->where('tempStatus', '=', 1)
+//                ->where('status', '=', '')
+                ->orderBy('created_at', 'desc')
+                ->get();
+
+            return view('conferenceChair.confDiscussion', compact('conflictPapers', 'rejectPapers', 'acceptPapers'));
 
         } else
         {
@@ -134,8 +146,23 @@ class ReviewerDiscussionController extends Controller {
      */
     public function show($id)
     {
+        $userId = Auth::user()->email;
 
-//        $paper = $this->paper->get()[$id];
+        //Check whether the user is conference chair or not
+        $userRole = DB::table('user_user_roles')
+            ->select('user_role_id')
+            ->where('user_id', '=', $userId)
+            ->first();
+        if ($userRole->user_role_id == 1)
+        {
+            //Session for navigation menu bar
+            \Session::flash('confChair', '1');
+        } else
+        {
+            //Session for navigation menu bar
+            \Session::flash('reviewer', '5');
+        }
+
         $paper = Paper::find($id);
 
 //        $arrangement = DB::table('paper_reviews')
@@ -168,9 +195,10 @@ class ReviewerDiscussionController extends Controller {
 //            ->get();
 
         $paperDiscussion = DB::table('paper_discussions')
-            ->join('user_user_roles','paper_discussions.user_id', '=', 'user_user_roles.user_id')
+            ->join('user_user_roles', 'paper_discussions.user_id', '=', 'user_user_roles.user_id')
 //            ->leftJoin('paper_reviews', 'paper_reviews.reviewer_id', '=', 'user_user_roles.user_id' && 'paper_reviews.paper_id', '=', 'paper_discussions.paper_id')
-            ->leftJoin('paper_reviews', function($join){
+            ->leftJoin('paper_reviews', function ($join)
+            {
                 $join->on('paper_reviews.reviewer_id', '=', 'user_user_roles.user_id');
                 $join->on('paper_reviews.paper_id', '=', 'paper_discussions.paper_id');
             })
@@ -193,8 +221,7 @@ class ReviewerDiscussionController extends Controller {
         if ($userRole->user_role_id == 1)
         {
             return view('conferenceChair.confShowDiscussion', compact('paper', 'paperDiscussion'));
-        }
-        else
+        } else
         {
             return view('reviewer.showDiscussion', compact('paper', 'paperDiscussion'));
 

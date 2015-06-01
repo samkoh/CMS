@@ -49,12 +49,12 @@
 
         <div class="form-group">
             {!! Form::label('websiteURL', 'Website URL:')!!}
-            {!! Form::text('websiteURL', null, array('required','class'=>'form-control','placeholder'=>'URL')) !!}
+            {!! Form::text('websiteURL', null, array('required','active_url', 'class'=>'form-control','placeholder'=>'Website URL')) !!}
         </div>
 
         <div class="form-group">
             {!! Form::label('conferenceEmail', 'Email:')!!}
-            {!! Form::email('conferenceEmail', null, array('required','class'=>'form-control','placeholder'=>'Email')) !!}
+            {!! Form::email('conferenceEmail', null, array('required','class'=>'form-control','placeholder'=>'Please enter your Email')) !!}
         </div>
 
         <div class="form-group">
@@ -84,7 +84,16 @@
         </div>
 
         {!! Form::close() !!}
+
+        @if($errors->any())
+            <ul class="alert alert-danger">
+                @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        @endif
     </div>
+
 
 
     <script>
@@ -93,5 +102,7 @@
             tags: true
         });
     </script>
+
+
 
 @endsection

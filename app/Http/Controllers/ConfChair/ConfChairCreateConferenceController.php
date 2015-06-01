@@ -55,7 +55,7 @@ class ConfChairCreateConferenceController extends Controller {
      *
      * @return Response
      */
-    public function store(Request $request, Conference $conference)
+    public function store(Request $request, Conference $conference, Requests\CreateConferenceRequest $request)
     {
 //		$conference->create($request->all());
 //
