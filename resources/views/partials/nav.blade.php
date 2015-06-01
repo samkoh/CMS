@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -8,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="https://laracasts.com/series/build-your-first-app-in-laravel">Conference
+            <a class="navbar-brand" href="">Conference
                 Home</a>
         </div>
 
@@ -84,3 +85,4 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="{{ asset('/javascript/bootstrap.js') }}" type="text/javascript" charset="utf-8" async defer></script>
+<!-- Latest compiled and minified CSS -->

@@ -3,15 +3,6 @@
 @section('content')
 
     <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-        <title>Conference Management System</title>
-        <meta name="keywords" content=""/>
-        <meta name="description" content=""/>
-        <link href="css/style.css" rel="stylesheet">
-        <script type="text/javascript" src="javascript/jquerySlide.min.js"></script>
-        <script type="text/javascript" src="javascript/image_slide.js"></script>
-    </head>
 
     <body>
     <div id="wrapper">
@@ -31,25 +22,6 @@
         <!-- end #header -->
         <div id="content">
             <div id="posts">
-                {{--<div class="post">--}}
-                {{--<h2>Welcome  <strong><font color="yellow">{{ Auth::user()->firstname }}</font></strong> to the Reviewer Page</h2>--}}
-
-                {{--<div class="story">--}}
-                {{--<p><strong>Conference Management System</strong> is web based software that supports the--}}
-                {{--organization of conferences especially scientific conferences. It helps the program--}}
-                {{--chair(s),--}}
-                {{--the conference organizers, the authors and the reviewers in their respective activities.--}}
-                {{--</p>--}}
-
-                {{--<p>--}}
-                {{--A <strong>Conference Management System</strong> can be regarded as a domain-specific content--}}
-                {{--management system.--}}
-                {{--Similar systems are used today by editors of scientific journals.--}}
-                {{--</p>--}}
-                {{--</div>--}}
-                {{--</div>--}}
-
-                <!-- end #posts -->
                 <div id="links">
                     <ul>
                         <li>
