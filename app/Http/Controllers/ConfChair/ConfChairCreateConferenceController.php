@@ -11,22 +11,20 @@ use Illuminate\Support\Facades\Input;
 
 class ConfChairCreateConferenceController extends Controller {
 
-//    public function __construct()
-//    {
-//        $this->middleware('auth');
-//    }
 
     private $conference;
 
+    /**
+     * @param Conference $conference
+     */
     public function __construct(Conference $conference)
     {
         $this->conference = $conference;
     }
 
+
     /**
-     * Display a listing of the resource.
-     *
-     * @return Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -50,10 +48,12 @@ class ConfChairCreateConferenceController extends Controller {
 
     }
 
+
     /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
+     * @param Request $request
+     * @param Conference $conference
+     * @param Requests\CreateConferenceRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request, Conference $conference, Requests\CreateConferenceRequest $request)
     {

@@ -15,12 +15,10 @@ use Illuminate\Support\Facades\Input;
 
 class ConfChairInvitationController extends Controller {
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
 
+    /**
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
         //Session for navigation menu bar
@@ -28,11 +26,6 @@ class ConfChairInvitationController extends Controller {
 
         $conferenceName = Conference::lists('conferenceName', 'id');
 
-//        $conferenceName = DB::table('conferences')
-//            ->select('id', 'conferenceName')
-//            ->get();
-
-//dd($conferenceName);
         return view('conferenceChair.invitation', compact('conferenceName'));
     }
 
@@ -50,9 +43,9 @@ class ConfChairInvitationController extends Controller {
     public function confirm(Requests\PrepareInvitationRequest $request, Guard $auth)
     {
         $template = $this->compileInvitationTemplate($data = $request->all(), $auth);
-//dd($template);
 
-        session()->flash('invitation', $data);
+//        session()->flash('invitation', $data);
+        \Session::put('invitation',$data);
 
         return view('conferenceChair.invitationConfirm', compact('template'));
     }
@@ -66,6 +59,9 @@ class ConfChairInvitationController extends Controller {
      */
     private function compileInvitationTemplate($data, Guard $auth)
     {
+        //Session for navigation menu bar
+        \Session::flash('confChair', '1');
+
         $conferenceName = DB::table('conferences')
             ->select('conferenceName')
             ->where('id', '=', $data['conferenceName'])
@@ -76,8 +72,10 @@ class ConfChairInvitationController extends Controller {
 //        $hashedConferenceId = password_hash("conferenceName", PASSWORD_BCRYPT, array());
         $hashedConferenceId = md5($data['conferenceName']);
 //dd($hashedConferenceId);
+
         //Session for hashedConferenceId
-        session()->flash('hashConferenceId', $hashedConferenceId);
+//        session()->flash('hashConferenceId', $hashedConferenceId);
+        \Session::put('hashConferenceId',$hashedConferenceId);
 
 //        dd($conferenceName);
         $data = $data + [
@@ -99,6 +97,12 @@ class ConfChairInvitationController extends Controller {
         return view()->file(app_path('Http/Templates/invitationTemplate.blade.php'), $data);
     }
 
+    /**
+     * @param Request $request
+     * @param RecipientMessageLog $recipientMessageLog
+     * @param MessageLog $messageLog
+     * @return $this|RecipientMessageLog
+     */
     private function createInvitation(Request $request, RecipientMessageLog $recipientMessageLog, MessageLog $messageLog)
     {
         $data = session()->get('invitation');
@@ -106,7 +110,7 @@ class ConfChairInvitationController extends Controller {
         $recipientEmail = session()->get('invitation.email');
         $conferenceId = session()->get('invitation.conferenceName');
         $hashedConferenceId = session()->get('hashConferenceId');
-
+//dd($data);
         $content = MessageLog::open($data)->useTemplate($request->input('template'));
 
         $content->title = $mailTitle;
@@ -130,10 +134,12 @@ class ConfChairInvitationController extends Controller {
         return $recipientMessageLog;
     }
 
+
     /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
+     * @param Request $request
+     * @param RecipientMessageLog $recipientMessageLog
+     * @param MessageLog $messageLog
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request, RecipientMessageLog $recipientMessageLog, MessageLog $messageLog)
     {

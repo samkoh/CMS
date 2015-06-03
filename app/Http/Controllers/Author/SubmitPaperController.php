@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers\Author;
 
+use App\Conference;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -29,7 +30,11 @@ class SubmitPaperController extends Controller {
         //Session for navigation menu bar
         \Session::flash('author', '6');
 
-        return view('author.submitPaper');
+        //Get the conference name and id
+        $conferenceName = Conference::lists('conferenceName', 'id');
+
+
+        return view('author.submitPaper', compact('conferenceName'));
     }
 
     /**
@@ -49,6 +54,7 @@ class SubmitPaperController extends Controller {
      */
     public function store(Request $request, Paper $paper, Requests\UploadFileRequest $request)
     {
+        $paper->conference_id = Input::get('conferenceId');
         $paper->title = Input::get('title');
         $paper->abstractContent = Input::get('abstractContent');
         $paper->user_id = Auth::user()->email;
@@ -87,7 +93,6 @@ class SubmitPaperController extends Controller {
          * using it's save method.
          * Due to the naming method of the file's name when user upload, i use another method and comment this method
          */
-
 //        $paper = Auth::user()->papers()->create($request->all());
 
         return redirect()->route('author.index');

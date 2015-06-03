@@ -419,6 +419,20 @@
                         </div>
 
                         @if($conferenceId == null)
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Register for Conference:</label>
+                                <div class="col-md-6">
+                                    <select class="form-control" name="conference_id">
+                                        <option value="" disabled="disabled" selected="selected">Please select </option>
+                                        @foreach($conferenceNames as $conferenceName)
+                                        <option value="{{$conferenceName->id}}">{{$conferenceName->conferenceName}}</option>
+                                        @endforeach
+
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Register as:</label>
 

@@ -54,6 +54,8 @@
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="/author">Submit Paper</a></li>
+                            <li><a href="/author/paperStatus">Paper Status</a></li>
+
                         </ul>
                     </li>
                 @endif

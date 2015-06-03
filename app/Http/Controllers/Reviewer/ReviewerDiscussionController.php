@@ -93,7 +93,7 @@ class ReviewerDiscussionController extends Controller {
                 ->select('papers.id', 'papers.title', 'papers.tempStatus', 'papers.averageMarks', 'papers.created_at')
                 ->where('paper_reviews.reviewer_id', '=', $userId)
                 ->whereIn('papers.tempStatus', [- 1, - 3])
-                ->where('status', '=', '')
+                ->where('status', '=', '') //reviewer: display status is null only
                 ->orderBy('papers.created_at', 'desc')
                 ->get();
 
@@ -196,6 +196,7 @@ class ReviewerDiscussionController extends Controller {
 
         $paperDiscussion = DB::table('paper_discussions')
             ->join('user_user_roles', 'paper_discussions.user_id', '=', 'user_user_roles.user_id')
+            ->join('users','user_user_roles.user_id','=','users.email')
 //            ->leftJoin('paper_reviews', 'paper_reviews.reviewer_id', '=', 'user_user_roles.user_id' && 'paper_reviews.paper_id', '=', 'paper_discussions.paper_id')
             ->leftJoin('paper_reviews', function ($join)
             {
@@ -203,11 +204,18 @@ class ReviewerDiscussionController extends Controller {
                 $join->on('paper_reviews.paper_id', '=', 'paper_discussions.paper_id');
             })
             ->where('paper_discussions.paper_id', '=', $paper->id)
-            ->select('paper_discussions.content', 'user_user_roles.user_role_id', 'paper_discussions.created_at', 'paper_reviews.tempId')
+            ->select('paper_discussions.content', 'user_user_roles.user_role_id', 'paper_discussions.created_at', 'paper_reviews.tempId','users.firstname','users.lastname', 'paper_reviews.paperEvaluation')
             ->where('paper_discussions.status', '=', 1)//status is active
             ->orderBy('paper_discussions.created_at', 'desc')
             ->get();
 
+        $showEvaluationMarks = DB::table('paper_reviews')
+            ->join('users','paper_reviews.reviewer_id','=','users.email')
+            ->select('tempId','paperEvaluation','users.firstname','users.lastname')
+            ->where('paper_id','=',$paper->id)
+            ->get();
+
+//dd($showEvaluationMarks);
 //    dd($paperDiscussion);
 
         $userId = Auth::user()->email;
@@ -220,10 +228,10 @@ class ReviewerDiscussionController extends Controller {
 //dd($userRole);
         if ($userRole->user_role_id == 1)
         {
-            return view('conferenceChair.confShowDiscussion', compact('paper', 'paperDiscussion'));
+            return view('conferenceChair.confShowDiscussion', compact('paper', 'paperDiscussion','showEvaluationMarks'));
         } else
         {
-            return view('reviewer.showDiscussion', compact('paper', 'paperDiscussion'));
+            return view('reviewer.showDiscussion', compact('paper', 'paperDiscussion', 'showEvaluationMarks'));
 
         }
     }

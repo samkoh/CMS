@@ -9,9 +9,28 @@
                     <div class="panel-body">
 
 
-                        <h3 align="left">Paper Discussion:</h3>
-                        <h4 align="left">{{ $paper->title }}</h4>
-
+                        <h3 align="left">Paper Discussion: {{ $paper->title }}</h3>
+                        <br/>
+                        <h4 align="left">Paper Review Result:</h4>
+                        @foreach($showEvaluationMarks as  $showEvaluationMark)
+                            @if($showEvaluationMark->tempId != null)
+                                    Reviewer : {{$showEvaluationMark->firstname}} {{$showEvaluationMark->lastname}} -> Evaluated Mark :
+                                @if($showEvaluationMark->paperEvaluation == 2)
+                                    {{$showEvaluationMark->paperEvaluation}} (Strong Accept)
+                                @elseif($showEvaluationMark->paperEvaluation == 1)
+                                    {{$showEvaluationMark->paperEvaluation}} (Accept)
+                                @elseif($showEvaluationMark->paperEvaluation == 0)
+                                    {{$showEvaluationMark->paperEvaluation}} (Border Line)
+                                @elseif($showEvaluationMark->paperEvaluation == -1)
+                                    {{$showEvaluationMark->paperEvaluation}} (Reject)
+                                @elseif($showEvaluationMark->paperEvaluation == -2)
+                                    {{$showEvaluationMark->paperEvaluation}} (Strong Reject)
+                                @else
+                                    Unknown
+                                @endif
+                                <br/>
+                            @endif
+                        @endforeach
                         <br/>
 
                         {{--{!! Form::model($paper, ['url' => 'paper/' . $paper->id, 'method' => 'PATCH']) !!}--}}
@@ -48,7 +67,7 @@
                                     @if($Discussion->user_role_id == 1)
                                         <strong><i>Conference Chair :</i></strong>
                                     @else
-                                        <strong><i>Reviewer : {{$Discussion->tempId}}</i></strong>
+                                        <strong><i>Reviewer : </i></strong>{{$Discussion->firstname}} {{$Discussion->lastname}}
                                     @endif
                                     <br/>
                                     {{$Discussion->content}}

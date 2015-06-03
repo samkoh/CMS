@@ -11,17 +11,19 @@ class ConfChairCreateTopicController extends Controller {
 
     private $topic;
 
+    /**
+     * @param Topic $topic
+     */
     public function __construct(Topic $topic)
     {
         $this->topic = $topic;
     }
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
+
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function index()
 	{
         //Session for navigation menu bar
         \Session::flash('confChair', '1');
@@ -42,12 +44,13 @@ class ConfChairCreateTopicController extends Controller {
 
     }
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store(Request $request, Topic $topic)
+
+    /**
+     * @param Request $request
+     * @param Topic $topic
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function store(Request $request, Topic $topic)
 	{
 		$topic->create($request->all());
         //dd($topic);

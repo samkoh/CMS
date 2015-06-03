@@ -6,7 +6,8 @@
     <body>
     <div id="wrapper">
         <div id="header">
-            <h1>Welcome <strong><font color="yellow">{{ Auth::user()->firstname }}</font></strong> to the Conference Chair Home
+            <h1>Welcome <strong><font color="yellow">{{ Auth::user()->firstname }}</font></strong> to the Conference
+                Chair Home
                 Page</h1>
 
             <div class="slideshow">
@@ -20,7 +21,7 @@
         </div>
         <!-- end #header -->
         <div id="content">
-            <div id="posts">
+            {{--<div id="posts">--}}
                 {{--<div class="post">--}}
                 {{--<h2>Welcome  <strong><font color="yellow">{{ Auth::user()->firstname }}</font></strong> to the Reviewer Page</h2>--}}
 
@@ -41,12 +42,12 @@
 
                 <!-- end #posts -->
                 <div style="float: left;">
-                        <h2>Overall created Conferences List</h2>
-                        <ol>
-                            @foreach($conferences as $conference)
-                                <li>{{ $conference->conferenceName }}</li>
-                            @endforeach
-                        </ol>
+                    <h2>Overall created Conferences List</h2>
+                    <ol>
+                        @foreach($conferences as $conference)
+                            <li>{{ $conference->conferenceName }}</li>
+                        @endforeach
+                    </ol>
 
                     <h2>Conference Manager's Name</h2>
                     <ol>
@@ -89,7 +90,7 @@
                 </div>
                 <!-- end #list -->
                 <div style="clear: both;">&nbsp;</div>
-            </div>
+            {{--</div>--}}
         </div>
         <!-- end #content -->
         <div id="footer">

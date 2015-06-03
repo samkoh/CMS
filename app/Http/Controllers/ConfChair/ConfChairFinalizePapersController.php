@@ -15,15 +15,17 @@ class ConfChairFinalizePapersController extends Controller {
 
     private $paper;
 
+    /**
+     * @param Paper $paper
+     */
     public function __construct(Paper $paper)
     {
         $this->paper = $paper;
     }
 
+
     /**
-     * Display a listing of the resource.
-     *
-     * @return Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -39,7 +41,6 @@ class ConfChairFinalizePapersController extends Controller {
             ->where('papers.tempStatus', '!=', '')
             ->groupBy('papers.id')
             ->get();
-//dd($allReviewedPapers);
 
         return view('conferenceChair.finalizeAllPapers', compact('allReviewedPapers'));
     }
@@ -72,12 +73,12 @@ class ConfChairFinalizePapersController extends Controller {
      */
     public function show($id)
     {
+        //Session for navigation menu bar
+        \Session::flash('confChair', '1');
+
         $paper = Paper::find($id);
 
-//dd($paper);
         return view('conferenceChair.finalizePapers', compact('paper'));
-
-
     }
 
     /**
@@ -91,19 +92,16 @@ class ConfChairFinalizePapersController extends Controller {
         //
     }
 
+
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  int $id
-     * @return Response
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update($id)
     {
         $paper = Paper::find($id);
 
         $paper->status = Input::get('status');
-
-//        dd($paper);
 
         $paper->save();
 

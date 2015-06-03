@@ -22,7 +22,7 @@ class Registrar implements RegistrarContract {
             'dateOfBirth' => 'required',
             'nationalIdentityNo' => 'required',
             'addressLine1' => 'required|max:255',
-            'contactNo' => 'required|integer',
+            'contactNo' => 'required',
         ],
             $messages = array(
                 'firstname.required' => 'The first name is required ',

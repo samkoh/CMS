@@ -235,6 +235,9 @@ Route::group(['middleware' => ['auth'],],
     });
 
 #Author Submit Paper
+Route::resource('author/paperStatus', 'Author\SubmitPaperStatusController');
+
+
 //Route::resource('author', 'Author\SubmitPaperController');
 Route::group(['middleware' => ['auth', 'permissions.required'],
     'permissions' => ['author'],
@@ -243,6 +246,8 @@ Route::group(['middleware' => ['auth', 'permissions.required'],
 {
     Route::resource('author', 'Author\SubmitPaperController');
 });
+
+
 
 //Route::resource('auth/register', 'Auth\AuthController');
 

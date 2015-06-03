@@ -117,9 +117,8 @@ class AuthorProfileController extends Controller {
      */
     public function update($email)
     {
-//dd($email);
         $userDetails = User::where('email', '=', $email)
-            ->first();
+                         ->first();
 
         $userDetails->firstname = Input::get('firstname');
         $userDetails->lastname = Input::get('lastname');
@@ -134,8 +133,7 @@ class AuthorProfileController extends Controller {
 
         $userDetails->save();
 
-//dd($userDetails);
-        return redirect('/');
+        return redirect('/'); //redirect to home page
     }
 
     /**

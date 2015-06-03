@@ -42,9 +42,6 @@ class AuthController extends Controller {
 	/**
 	 * Create a new authentication controller instance.
 	 *
-	 * @param  \Illuminate\Contracts\Auth\Guard  $auth
-	 * @param  \Illuminate\Contracts\Auth\Registrar  $registrar
-	 * @return void
 	 */
 	public function __construct(Guard $auth, Registrar $registrar)
 	{
@@ -60,8 +57,14 @@ class AuthController extends Controller {
         //temporary set the conference id to null
         $conferenceId = "";
 
+        //Get all the reviewed papers
+        $conferenceNames = DB::table('conferences')
+            ->select('id','conferenceName')
+            ->get();
+
+//dd($conferenceNames);
 //        return view('auth.register');
-        return view('auth.register', compact('conferenceId'));
+        return view('auth.register', compact('conferenceId','conferenceNames'));
 //        return \Redirect::action('Auth\AuthController');
 //        return redirect($this->getShow($conferenceId));
     }
@@ -74,7 +77,6 @@ class AuthController extends Controller {
             ->select('email')
             ->where('email', '=', $email)
             ->first();
-//        dd($existanceEmail);
 
         if ($existanceEmail == null)
         {
@@ -84,7 +86,6 @@ class AuthController extends Controller {
             return view('auth.register', compact('conferenceId'));
         } else
         {
-//            return Redirect::to('auth/login');
             return redirect('auth/login');
         }
     }
@@ -102,17 +103,16 @@ class AuthController extends Controller {
 
         $this->auth->login($this->registrar->create($request->except('user_role')));
 
-        //get the hashed conference id from the register page
+        //get the hashed conference id from the register (view) page
         $conferenceId = $request->input('conference_id');
-//dd($conferenceId);
         //select the conference id based on the given hashed conference id
         $hashedConferenceId = DB::table('message_logs')
             ->select('conference_id')
             ->where('conference_hash_id', '=', $conferenceId)
             ->first();
-//dd($hashedConferenceId);
+
         //This is to differentiate between reviewer login or others' login, reviewer has conference id while others no
-        if ($conferenceId != null)
+        if ($hashedConferenceId == true)
         {
             /*
              * Retrieve the user id and email from the Auth model
@@ -125,7 +125,7 @@ class AuthController extends Controller {
              */
             $userUserRole->user_table_id = $userId;
             $userUserRole->user_id = $userEmail;
-            $userUserRole->user_role_id = 5;
+            $userUserRole->user_role_id = 5;  //Role id 5 is reviewer
 //            $userUserRole->conference_id = \Crypt::decrypt($conferenceId);
 
             //strClass exception will thrown if did not specify the conference_id because the result that get from database is an object
@@ -141,14 +141,14 @@ class AuthController extends Controller {
             $userId = Auth::user()->id;
             $userEmail = Auth::user()->email;
             $userRoleId = $request->input('user_role');
-//            dd($userRoleId);
+
             /*
              * Assign the variables to database user_user_roles according to the table name
              */
             $userUserRole->user_table_id = $userId;
             $userUserRole->user_id = $userEmail;
             $userUserRole->user_role_id = $userRoleId; //user_role_id = 6 means author
-            $userUserRole->conference_id = 1; //temporary set the conference_id to 1
+            $userUserRole->conference_id = $conferenceId;
 
             $userUserRole->save();
         }

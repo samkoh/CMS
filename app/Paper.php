@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 class Paper extends Model {
 
     protected $fillable = [
+        'conference_id',
         'title',
         'abstractContent',
         'fullPaperUrl',

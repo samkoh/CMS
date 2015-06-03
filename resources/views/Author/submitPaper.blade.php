@@ -9,6 +9,11 @@
     {{--{!! Form::hidden('user_id', 1)!!}--}}
 
     <div class="form-group">
+        {!! Form::label('conferenceId', 'Submit paper under conference:')!!}
+        {!! Form::select('conferenceId',$conferenceName , 'null', ['id' => '','class' => 'form-control', ''])!!}
+    </div>
+
+    <div class="form-group">
         {!! Form::label('title', 'Paper Title:')!!}
         {!! Form::text('title', null, array('required','class'=>'form-control','placeholder'=>'Paper Title')) !!}
     </div>
