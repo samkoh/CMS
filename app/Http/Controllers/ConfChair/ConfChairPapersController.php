@@ -128,13 +128,20 @@ class ConfChairPapersController extends Controller {
 	 */
 	public function show($id)
 	{
+        //Session for navigation menu bar
+        \Session::flash('confChair', '1');
+
         $paper = $this->paper->get()[$id];
 //        dd($paper);
 
-        $reviewers = User::lists('firstname','email');
+//        $reviewers = User::lists('firstname','email');
+        $reviewers = User::join('user_user_roles','user_id','=','email')
+                    ->where('user_role_id','=','5')
+                    ->lists('firstname','email');
 
 
-		return view('conferenceChair.assignPapers', compact('reviewers', 'paper'));
+
+        return view('conferenceChair.assignPapers', compact('reviewers', 'paper'));
 
 //		$assignPaper = $this->getPapers()[$id];
 //

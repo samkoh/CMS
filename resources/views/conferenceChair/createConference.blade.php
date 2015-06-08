@@ -3,7 +3,7 @@
 @section('content')
 
     <div style="float: left; width: 20%;">
-        <h4>Conference Topic List created by <strong><font color="yellow">{{ Auth::user()->firstname }}</font></strong>:</h4>
+        <h4>Conference Topic List created by <strong><font color="#43C6DB">{{ Auth::user()->firstname }}</font></strong>:</h4>
 
         @foreach($conferences as $conference)
 

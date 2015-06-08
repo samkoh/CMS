@@ -4,17 +4,15 @@
 
     <html xmlns="http://www.w3.org/1999/xhtml">
     <body>
-    <div id="wrapper">
+    <div id="wrapper" >
         <div id="header">
-            <h1>Welcome <strong><font color="yellow">{{ Auth::user()->firstname }}</font></strong> to the Conference
-                Chair Home
-                Page</h1>
+            <h1>Welcome <strong><font color="#43C6DB">{{ Auth::user()->firstname }}</font></strong> to the Conference Chair Home Page</h1>
 
             <div class="slideshow">
                 <ul class="slideshow">
-                    <li class="show"><img width="900" height="250" src="images/slide_image_3.jpg"/></li>
-                    <li class="show"><img width="900" height="250" src="images/slide_image_1.jpg"/></li>
-                    <li><img width="900" height="250" src="images/slide_image_2.jpg"/></li>
+                    <li class="show"><img width="820" height="250" src="images/slide_image_3.jpg"/></li>
+                    <li class="show"><img width="820" height="250" src="images/slide_image_1.jpg"/></li>
+                    <li><img width="820" height="250" src="images/slide_image_2.jpg"/></li>
                 </ul>
             </div>
             <!--close slideshow-->

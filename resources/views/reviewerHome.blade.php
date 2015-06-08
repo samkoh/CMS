@@ -7,14 +7,14 @@
     <body>
     <div id="wrapper">
         <div id="header">
-            <h1>Welcome <strong><font color="yellow">{{ Auth::user()->firstname }}</font></strong> to the Reviewer Home
+            <h1>Welcome <strong><font color="43C6DB">{{ Auth::user()->firstname }}</font></strong> to the Reviewer Home
                 Page</h1>
 
             <div class="slideshow">
                 <ul class="slideshow">
-                    <li class="show"><img width="900" height="250" src="images/slide_image_3.jpg"/></li>
-                    <li class="show"><img width="900" height="250" src="images/slide_image_1.jpg"/></li>
-                    <li><img width="900" height="250" src="images/slide_image_2.jpg"/></li>
+                    <li class="show"><img width="820" height="250" src="images/slide_image_3.jpg"/></li>
+                    <li class="show"><img width="820" height="250" src="images/slide_image_1.jpg"/></li>
+                    <li><img width="820" height="250" src="images/slide_image_2.jpg"/></li>
                 </ul>
             </div>
             <!--close slideshow-->
@@ -34,7 +34,7 @@
                         <li>
                             <h2>Conference Chair</h2>
                             <ul>
-                                <li>Richard Sayre</li>
+                                <li>{{$confChairName->firstname}} {{$confChairName->lastname}},  <i>{{$confChairName->country}}</i></li>
                             </ul>
                         </li>
                         <li>

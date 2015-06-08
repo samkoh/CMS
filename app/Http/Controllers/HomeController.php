@@ -83,6 +83,10 @@ class HomeController extends Controller {
             ->where('user_role_id','=', 6)
             ->get();
 
+        $confChairName = DB::table('users')
+            ->select('firstname','lastname','country')
+            ->first();
+
 
 //        if(\Auth::check() && \Auth::user()->id == '1')
         if (Auth::check() && $userRole->user_role_id == 5)
@@ -94,7 +98,7 @@ class HomeController extends Controller {
 
             $papers = $this->paper->get();
 
-            return view('reviewerHome', compact('papers'));
+            return view('reviewerHome', compact('papers','confChairName'));
 
         } else if(Auth::check() && $userRole->user_role_id == 6)
         {
@@ -104,7 +108,7 @@ class HomeController extends Controller {
             $topics = $this->topic->get();
             $conferences = $this->conference->get();
 
-            return view('authorHome', compact('topics', 'conferences'));
+            return view('authorHome', compact('topics', 'conferences','confChairName'));
         }
         else
         {

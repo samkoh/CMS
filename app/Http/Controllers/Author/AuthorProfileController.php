@@ -128,8 +128,11 @@ class AuthorProfileController extends Controller {
         $userDetails->addressLine3 = Input::get('addressLine3');
         $userDetails->city = Input::get('city');
         $userDetails->state = Input::get('state');
+        $userDetails->postalCode = Input::get('postalCode');
         $userDetails->contactNo = Input::get('contactNo');
         $userDetails->faxNo = Input::get('faxNo');
+
+
 
         $userDetails->save();
 

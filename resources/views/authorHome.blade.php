@@ -7,29 +7,26 @@
     <body>
     <div id="wrapper">
         <div id="header">
-            <h1>Welcome <strong><font color="yellow">{{ Auth::user()->firstname }}</font></strong> to the Author Home
+            <h1>Welcome <strong><font color="43C6DB">{{ Auth::user()->firstname }}</font></strong> to the Author Home
                 Page</h1>
 
             <div class="slideshow">
                 <ul class="slideshow">
-                    <li class="show"><img width="900" height="250" src="images/slide_image_3.jpg"/></li>
-                    <li class="show"><img width="900" height="250" src="images/slide_image_1.jpg"/></li>
-                    <li><img width="900" height="250" src="images/slide_image_2.jpg"/></li>
+                    <li class="show"><img width="820" height="250" src="images/slide_image_3.jpg"/></li>
+                    <li class="show"><img width="820" height="250" src="images/slide_image_1.jpg"/></li>
+                    <li><img width="820" height="250" src="images/slide_image_2.jpg"/></li>
                 </ul>
             </div>
             <!--close slideshow-->
         </div>
         <!-- end #header -->
         <div id="content">
-            <div id="posts">
-                <div class="post">
+                {{--<div class="post">--}}
                     <p>MyConf2015 invites submissions of high-quality research papers describing original and unpublished work.
                     The topics are as shown as below and take note that our conference topics are not limited to the list below.
                     Do check our website for the latest topics.</p>
+                {{--</div>--}}
 
-                </div>
-
-            </div>
             <!-- end #posts -->
             <div id="links">
                 <ul>
@@ -43,7 +40,7 @@
                     <li>
                         <h2>Conference Chair</h2>
                         <ul>
-                            <li>Richard Sayre</li>
+                            <li>{{$confChairName->firstname}} {{$confChairName->lastname}},  <i>{{$confChairName->country}}</i></li>
                         </ul>
                     </li>
                     <li>
@@ -83,8 +80,9 @@
             <!-- end #links -->
             <div style="clear: both;">&nbsp;</div>
         </div>
+        <!-- end #content -->
     </div>
-    <!-- end #content -->
+    <!-- end #wrapper -->
     <div id="footer">
         <p id="legal">Copyright &copy; 2015 Conference Management System. </p>
     </div>

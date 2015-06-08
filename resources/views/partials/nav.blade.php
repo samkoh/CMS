@@ -24,7 +24,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="/conferenceChair/">Send Invitation</a></li>
                             <li><a href="/conferenceChair/allPapers">Assign Papers</a></li>
-                            <li><a href="/conferenceChair/invitationStatus">Reviewer Invitation Status</a></li>
+                            {{--<li><a href="/conferenceChair/invitationStatus">Reviewer Invitation Status</a></li>--}}
                             {{--<li><a href="/conferenceChair/sendBulkEmail">Bulk Email</a></li>--}}
                             <li><a href="/conferenceChair/createConference">Create a new conference</a></li>
                             {{--<li><a href="/conferenceChair/createConferenceFee">Conference Fee</a></li>--}}
