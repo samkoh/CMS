@@ -26,9 +26,9 @@ class CreateConferenceRequest extends Request {
             'acronym' =>'max:30',
             'theme' =>'max:50',
             'conferenceEmail'    => 'email',
-            'websiteURL' => 'active_url',
-            'contactNo' => 'integer',
-            'faxNo' => 'integer',
+//            'websiteURL' => 'active_url',
+//            'contactNo' => 'integer',
+//            'faxNo' => 'integer',
         ];
 	}
 

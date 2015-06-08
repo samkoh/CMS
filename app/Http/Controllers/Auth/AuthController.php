@@ -13,6 +13,7 @@ use App\UserConference;
 use App\UserUserRole;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class AuthController extends Controller {
 
@@ -57,9 +58,10 @@ class AuthController extends Controller {
         //temporary set the conference id to null
         $conferenceId = "";
 
-        //Get all the reviewed papers
+        //Get all the created conferences filter by end date
         $conferenceNames = DB::table('conferences')
             ->select('id','conferenceName')
+            ->where('endDate','>',Carbon::now())
             ->get();
 
 //dd($conferenceNames);

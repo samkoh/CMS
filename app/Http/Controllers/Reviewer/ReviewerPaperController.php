@@ -42,7 +42,7 @@ class ReviewerPaperController extends Controller {
 
         $papers = DB::table('papers')
             ->join('paper_reviews', 'papers.id', '=', 'paper_reviews.paper_id')
-            ->select('papers.id', 'papers.title', 'papers.abstractContent', 'papers.fullPaperUrl')
+            ->select('papers.id', 'papers.title', 'papers.abstractContent', 'papers.fullPaperUrl', 'paper_reviews.comment')
             ->where('reviewer_id', '=', $userId)
             ->orderBy('papers.id', 'desc')
             ->get();
@@ -132,18 +132,26 @@ class ReviewerPaperController extends Controller {
      */
     public function show($id)
     {
+        //Session for navigation menu bar
+        \Session::flash('reviewer', '5');
+
+        $userId = Auth::user()->email;
+
         $paper = Paper::find($id);
+//        $paperReview = PaperReview::find($id);
+
 //        $paper = $this->paper->get()[$id];
 //        $paper = Paper::where('id', '=', $id)
 //            ->first();
 //dd($paper);
-//        $paper = DB::table('papers')
-//            ->select('id','title', 'abstractContent', 'fullPaperUrl')
-//            ->where('id', '=', $paper)
-//            ->get();
+        $paperReview = DB::table('paper_reviews')
+            ->select('*')
+            ->where('paper_id', '=', $id)
+            ->where('reviewer_id','=',$userId)
+            ->first();
 
-//        dd($paper);
-        return view('reviewer.showPaper', compact('paper'));
+//        dd($paperReview);
+        return view('reviewer.showPaper', compact('paper','paperReview'));
     }
 
     /**

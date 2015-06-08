@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use Auth;
 use App\Paper;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
@@ -30,8 +31,16 @@ class SubmitPaperController extends Controller {
         //Session for navigation menu bar
         \Session::flash('author', '6');
 
+        //Get the current user's email
+        $userEmail = Auth::user()->email;
+
         //Get the conference name and id
-        $conferenceName = Conference::lists('conferenceName', 'id');
+//        $conferenceName = Conference::where('endDate','>',Carbon::now())->lists('conferenceName', 'id');
+        $conferenceName = Conference::join('user_user_roles','conference_id','=','id')
+            ->where('endDate','>',Carbon::now())
+            ->where('user_user_roles.user_id','=',$userEmail)
+            ->lists('conferenceName', 'id');
+
 
 
         return view('author.submitPaper', compact('conferenceName'));

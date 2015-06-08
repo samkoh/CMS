@@ -57,6 +57,8 @@ class ConfChairUserProfileController extends Controller {
 	public function show($email)
 	{
 //        dd($email);
+        \Session::flash('confChair', '1');
+
         $user = DB::table('users')
             ->select('id','firstname','lastname','email','nationalIdentityNo', 'addressLine1','addressLine2','addressLine3','city', 'state', 'postalCode', 'contactNo', 'faxNo')
             ->where('email', '=', $email)
