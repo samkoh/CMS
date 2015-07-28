@@ -51,6 +51,10 @@
         {!! Form::submit('Send', ['class' => 'btn btn-primary']) !!}
     </div>
 
+    {{--<div class="form-group">--}}
+        {{--{!! Form::submit('Send', ['class' => 'btn btn-primary']) !!}--}}
+    {{--</div>--}}
+
     {!! Form::close() !!}
 
 @endsection
