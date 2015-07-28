@@ -9,40 +9,60 @@
                     <div class="panel-heading">Paper Reports</div>
                     <div class="panel-body">
 
-                        <h4>Summary</h4>
-                        <table class="table table-striped table-bordered">
-                            <thead>
-                            <th>Type</th>
-                            <th>Number of Papers</th>
-                            </thead>
+                        <h4 align="center">Summary of all paper status</h4>
+                        {{--<table class="table table-striped table-bordered">--}}
+                            {{--<thead>--}}
+                            {{--<th>Type</th>--}}
+                            {{--<th>Number of Papers</th>--}}
+                            {{--</thead>--}}
 
-                            <tbody>
-                            <tr>
-                                <td>
-                                    Number of Accepted Papers
-                                </td>
-                                <td>
-                                    {{$acceptNum}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Number of Rejected Papers
-                                </td>
-                                <td>
-                                    {{$rejectNum}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Number of All Submitted Papers
-                                </td>
-                                <td>
-                                    {{$allPapersNum}}
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                            {{--<tbody>--}}
+                            {{--<tr>--}}
+                                {{--<td>--}}
+                                    {{--Number of Accepted Papers--}}
+                                {{--</td>--}}
+                                {{--<td>--}}
+                                    {{--{{$acceptNum}}--}}
+                                {{--</td>--}}
+                            {{--</tr>--}}
+                            {{--<tr>--}}
+                                {{--<td>--}}
+                                    {{--Number of Rejected Papers--}}
+                                {{--</td>--}}
+                                {{--<td>--}}
+                                    {{--{{$rejectNum}}--}}
+                                {{--</td>--}}
+                            {{--</tr>--}}
+                            {{--<tr>--}}
+                                {{--<td>--}}
+                                    {{--Number of All Submitted Papers--}}
+                                {{--</td>--}}
+                                {{--<td>--}}
+                                    {{--{{$allPapersNum}}--}}
+                                {{--</td>--}}
+                            {{--</tr>--}}
+                            {{--</tbody>--}}
+                        {{--</table>--}}
+
+                        <canvas id="daily-reports" width="600" height="300"></canvas>
+
+                        <script>
+                            (function() {
+                                var ctx = document.getElementById('daily-reports').getContext('2d');
+                                var chart = {
+                                    labels: ['Accepted Paper','Rejected Papers','All Papers'],
+                                    datasets: [{
+                                        data: [
+                                            {!! json_encode($acceptNum) !!}, {!! json_encode($rejectNum) !!}, {!! json_encode($allPapersNum) !!}
+                                        ],
+                                        fillColor : "#f8b1aa",
+                                        strokeColor: "#bb574e",
+                                        pointColor: "#bb574e"
+                                    }]
+                                };
+                                new Chart(ctx).Bar(chart, {bezierCurve: false});
+                            })();
+                        </script>
                         <hr/>
 
                         <h4>Paper List</h4>

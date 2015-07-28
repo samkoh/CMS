@@ -38,21 +38,21 @@ class ConfChairPaperReportController extends Controller {
 
 //dd($final_results);
 
-        $acceptNum = DB::table('papers')
+        $acceptNum = json_encode(DB::table('papers')
             ->select('status')
             ->where('status', '=', 1)
-            ->count('status');
+            ->count('status'));
 
-        $rejectNum = DB::table('papers')
+        $rejectNum = json_encode(DB::table('papers')
             ->select('status')
             ->where('status', '=', - 1)
-            ->count('status');
+            ->count('status'));
 
-        $allPapersNum = DB::table('papers')
+        $allPapersNum = json_encode(DB::table('papers')
             ->select('status')
-            ->count('status');
+            ->count('status'));
 
-//dd($allPapersNum);
+//dd($acceptNum);
 
         return view('conferenceChair.paperReport', compact('allPapers', 'nullReviewer', 'acceptNum', 'rejectNum', 'allPapersNum'));
     }

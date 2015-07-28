@@ -77,7 +77,7 @@ class ConfChairCreateConferenceController extends Controller {
         $conference->faxNo = Input::get('faxNo');
         $conference->startDate = Input::get('startDate');
         $conference->endDate = Input::get('endDate');
-
+//dd($conference);
 
         $conference->save();
 
